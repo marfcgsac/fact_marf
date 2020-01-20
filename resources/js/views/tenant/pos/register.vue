@@ -3,7 +3,7 @@
     <div class="container-fluid m-0 pb-0">
         <div class="row flex-row">
             <!--            articulos-->
-            <div class="col-6">
+            <div class="col-xs-12 col-md-6">
                 <div class="input-group input-group-lg border  rounded">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
@@ -41,7 +41,7 @@
                   
                       <div class="d-flex flex-row flex-wrap p-2">
 
-                           <div class="col-md-4" v-show="prod.item_category_id==selectCategoria||selectCategoria==0" style="padding:4px;" v-for="prod in listProd" >
+                           <div class="col-md-4 col-4 " v-show="prod.item_category_id==selectCategoria||selectCategoria==0" style="padding:4px;" v-for="prod in listProd" >
                     
 
 
@@ -68,7 +68,7 @@
 
        <div class="mt-3 overflow-auto h-100 border rounded rounded-0 scrollbar scrollbar-secondary" style="max-height: 75vh">
                   
-              <div class="d-flex flex-row flex-wrap p-2">
+              <div class="d-flex flex-row flex-wrap p-1 ">
                   
                         <div v-show="option.item_category_id==selectCategoria||selectCategoria==0" class="card m-1 btn-outline-success " v-for="option in findItem" 
                              style="width: 32%; cursor: pointer"
@@ -92,12 +92,9 @@
                 </div>
 
              
-     
-
-
 
             <!--            pago-->
-            <div class="col-6">
+            <div class="col-xs-12 col-md-6">
                 <div class="card mb-0">
                     <div class="card-header  bg-nuevo p-1">
                         <h5 class="m-0 p-0">
@@ -200,13 +197,13 @@
                             </div>
                         </div>
                         <div class="row pt-3">
-                            <div class="col-3">
+                            <div class="col-6 col-3">
                                 <el-button class="btn btn-danger btn-lg btn-block" type="danger"
                                            @click.prevent="close">
                                     Cancelar
                                 </el-button>
                             </div>
-                            <div class="col-9">
+                            <div class="col-md-9 col-6">
                                 <el-button class="btn btn-submit btn-lg btn-block" style=" background: #9856fc;" type="primary" native-type="submit"
                                            @click.prevent="showDialogMakeSale=true"
                                            v-if="form.items.length > 0"> Procesar Pago

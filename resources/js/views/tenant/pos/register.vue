@@ -203,7 +203,7 @@
                                     Cancelar
                                 </el-button>
                             </div>
-                            <div class="col-md-9 col-6">
+                            <div class="col-md-9 col-6 pt-2">
                                 <el-button class="btn btn-submit btn-lg btn-block" style=" background: #9856fc;" type="primary" native-type="submit"
                                            @click.prevent="showDialogMakeSale=true"
                                            v-if="form.items.length > 0"> Procesar Pago

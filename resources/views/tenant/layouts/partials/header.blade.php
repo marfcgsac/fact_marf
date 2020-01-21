@@ -57,7 +57,7 @@
                     </a>
                 @endif
             @else
-                @if(date("H:i:s") > '17:00:00')
+                @if(date("H:i:s") > '20:00:00')
                     <a class="btn btn-sm btn-warning mt-2 mr-2 text-white" href="{{route('tenant.box.index')}}">
                         <i class="fas fa-cash-register mr-1"></i> ¡No se olvide cerrar su caja al finalizar el día!
                     </a>

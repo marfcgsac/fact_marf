@@ -44,7 +44,7 @@ class ItemController extends Controller
     public function records(Request $request)
     {
         $records = Item::where($request->column, 'like', "%{$request->value}%")
-            ->orderBy('internal_id');
+            ->orderBy('id','ASC');
 
         return new ItemCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
     }
@@ -171,10 +171,7 @@ class ItemController extends Controller
 
     public function list(){
 
-       // $data = Item::get();
-  
-      
-
+        // $data = Item::get();
         // $data = Item::where("item_type_id",01)
         // ->join('item_category', 'item_category.id', '=', 'items.item_type_id')
         // ->get();
@@ -193,7 +190,7 @@ class ItemController extends Controller
             // $data = Item::query()
        $data = Item::
     //    where("unit_type_id",'MTR')
-        Where("item_type_id",01)
+        where("item_type_id",01)
         //->orderBy('internal_id','asc')
         //->join('item_category', 'item_category.id', '=', 'items.item_type_id')
        // ->join('items', 'items.item_category_id', '=','item_category.id' )

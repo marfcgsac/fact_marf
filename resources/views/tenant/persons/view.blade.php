@@ -1,5 +1,5 @@
 @extends('tenant.layouts.app')
-
+ 
 @php
     $total = (is_null($totals->total)) ? 0:$totals->total;
     $total2 = (is_null($totals->total2)) ? 0:$totals->total2;

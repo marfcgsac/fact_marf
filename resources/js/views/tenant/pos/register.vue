@@ -1063,7 +1063,7 @@
             initTempItem() {
                 this.errors = {}
                 this.tempItem = {
-//                    category_id: [1],
+//                  category_id: [1],
                     item_id: null,
                     item: {},
                     affectation_igv_type_id: null,

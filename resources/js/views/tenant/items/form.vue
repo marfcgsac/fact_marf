@@ -11,6 +11,18 @@
                             <small class="form-control-feedback" v-if="errors.internal_id"
                                    v-text="errors.internal_id[0]"></small>
                         </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" :class="{'has-danger': errors.item_type_id}">
+                            <label class="control-label">P/SS</label>
+                            <el-select v-model="form.item_type_id" dusk="item_type_id">
+                                <el-option v-for="option in item_types" :key="option.id" :value="option.id"
+                                           :label="option.description"></el-option>
+                            </el-select>
+                            <small class="form-control-feedback" v-if="errors.item_type_id"
+                                   v-text="errors.item_type_id[0]"></small>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.unit_type_id}">
@@ -224,6 +236,7 @@
                 errors: {},
                 form: {},
                 unit_types: [],
+                item_types: [],
                 currency_types: [],
                 system_isc_types: [],
                 affectation_igv_types: [],
@@ -238,6 +251,9 @@
             this.$http.get(`/${this.resource}/tables`)
                 .then(response => {
                         this.unit_types = response.data.unit_types
+
+                        this.item_types = response.data.item_types
+
                         this.currency_types = response.data.currency_types
                         this.system_isc_types = response.data.system_isc_types
                         this.affectation_igv_types = response.data.affectation_igv_types
@@ -278,7 +294,7 @@
                 this.errors = {}
                 this.form = {
                     id: null,
-                    item_type_id: '01',
+                    item_type_id: null,
                     trademark_id: null,
                     item_category_id: null,
                     internal_id: null,

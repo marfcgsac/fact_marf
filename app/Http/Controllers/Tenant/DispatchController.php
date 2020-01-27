@@ -219,10 +219,12 @@ class DispatchController extends Controller
     public function tables(Request $request)
     {
         $items = Item::query()
-            ->where('item_type_id', '01')
+
+            ->whereIn('item_type_id', ['01','02'])
             ->orderBy('description')
             ->get()
             ->transform(function ($row) {
+                
                 $full_description = ($row->internal_id) ? $row->internal_id . ' - ' . $row->description : $row->description;
 
                 return [

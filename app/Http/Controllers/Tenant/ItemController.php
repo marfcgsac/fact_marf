@@ -8,6 +8,7 @@ use App\Models\Tenant\Catalogs\AttributeType;
 use App\Models\Tenant\Catalogs\CurrencyType;
 use App\Models\Tenant\Catalogs\SystemIscType;
 use App\Models\Tenant\Catalogs\UnitType;
+use App\Models\Tenant\ItemType;
 use App\Models\Tenant\Item;
 use App\Models\Tenant\Establishment;
 use App\Models\Tenant\Warehouse;
@@ -57,6 +58,7 @@ class ItemController extends Controller
     public function tables()
     {
         $unit_types = UnitType::whereActive()->orderByDescription()->get();
+        $item_types = ItemType::orderBy('description')->get();
         $currency_types = CurrencyType::whereActive()->orderByDescription()->get();
         $attribute_types = AttributeType::whereActive()->orderByDescription()->get();
         $system_isc_types = SystemIscType::whereActive()->orderByDescription()->get();
@@ -66,9 +68,7 @@ class ItemController extends Controller
         $price_list = PriceList::all();
         $item_category = ItemCategory::WhereNull('parent_id')->orderBy('description')->get();
         
-        
-
-        return compact('unit_types', 'currency_types', 'attribute_types', 'system_isc_types', 'affectation_igv_types', 'trademarks', 'price_list', 'item_category','warehouses');
+        return compact('unit_types','item_types', 'currency_types', 'attribute_types', 'system_isc_types', 'affectation_igv_types', 'trademarks', 'price_list', 'item_category','warehouses');
     }
 
     public function record($id)
@@ -185,16 +185,14 @@ class ItemController extends Controller
 
       public function visible(){
 
-      
-
-            // $data = Item::query()
-       $data = Item::
-    //    where("unit_type_id",'MTR')
-        where("item_type_id",01)
+        // $data = Item::query()
+        $data = Item::
+        // where("unit_type_id",'MTR')
+        whereBetween("item_type_id",[01,02])
         //->orderBy('internal_id','asc')
         //->join('item_category', 'item_category.id', '=', 'items.item_type_id')
-       // ->join('items', 'items.item_category_id', '=','item_category.id' )
-       // ->where("active",1)
+        // ->join('items', 'items.item_category_id', '=','item_category.id' )
+        // ->where("active",1)
         ->get();
   
         return $data;

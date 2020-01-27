@@ -28,8 +28,10 @@ if ($hostname) {
             });
 
             //dashboard
+            
             Route::get('dashboard', 'Tenant\HomeController@index')->name('tenant.dashboard');
             Route::get('dashboard/sells', 'Tenant\HomeController@sells')->name('tenant.dashboard.sells');
+
             Route::get('dashboard/load_sells/{establishment_id}/{range}', 'Tenant\HomeController@load_sells');
             Route::get('dashboard/establishments', 'Tenant\HomeController@establishments');
             Route::get('dashboard/load/{establishment_id}', 'Tenant\HomeController@load');
@@ -488,7 +490,7 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
                 return redirect()->route('system.dashboard');
             });
             Route::get('dashboard', 'System\HomeController@index')->name('system.dashboard');
-
+            
             //Clients
             Route::get('clients', 'System\ClientController@index')->name('system.clients.index');
             Route::get('clients/records', 'System\ClientController@records');

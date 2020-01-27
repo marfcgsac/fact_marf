@@ -16,6 +16,7 @@
         </div>
 
         <div class="card mb-0">
+            
             <div class="card-body">
                 <div class="row" v-if="loaded">
                     <div class="col-md-8">
@@ -56,6 +57,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <br>
+                            
                             <div class="col-md-12" style="max-height: 300px; overflow-y: scroll">
                                  <h5 class="el-dialog__title" style="font-weight: 600;">Cuentas por cobrar</h5>
                                 <table class="table table-sm">
@@ -84,6 +87,12 @@
                             </div>
                         </div>
                     </div>
+
+                        <!-- /*******MAS VENTAS  -->
+
+                     
+                        <!-- /*******MAS VENTAS  -->
+
                     <div class="col-md-4">
                         <section class="card card-horizontal card-tenant-dashboard">
                              <header class="card-header " style=" background: #9856FC;">
@@ -119,12 +128,71 @@
                         </section>
                     </div>
                 </div>
+                <div class="col-md-12">
+                        
+                        <div class="row">
+                            <div class="col-md-6" style="max-height:auto; ">
+                                <h5 class="el-dialog__title" style="font-weight: 600;">Top Clientes</h5>
+                                <table class="table">
+                                    <thead class="table-active">
+                                        <tr>
+                                            <td>#</td>
+                                            <td>CLIENTE</td>
+                                            <td>TOTAL VENTA</td>
+                                          
+                                        </tr>
+                                    </thead>
+                                 
+                                    <tbody v-for="(row,index) in top_10">
+                                        <tr>
+                                            <td>{{ index+1 }}</td>
+                                            <td>{{ row.name }}</td>
+                                            <td>{{ row.total }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6" style="max-height:auto; ">
+                                <h5 class="el-dialog__title" style="font-weight: 600;">Top Productos</h5>
+                                <table class="table">
+                                    <thead class="table-active">
+                                        <tr>
+                                            <td>#</td>
+                                            <td>PRODUCTO</td>
+                                            <td>CODIGO</td>
+                                            <td>TOTAL</td>
+                                          
+                                        </tr>
+                                    </thead>
+                                 
+                                    <tbody v-for="(row,index) in top_10_p">
+                                        <tr>
+                                            <td>{{ index+1 }}</td>
+                                            <td>{{ row.name }}</td>
+                                            <td>{{ row.internal_id }}</td>
+                                            <td>{{ row.total }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+           
+           
+           
             </div>
         </div>
+
+    
         <documents-pay :showDialog.sync="showDialogPay"
                             :recordId="recordId" :resource="resource_pay"></documents-pay>
     </div>
+
+
 </template>
+
 
 <script>   
     import ChartLine from './charts/Line'
@@ -142,7 +210,7 @@
                 loaded_pie: false,
                 showDialogPay: false,
                 recordId: null,
-                 documents: [],
+                documents: [],
              
                 establishments: [],
                 establishment_id: 0,
@@ -151,6 +219,8 @@
                 total_sell: 0,
                 items: [],
                 customers: [], 
+                top_10: [], 
+                top_10_p:[],
                 dataChartLine : null,
                 dataChartPie : null
             }
@@ -233,7 +303,10 @@
                             this.total_invoices = response.data.totals.total
                             this.total_charge = response.data.totals.total - response.data.totals.total_paid
                             this.total_sell = response.data.total_sells
-                        });
+                            this.top_10 = response.data.top_10
+                            this.top_10_p = response.data.top_10_p
+
+});
             },
             
             changeEstablishment() {

@@ -40,7 +40,6 @@ class HomeController extends Controller
             return view('tenant.documents.form');
         }
     }
-
     public function sells()
     {
         $modules = $this->permission_modules();
@@ -92,6 +91,30 @@ class HomeController extends Controller
                 ORDER BY date_of_issue";
 
             $customers = DB::connection('tenant')->select($sql);
+
+            $sql="SELECT   name, sum(total) AS total FROM(
+
+                SELECT  per.name AS name, SUM(doc.total_paid ) AS total  FROM documents doc
+                INNER JOIN persons per ON per.id = doc.customer_id       GROUP BY per.id
+                UNION ALL 
+                SELECT  per.name AS name, sum(doc.total_paid )AS total   FROM sale_notes doc
+                INNER JOIN persons per ON per.id = doc.customer_id       GROUP BY per.id) AS top_10
+                 
+                GROUP BY name
+                ORDER BY total DESC
+                LIMIT 10";
+
+             $top_10 =DB::connection('tenant')->select($sql);
+
+             $sql="SELECT  it.description AS name,it.internal_id, dci.item_id, COUNT(it.description) AS total
+             FROM documents doc
+             INNER JOIN document_items dci ON dci.document_id = doc.id
+             INNER JOIN items it ON it.id= dci.item_id
+             GROUP BY dci.item_id
+             ORDER BY total DESC
+             LIMIT 10";
+
+              $top_10_p =DB::connection('tenant')->select($sql);
         }
         else 
         {
@@ -122,13 +145,43 @@ class HomeController extends Controller
                     INNER JOIN persons per ON per.id = doc.customer_id
                     WHERE (total_paid < total) $condition
                     ORDER BY date_of_issue";
+                            $customers = DB::connection('tenant')->select($sql);
 
-            $customers = DB::connection('tenant')->select($sql);
+            $sql="SELECT   name, sum(total) AS total FROM(
+
+                SELECT  per.name AS name, SUM(doc.total_paid ) AS total
+                FROM documents doc
+                INNER JOIN persons per ON per.id = doc.customer_id
+                where  doc.establishment_id = $establishment_id
+                GROUP BY per.id
+                UNION ALL 
+                SELECT  per.name AS name, sum(doc.total_paid )AS total
+                FROM sale_notes doc
+                INNER JOIN persons per ON per.id = doc.customer_id
+                where  doc.establishment_id = $establishment_id
+                
+                GROUP BY per.id) AS top_10
+                GROUP BY name
+                ORDER BY total DESC
+                LIMIT 5";
+                
+            $top_10 =DB::connection('tenant')->select($sql);
+
+            $sql="SELECT  it.description AS name,it.internal_id, dci.item_id, COUNT(it.description) AS total
+                FROM documents doc
+                INNER JOIN document_items dci ON dci.document_id = doc.id
+                INNER JOIN items it ON it.id= dci.item_id
+                where  doc.establishment_id = $establishment_id
+                GROUP BY dci.item_id
+                ORDER BY total DESC
+                LIMIT 5";
+
+             $top_10_p =DB::connection('tenant')->select($sql);
         }
 
         $total_sells = (int)$total_sells->total;
 
-        return compact('totals', 'total_sells', 'items', 'customers'); 
+        return compact('totals', 'total_sells', 'items', 'customers','top_10','top_10_p'); 
     }
 
     public function total($establishment_id = 0, $range="Diario")

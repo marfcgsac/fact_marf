@@ -1,18 +1,27 @@
-<template>
+<template >
+
     <el-dialog :title="titleDialog" :visible="showDialog" @close="close" @open="create" top="2vh" append-to-body :close-on-click-modal="false" :close-on-press-escape="true" :show-close="false">
          
         <form autocomplete="off" @submit.prevent="submit">
             <div class="form-body">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group" :class="{'has-danger': errors.internal_id}">
-                            <label class="control-label">Código Interno</label>
-                            <el-input v-model="form.internal_id" dusk="internal_id"></el-input>
-                            <small class="form-control-feedback" v-if="errors.internal_id"
-                                   v-text="errors.internal_id[0]"></small>
-                        </div>
+                    <div class="col-md-3" >
+                       <div v-show="option.id"  v-for="option in ultimodato" >
+                        
+                        <button class="btn btn-custom btn-xs m-1" @click.prevent="btn()"><i class="fas fa-sync fa-spin" title="clic para ver el ultimo código"></i> </button>
+                             <a class="control-label" style="font-weight: 800"  title="clic para ver el ultimo código">{{option.internal_id}} </a> 
 
+                        <div class="form-group" :class="{'has-danger': errors.internal_id}">
+                            <!-- <el-button class="btn btn-primary" @click.prevent="btn()">actualiza</el-button>    -->
+                            <!-- <label class="control-label">Código Interno   </label> -->
+                            <el-input v-model="form.internal_id" dusk="internal_id" placeholder="Código Interno " title="actualiza el ultimo código interno"></el-input>
+                            <small class="form-control-feedback" v-if="errors.internal_id" v-text="errors.internal_id[0]"></small>
+                        </div>  
+                                                              
+                        </div>
+                                   
                     </div>
+                    
                     <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.item_type_id}">
                             <label class="control-label">P/SS</label>
@@ -243,8 +252,16 @@
                 warehouses: [],
                 list_price: [],
                 trademarks: [],
-                item_category: []
+                item_category: [],
+
+
+                ultimodato:[]
+
             }
+        },
+
+        mounted() {
+             this.listultimodato()
         },
         created() {
             this.initForm()
@@ -267,10 +284,29 @@
                         this.trademarks = response.data.trademarks
                         this.price_list = response.data.price_list
                         this.item_category = response.data.item_category
+                        this.ultimodato = response.data.ultimodato
                     }
                 )
+               
         },
         methods: {
+
+
+            listultimodato(){
+
+            axios.get("/items/uldato")
+            .then(response=>{
+              // cargar datos
+              this.ultimodato= response.data
+            })
+            .catch(error=>{
+              alert(error)
+            })
+            
+           
+
+            },
+
             clickAddRow() {
                 this.form.item_price_list.push({
                     price_list_id: null,
@@ -403,6 +439,7 @@
                             this.$message.success(response.data.message)
                             if (this.external) {
                                 this.$eventHub.$emit('reloadDataItems', response.data.id)
+                               
                             } else {
                                 this.$eventHub.$emit('reloadData')
                             }
@@ -410,7 +447,7 @@
                         } else {
                             this.$message.error(response.data.message)
                         }
-                    })
+                    } )
                     .catch(error => {
                         if (error.response.status === 422) {
                             this.errors = error.response.data
@@ -421,11 +458,50 @@
                     .then(() => {
                         this.loading_submit = false
                     })
+                       
+                     //this.listultimodato(true)
             },
             close() {
+               
                 this.$emit('update:showDialog', false)
                 this.resetForm()
-            }
+               // this.listultimodato(true)
+                          
+            } ,
+        btn(){
+            this.listultimodato(true)
         }
+            
+          
+                 
+        }
+
     }
+
+//   //Cuando la página esté cargada completamente
+//   $(document).ready(function(){
+//     //Cada 10 segundos (10000 milisegundos) se ejecutará la función refrescar
+//     setTimeout(refrescar, 100);
+//   });
+//   function refrescar(){
+//     //Actualiza la página
+//     location.reload(form.vue);
+//     // this.listultimodato()
+//   }
+
+//window.setInterval(" mounted()",6600);
+
+
+
+    // $(document).ready(function(){
+    //     setInterval(function() {
+    //         $("#tiempo").load("index.blade.php");
+    //     }, 10000);
+    // });
+
+
 </script>
+
+
+           
+ 

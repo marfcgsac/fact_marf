@@ -119,6 +119,9 @@ if ($hostname) {
 
 
 /////////////categoria
+            Route::get('items/load/{establishment_id}', 'Tenant\ItemController@load');
+            Route::get('items/uldato', 'Tenant\ItemController@uldato');
+
             Route::get('items/List', 'Tenant\ItemController@List');
             Route::get('items/visible', 'Tenant\ItemController@visible');
             Route::get('items/tables', 'Tenant\ItemController@tables');

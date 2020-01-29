@@ -198,7 +198,36 @@ class ItemController extends Controller
         return $data;
   
       }
+      public function uldato(){
 
+        $data = Item::query()
+        
+        ->whereIn('item_type_id', ['01','02'])
+        ->orderBy('id','desc')
+        ->limit(1)
+        ->get();
+       
+        return $data;
+
+        }
+
+
+      public function load()
+      {
+         
+        {
+              $sql="SELECT  id, internal_id
+                     from items
+                     order by id desc
+                     LIMIT 5";
+  
+               $top_10 =DB::connection('tenant')->select($sql);
+  
+             
+  }
+      
+          return compact('top_10'); 
+      }
  
 
 }

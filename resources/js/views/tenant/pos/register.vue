@@ -609,6 +609,7 @@
                 selectCategoria: 0,
                 SelectMesa:1,
 
+
                 resource: 'documents',
                 showDialogAddItem: false,
                 showDialogNewPerson: false,
@@ -656,6 +657,7 @@
         mounted() {
             this.listCatService()
             this.listProdService()
+          
         },
         
         async created() {
@@ -791,6 +793,7 @@
             })
 
           },
+
 ///
             enterAddItem(e) {
                 // console.info(e);

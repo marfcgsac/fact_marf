@@ -306,7 +306,7 @@
                             this.top_10 = response.data.top_10
                             this.top_10_p = response.data.top_10_p
 
-});
+                });
             },
             
             changeEstablishment() {

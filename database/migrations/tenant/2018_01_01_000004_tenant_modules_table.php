@@ -41,6 +41,8 @@ class TenantModulesTable extends Migration
             ['value' => 'Pos', 'description' => 'Punto de venta'],
             ['value' => 'sale-notes', 'description' => 'Nota de Venta'],
             ['value' => 'dashboard', 'description' => 'Dashboard'],
+            ['value' => 'alerts', 'description' => 'Alertas de Sunat'],
+
 
         ]);
     }

@@ -38,6 +38,10 @@ class TenantModulesTable extends Migration
             ['value' => 'advanced', 'description' => 'Documentos Avanzados'],
             ['value' => 'reports', 'description' => 'Reportes'],
             ['value' => 'configuration', 'description' => 'Configuration'],
+            ['value' => 'Pos', 'description' => 'Punto de venta'],
+            ['value' => 'sale-notes', 'description' => 'Nota de Venta'],
+            ['value' => 'dashboard', 'description' => 'Dashboard'],
+
         ]);
     }
 

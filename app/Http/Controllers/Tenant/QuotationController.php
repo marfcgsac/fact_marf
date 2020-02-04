@@ -241,7 +241,7 @@ class QuotationController extends Controller
     public function email(DocumentEmailRequest $request)
     {
         $company = Company::active();
-        $document = Document::find($request->input('id'));
+        $document = Quotation::find($request->input('id'));
         $customer_email = $request->input('customer_email');
 
         Mail::to($customer_email)->send(new DocumentEmail($company, $document));
@@ -251,15 +251,18 @@ class QuotationController extends Controller
         ];
     }
 
+
+  
+
     public function send($document_id)
     {
-        $document = Document::find($document_id);
+        $document = Quotation::find($document_id);
 
-        $fact = DB::connection('tenant')->transaction(function () use ($document) {
+        $fact = DB::connection('tenant')->transaction(function () use ($docotizacion) {
             $facturalo = new Facturalo();
-            $facturalo->setDocument($document);
-            $facturalo->loadXmlSigned();
-            $facturalo->onlySenderXmlSignedBill();
+           // $facturalo->setDocument($document);
+            // $facturalo->loadXmlSigned();
+            // $facturalo->onlySenderXmlSignedBill();
             return $facturalo;
         });
 

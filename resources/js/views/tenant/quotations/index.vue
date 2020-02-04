@@ -58,6 +58,12 @@
                                     <button id="btnGroupDrop1" type="button" class="btn waves-effect waves-light btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Opciones
                                     </button>
+                                     <!-- <button type="button" class="waves-effect waves-light fa fa-paper-plane" @click.prevent="clickOptions(row.id)">envio </button> -->
+                                     <el-button type="button"  class="btn btn-info btn-xs" slot="append" icon="el-icon-message" @click.prevent="clickOptions(row.id)">envio </el-button>
+                                   
+                                    
+                 
+
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a v-if="row.state_type_id==1" class="dropdown-item" :href="`/documents/create2/`+row.id">Crear venta</a>
                                         <a v-if="row.state_type_id==1" class="dropdown-item" :href="`/quotations/edit/`+row.id">Editar</a>

@@ -19,6 +19,7 @@ if ($hostname) {
         Route::get('print2/{model}/{id}/{format?}', 'Tenant\DownloadController@toPrint2');
         /*cotizacion*/
         Route::get('download/{model}/{type}/{id}/{format?}', 'Tenant\DownloadController@downloadExternal2')->name('tenant.download.id');
+        Route::get('download_cot/{model}/{type}/{id}/{format?}', 'Tenant\DownloadController@downloadExternalcot')->name('tenant.download.id');
         /*fin cotizacion*/
 
         //Route::middleware(['auth', 'module'])->group(function() {
@@ -281,6 +282,9 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
             Route::get('box', 'Tenant\PosController@index')->name('tenant.box.index');
 
             //Quotations
+
+            Route::get('quotations/send/{docotizacion}', 'Tenant\DocumentController@send');
+
             Route::get('quotations', 'Tenant\QuotationController@index')->name('tenant.quotations.index');
             Route::get('quotations/columns', 'Tenant\QuotationController@columns');
             Route::get('quotations/records', 'Tenant\QuotationController@records');

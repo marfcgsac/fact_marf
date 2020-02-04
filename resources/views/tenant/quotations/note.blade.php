@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <tenant-documents-note :document="{{ json_encode($document) }}"></tenant-documents-note>
+    <tenant-quotation-note :docotizacion="{{ json_encode($docotizacion) }}"></tenant-quotation-note>
 
 @endsection

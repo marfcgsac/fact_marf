@@ -45,6 +45,22 @@ class DownloadController extends Controller
         
         return $this->download($type, $document);
     }
+    public function downloadExternalcot($model, $type, $id, $format = null) {
+        
+        if($model == 'quotation')
+        {
+            $model = 'quotation';
+        }
+
+        $model = "App\\Models\\Tenant\\".ucfirst($model);
+        $document = $model::where('id', $id)->first();
+        
+        if (!$document) throw new Exception("El código {$id} es inválido, no se encontro documento relacionado");
+        
+        if ($format != null) $this->reloadPDF3($document, 'invoice', $format);
+        
+        return $this->download($type, $document);
+    }
     
     public function download($type, $document) {
         switch ($type) {
@@ -114,6 +130,10 @@ class DownloadController extends Controller
 
     private function reloadPDF2($document,$type, $format){
         (new Facturalo)->createPdf2($document, $type, $format);
+
+    }
+    private function reloadPDF3($document,$type, $format){
+        (new Facturalo )->createPdf3($quotation, $type, $format);
 
     }
 }

@@ -75,7 +75,7 @@ class HomeController extends Controller
                 (SELECT description FROM warehouses war WHERE war.id = itw.warehouse_id LIMIT 1) AS warehouse
                 FROM items ite
                 INNER JOIN item_warehouse itw ON itw.item_id = ite.id
-                WHERE itw.stock < stock_min + 9";
+                WHERE itw.stock < stock_min + 9 AND ite.item_type_id=01";
 
             $items = DB::connection('tenant')->select($sql, array($establishment_id));
 
@@ -129,7 +129,7 @@ class HomeController extends Controller
                 (SELECT description FROM warehouses war WHERE war.id = itw.warehouse_id LIMIT 1) AS warehouse
                 FROM items ite
                 INNER JOIN item_warehouse itw ON itw.item_id = ite.id
-                WHERE itw.warehouse_id = ? AND itw.stock < stock_min + 9";
+                WHERE itw.warehouse_id = ? AND itw.stock < stock_min + 9 AND ite.item_type_id=01";
 
             $items = DB::connection('tenant')->select($sql, array($establishment_id));
 

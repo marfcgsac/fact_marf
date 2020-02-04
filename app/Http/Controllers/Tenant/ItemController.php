@@ -206,15 +206,14 @@ class ItemController extends Controller
         ->orderBy('id','desc')
         ->limit(1)
         ->get();
+
+        
        
         return $data;
-
         }
-
 
       public function load()
       {
-         
         {
               $sql="SELECT  id, internal_id
                      from items
@@ -222,10 +221,7 @@ class ItemController extends Controller
                      LIMIT 5";
   
                $top_10 =DB::connection('tenant')->select($sql);
-  
-             
-  }
-      
+      }
           return compact('top_10'); 
       }
  

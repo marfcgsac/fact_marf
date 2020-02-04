@@ -35,15 +35,15 @@
                         </td>
 
                          <!-- integrar pdf ed -->
-                            <button id="btnGroupDrop1" type="button" class="btn waves-effect waves-light btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- <button id="btnGroupDrop1" type="button" class="btn waves-effect waves-light btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Descargar
                                     </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <button type="button" @click.prevent="clickDownload(row.download_xml)" v-if="row.has_xml" class="dropdown-item">XML</button>
                                         <a @click.prevent="clickDownload(row.download_pdf)" v-if="row.has_pdf" class="dropdown-item">PDF</a>
-                                        <!-- <a @click.prevent="clickDownload(row.download_pdf)" v-if="row.has_pdf" class="dropdown-item">PDF2</a> -->
+                                        <a @click.prevent="clickDownload(row.download_pdf)" v-if="row.has_pdf" class="dropdown-item">PDF2</a>
                                         <a @click.prevent="clickDownload(row.download_cdr)" v-if="row.has_cdr" class="dropdown-item">CDR</a>
-                                    </div>
+                                    </div> -->
 
                                     <!--cierre integrar pdf ed -->
                     </tr>

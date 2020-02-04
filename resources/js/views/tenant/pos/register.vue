@@ -485,8 +485,8 @@
                                         <label class="control-label">Forma</label>
                                         <select v-model="info.tipo" class="form-control form-control-sm" required>
                                             <option value="Efectivo">Efectivo</option>
-                                            <option value="Credito">Tarjeta de crÃ©dito</option>
-                                            <option value="Debito">Tarjeta de dÃ©bito</option>
+                                            <option value="Credito">Tarjeta de crédito</option>
+                                            <option value="Debito">Tarjeta de débito</option>
                                             <option value="Cheque">Cheque</option>
                                         </select>
                                     </div>
@@ -664,6 +664,7 @@
             await this.initForm();
             await this.initTempItem();
             await this.refreshItems();
+          
             await this.$http.get(`/${this.resource}/tables`)
                 .then(response => {
                     this.document_types = response.data.document_types_invoice2
@@ -781,6 +782,7 @@
             })
 
           },
+
           listCatService(){
 
             axios.get("/item_category/disponible")
@@ -794,7 +796,6 @@
 
           },
 
-///
             enterAddItem(e) {
                 // console.info(e);
                 // console.info(this.findItem);
@@ -1060,7 +1061,8 @@
                 this.$http.get(`/documents/item/tables`).then(response => {
 //                this.categories = response.categories
                     this.affectation_igv_types = response.data.affectation_igv_types
-                })
+                });
+              
             },
 
             initTempItem() {

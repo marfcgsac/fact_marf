@@ -59,7 +59,7 @@
                             <label class="control-label">Módulos</label>
                             <div class="row">
                                 <div class="col-4" v-for="module in form.modules">
-                                    <el-checkbox v-model="module.checked">{{ module.description }}</el-checkbox>
+                                    <el-checkbox v-model="module.checked">{{ module.description }}</el-checkbox> 
                                 </div>
                             </div>
                         </div>

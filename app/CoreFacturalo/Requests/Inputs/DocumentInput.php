@@ -29,7 +29,7 @@ class DocumentInput
         $establishment = EstablishmentInput::set($inputs['establishment_id']);
         $customer = PersonInput::set($inputs['customer_id']);
 
-        if(in_array($document_type_id, ['01', '03'])) {
+        if(in_array($document_type_id, ['01', '03'])) {//02 para cotizacion
             $array_partial = self::invoice($inputs);
             $invoice = $array_partial['invoice'];
             $note = null;

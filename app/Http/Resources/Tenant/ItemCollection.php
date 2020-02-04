@@ -35,6 +35,7 @@ class ItemCollection extends ResourceCollection
                 //
                 'detalle' => $row->detalle,
                 //
+              
                 'internal_id' => $row->internal_id,
                 'item_code' => $row->item_code,
                 'item_code_gs1' => $row->item_code_gs1,

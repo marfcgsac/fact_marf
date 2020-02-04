@@ -26,6 +26,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                             </a>
                         </li>
                     @endif
+                    @if(in_array('alerts', $vc_modules))
                     <li class="nav-parent {{ in_array($path[0], ['alerts'])?'nav-active nav-expanded':'' }}">
                         <a class="nav-link" href="#">
                             <i class="fas fa-bell" aria-hidden="true"></i>
@@ -39,6 +40,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                             </li>
                         </ul>
                     </li>
+                    @endif
                     @if(in_array('documents', $vc_modules))
                     <li class="
                         nav-parent
@@ -139,6 +141,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                         </ul>
                     </li>
                     @endif
+                    @if(in_array('items', $vc_modules))
                     <li class="nav-parent {{ (in_array($path[0], ['inventory', 'warehouses', 'items', 'price-list']) ||
                                                 ($path[0] === 'reports' && in_array($path[1], ['kardex', 'inventory'])))?'nav-active nav-expanded':'' }}">
                         <a class="nav-link" href="#">
@@ -181,6 +184,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                             </li>
                         </ul>
                     </li>
+                    @endif
                     <li class="
                         {{ ($path[0] === 'box')?'nav-active':'' }}
                         ">

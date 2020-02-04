@@ -123,7 +123,7 @@
                             </div>
                         </section>
                         <section class="card card-horizontal card-tenant-dashboard">
-                            <h5>Todos los establecimientos (% Pagos)</h5>
+                            <h5 style="text-align: center;">Todos los establecimientos (% Pagos)</h5>
                             <chart-pie :data="dataChartPie"></chart-pie>
                         </section>
                     </div>
@@ -304,7 +304,7 @@
                             this.total_charge = response.data.totals.total - response.data.totals.total_paid
                             this.total_sell = response.data.total_sells
                             this.top_10 = response.data.top_10
-                            this.top_10_p = response.data.top_10_p
+                            this.top_10_p = response.data.top_10_p 
 
                 });
             },

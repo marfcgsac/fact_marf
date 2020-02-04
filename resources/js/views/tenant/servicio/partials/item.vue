@@ -183,8 +183,8 @@
                 showDialogNewItem: false,
                 errors: {},
                 form: {},
-//                categories: [],
-//                all_items: [],
+//              categories: [],
+//              all_items: [],
                 items: [],
                 operation_types: [],
                 all_affectation_igv_types: [],
@@ -200,7 +200,7 @@
         created() {
             this.initForm()
             this.$http.get(`/${this.resource}/items/tables`).then(response => {
-//                this.categories = response.categories
+//              this.categories = response.categories
                 this.items = response.data.items
                 this.operation_types = response.data.operation_types
                 this.all_affectation_igv_types = response.data.affectation_igv_types
@@ -218,7 +218,7 @@
             initForm() {
                 this.errors = {}
                 this.form = {
-//                    category_id: [1],
+//                  category_id: [1],
                     item_id: null,
                     item: {},
                     affectation_igv_type_id: null,

@@ -48,7 +48,7 @@ class ReportKardexController extends Controller
         $establishment_id = $request->selEstablishment;
 
         $items = Item::query()
-            ->where('item_type_id', '01')
+            ->where('item_type_id', '02')
             ->latest()
             ->get();
         

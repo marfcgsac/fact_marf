@@ -275,6 +275,7 @@ class DocumentController extends Controller
             $items[] = [
                 'id' => $row->id,
                 'full_description' => $full_description,
+
                 'item_id' => $row->id,
                 'unit_value' => $quotation_item->unit_value,
                 'affectation_igv_type_id' => $quotation_item->affectation_igv_type_id,

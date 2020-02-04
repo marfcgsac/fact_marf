@@ -28,6 +28,9 @@ class ItemRequest extends FormRequest
             //     'required',
             // ],
             // //
+            'item_type_id' => [
+              
+            ],
             'unit_type_id' => [
                 'required',
             ],

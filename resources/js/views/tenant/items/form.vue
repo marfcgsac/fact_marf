@@ -25,14 +25,16 @@
                     <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.item_type_id}">
                             <label class="control-label">P/SS</label>
-                            <el-select v-model="form.item_type_id" dusk="item_type_id">
+                            <el-select v-model="form.item_type_id" dusk="item_type_id" >
                                 <el-option v-for="option in item_types" :key="option.id" :value="option.id"
                                            :label="option.description"></el-option>
                             </el-select>
                             <small class="form-control-feedback" v-if="errors.item_type_id"
                                    v-text="errors.item_type_id[0]"></small>
+                       </div>
                         </div>
-                    </div>
+
+                  
                     <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.unit_type_id}">
                             <label class="control-label">Unidad</label>
@@ -97,6 +99,7 @@
                                    v-text="errors.stock_min[0]"></small>
                         </div>
                     </div>
+                    
                     <div class="col-md-4">
                         <div class="form-group" :class="{'has-danger': errors.sale_unit_price}">
                             <label class="control-label">Precio Unitario (Venta)</label>
@@ -215,20 +218,42 @@
                         <h4>Stock Inicial</h4>
                     </div>
                 </div>
+
                 <div class="row pb-1" v-for="(row,index) in form.item_warehouse" :key="row.id">
                     <div class="col-8">
                         {{ row.description }}
                     </div>
-                    <div class="col-4">
-                        <el-input v-model.sync="row.quantity"></el-input>
+
+                      <!-- prueba de oif - else -->
+                <!-- <div v-if="form.item_type_id=='02'"> -->
+               
+                <div class="col-4">
+                  
+                         <el-input   v-model.sync="row.quantity" ></el-input>
+                     </div>
+                
+   
+               <!-- <div v-else="form.item_type_id ==  '01'"> 
+
+                      <div class="col-4">
+                       
+                         <el-input v-model.sync="row.quantity" ></el-input>
                     </div>
-                </div>
+                </div> 
+               </div>-->
+               </div>
+            
+                <!-- fin prueba if else -->
+                   
             </div>
+
 
             <div class="form-actions text-right pt-2">
                 <el-button @click.prevent="close()">Cancelar</el-button>
                 <el-button type="primary" native-type="submit" :loading="loading_submit">Guardar</el-button>
             </div>
+
+
         </form>
     </el-dialog>
 </template>
@@ -239,6 +264,8 @@
         props: ['showDialog', 'recordId', 'external'],
         data() {
             return {
+
+                 
                 loading_submit: false,
                 titleDialog: null,
                 resource: 'items',
@@ -253,8 +280,6 @@
                 list_price: [],
                 trademarks: [],
                 item_category: [],
-
-
                 ultimodato:[]
 
             }
@@ -349,8 +374,12 @@
                     sale_affectation_igv_type_id: null,
                     purchase_affectation_igv_type_id: null,
                     item_warehouse: [],
+
+
                     stock: 0,
-                    stock_min: 1,                    
+
+                    stock_min: 1,          
+                    stock_servicio:9999,          
                     item_price_list:[]
                 }
             },
@@ -361,6 +390,7 @@
             },
             create() {
                 this.titleDialog = (this.recordId) ? 'Editar Producto' : 'Nuevo Producto'
+                
 
                 //item_warehouse
                 if (this.recordId) {
@@ -383,6 +413,7 @@
                                 if (typeof item === 'object') {
                                     temp_item_price_list.push({
                                         "price_list_id": this.price_list[i].id,
+                                        
                                         "name": this.price_list[i].name,
                                         "type": this.price_list[i].type,
                                         "percentage": this.price_list[i].value,
@@ -399,19 +430,24 @@
                                 }
                             }
                             this.form.item_price_list = temp_item_price_list;
-
+    
                             this.form.stock = 0;
                         })
                 } else {
                     let temp_item_warehouse = [];
                     let temp_item_price_list = [];
+                    
 
                     for (let i = 0; i < this.warehouses.length; i++) {
 
                         temp_item_warehouse.push({
                             "warehouse_id": this.warehouses[i].id,
                             "description": this.warehouses[i].description,
-                            "quantity": 0
+                            "quantity":0
+    
+                           
+                     //   "quantity": this.stock1
+
                         })
                     }
                    
@@ -439,7 +475,8 @@
                             this.$message.success(response.data.message)
                             if (this.external) {
                                 this.$eventHub.$emit('reloadDataItems', response.data.id)
-                               
+                                
+                              
                             } else {
                                 this.$eventHub.$emit('reloadData')
                             }
@@ -459,13 +496,13 @@
                         this.loading_submit = false
                     })
                        
-                     //this.listultimodato(true)
+                this.listultimodato(true)
             },
             close() {
                
                 this.$emit('update:showDialog', false)
                 this.resetForm()
-               // this.listultimodato(true)
+                this.listultimodato(true)
                           
             } ,
         btn(){

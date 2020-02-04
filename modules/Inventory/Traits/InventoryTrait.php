@@ -97,12 +97,17 @@ trait InventoryTrait
         
         // dd($item_warehouse->item->unit_type_id);
 
-        if($quantity < 0 && $item_warehouse->item->unit_type_id !== 'ZZ'){
+
+        if($quantity < 0 && $item_warehouse->item->item_type_id !== '02'){
             if (($inventory_configuration->stock_control) && ($item_warehouse->stock < 0)){             
                 throw new Exception("El producto {$item_warehouse->item->description} no tiene suficiente stock!");
             }
+            
         }
+    
+
         $item_warehouse->save();
+       
     }
     
     public function checkInventory($item_id, $warehouse_id) {
@@ -111,6 +116,8 @@ trait InventoryTrait
             ->first();
 
         return ($inventory)?true:false;
+        
+    
     }
     
     public function initializeInventory() {

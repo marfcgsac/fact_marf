@@ -94,7 +94,7 @@
 <script type="text/javascript">
     (function () {
         var options = {
-            whatsapp: "51999035338", // WhatsApp number
+            whatsapp: "51933038225", // WhatsApp number
             call_to_action: "Soporte LIZA POS !", // Call to action
             position: "right", // Position may be 'right' or 'left'
         };

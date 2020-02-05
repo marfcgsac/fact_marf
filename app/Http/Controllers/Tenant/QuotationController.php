@@ -9,6 +9,7 @@ use App\Http\Requests\Tenant\DocumentVoidedRequest;
 use App\Http\Resources\Tenant\QuotationCollection;
 use App\Http\Resources\Tenant\QuotationResource;
 use App\Mail\Tenant\DocumentEmail;
+use App\Mail\Tenant\CotizacionEmail;
 use App\Models\Tenant\Catalogs\AffectationIgvType;
 use App\Models\Tenant\Catalogs\ChargeDiscountType;
 use App\Models\Tenant\Catalogs\CurrencyType;
@@ -244,7 +245,7 @@ class QuotationController extends Controller
         $document = Quotation::find($request->input('id'));
         $customer_email = $request->input('customer_email');
 
-        Mail::to($customer_email)->send(new DocumentEmail($company, $document));
+        Mail::to($customer_email)->send(new CotizacionEmail($company, $document));
 
         return [
             'success' => true
@@ -260,7 +261,7 @@ class QuotationController extends Controller
 
         $fact = DB::connection('tenant')->transaction(function () use ($docotizacion) {
             $facturalo = new Facturalo();
-           // $facturalo->setDocument($document);
+            // $facturalo->setDocument($document);
             // $facturalo->loadXmlSigned();
             // $facturalo->onlySenderXmlSignedBill();
             return $facturalo;

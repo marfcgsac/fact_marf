@@ -30,6 +30,8 @@ class ItemResource extends JsonResource
             //
             'detalle' => $this->detalle,
             //
+
+            'item_type_id' => $this->item_type_id,
             'internal_id' => $this->internal_id,
             'item_code' => $this->item_code,
             'item_code_gsl' => $this->item_code_gsl,

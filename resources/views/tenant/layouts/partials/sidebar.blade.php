@@ -56,7 +56,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                         {{ ($path[0] === 'servicio')?'nav-active nav-expanded':'' }}
                         ">
                         <a class="nav-link" href="#">
-                            <i class="fas fa-receipt" aria-hidden="true"></i>
+                            <i class="fas fa-donate" aria-hidden="true"></i>
                             <span>Ingresos</span>
                         </a>
                         <ul class="nav nav-children" style="">
@@ -119,7 +119,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                         {{ ($path[0] === 'expenses')?'nav-active nav-expanded':'' }}
                         ">
                         <a class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                            <i class="fas fa-file-invoice-dollar fa-4" aria-hidden="true"></i>
                             <span>Gastos</span>
                         </a>
                         <ul class="nav nav-children" style="">
@@ -199,7 +199,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                             <span>Contable </span><span class="label label-new"> Pronto</span>
                         </a>
                     </li>
-
+                    @if(in_array('account', $vc_modules))
                     <li class="
                         {{ ($path[0] === 'accounts')?'nav-active':'' }}
                         ">
@@ -208,6 +208,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                             <span>Bancos</span>
                         </a>
                     </li>
+                    @endif
                     @if(in_array('configuration', $vc_modules))
                     <li class="nav-parent {{ in_array($path[0], ['users', 'persons'])?'nav-active nav-expanded':'' }}">
                         <a class="nav-link" href="#">
@@ -272,7 +273,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                     @if(in_array('reports', $vc_modules))
                         <li class="nav-parent {{  (($path[0] === 'reports') && in_array($path[1], ['', 'purchases', 'sells', 'customers', 'expenses'])) ? 'nav-active nav-expanded' : ''}}">
                             <a class="nav-link" href="#">
-                                <i class="fas fa-chart-area" aria-hidden="true"></i>
+                                <i class="fas fa-chart-line"aria-hidden="true"></i>
                                 <span>Reportes</span>
                             </a>
                             <ul class="nav nav-children" style="">
@@ -374,9 +375,10 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                     <div>
                       <div class="card-header " style="background: #0e0d0d;border: #f0f8ff00;">
                        
-			 <video src="/logo/01.mp4" autoplay muted loop style="max-width: 240px;max-height: 240px;">
+			 <video src="/logo/chocolate.mp4" autoplay muted loop style="max-width: 220px;max-height: 240px;"></video>
                       </div>
                     </div>
+
                 </ul>
             </nav>
         </div>

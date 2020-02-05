@@ -8,6 +8,9 @@ use App\Models\Tenant\Purchase;
 use App\Models\Tenant\Retention;
 use App\Models\Tenant\Summary;
 use App\Models\Tenant\Voided;
+
+use App\Models\Tenant\Item;
+
 use Illuminate\Http\Request;
 
 class OptionController extends Controller
@@ -26,7 +29,8 @@ class OptionController extends Controller
                 ->whereIn('document_type_id', ['07', '08'])->delete();
         Document::where('soap_type_id', '01')->delete();
         Retention::where('soap_type_id', '01')->delete();
-
+       
+        
         return [
             'success' => true,
             'message' => 'Documentos de prueba eliminados'

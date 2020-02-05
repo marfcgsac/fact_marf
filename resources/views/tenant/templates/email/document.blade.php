@@ -20,7 +20,7 @@
     @else
         {{ $document->supplier->name }}
     @endif
-    , informamos que su comprobante electrónico ha sido emitido exitosamente.</p>
+    , informamos que su Cotizacion ha sido emitido exitosamente.</p>
 <p>Los datos de su comprobante electrónico son:</p>
 <ul>
     <li>Razon social: {{ $company->name }}</li>

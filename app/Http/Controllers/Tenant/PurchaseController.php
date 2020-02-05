@@ -334,7 +334,7 @@ class PurchaseController extends Controller
             
             case 'items':
 
-                $items = Item::orderBy('description')->get()->transform(function($row) {
+                $items = Item::orderBy('id')->where('item_type_id','01')->get()->transform(function($row) {
                     $full_description = ($row->internal_id)?$row->internal_id.' - '.$row->description:$row->description;
                     return [
                         'id' => $row->id,

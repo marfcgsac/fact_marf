@@ -42,6 +42,7 @@ class TenantModulesTable extends Migration
             ['value' => 'sale-notes', 'description' => 'Nota de Venta'],
             ['value' => 'dashboard', 'description' => 'Dashboard'],
             ['value' => 'alerts', 'description' => 'Alertas de Sunat'],
+            ['value' => 'account', 'description' => 'Bancos'],
 
 
         ]);

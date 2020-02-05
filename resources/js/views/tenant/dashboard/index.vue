@@ -96,7 +96,7 @@
                     <div class="col-md-4">
                         <section class="card card-horizontal card-tenant-dashboard">
                              <header class="card-header " style=" background: #9856FC;">
-                                <div class="card-header-icon"><i class="fas fa-shopping-cart"></i></div>
+                                <div class="card-header-icon"><i class="fa fa-shopping-basket"></i></div>
                             </header>
                             <div class="card-body p-4 text-center">
                                 <p class="font-weight-semibold mb-0 mx-4">Venta en el día</p>

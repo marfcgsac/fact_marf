@@ -1,6 +1,6 @@
 <template>
     <el-dialog :title="titleDialog" :visible="showDialog" @open="create" width="30%" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false">
-        <div class="row mt-4">
+        <!-- <div class="row mt-4">
             <div class="col-lg-6 col-md-6 col-sm-12 text-center font-weight-bold">
                 <p>Imprimir A4</p>
                 <button type="button" class="btn btn-lg btn-info waves-effect waves-light" @click="clickPrint('a4')">
@@ -13,7 +13,7 @@
                     <i class="fa fa-receipt"></i>
                 </button>
             </div>
-        </div>
+        </div> -->
         <div class="row mt-4">
             <div class="col-md-12">
                 <el-input v-model="form.customer_email">
@@ -76,7 +76,7 @@
                 });
             },
             clickPrint(format){
-                window.open(`/download/quotation/${this.form.external_id}/${format}`, '_blank');
+                window.open(`/download_cot/quotation/${this.form.external_id}/${format}`, '_blank');
             },
             clickDownload(format) {
                 window.open(`${this.form.download_pdf}/${format}`, '_blank');

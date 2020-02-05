@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 $hostname = app(Hyn\Tenancy\Contracts\CurrentHostname::class);
 
-if ($hostname) {
+if ($hostname)  {
     Route::domain($hostname->fqdn)->group(function () {
 
         Auth::routes();
@@ -72,7 +72,7 @@ if ($hostname) {
             Route::get('establishments/records', 'Tenant\EstablishmentController@records');
             Route::delete('establishments/{establishment}', 'Tenant\EstablishmentController@destroy');
 
-            //Bank Accounts
+            //Bank Accounts 
             Route::get('bank_accounts', 'Tenant\BankAccountController@index')->name('tenant.bank_accounts.index');
             Route::get('bank_accounts/records', 'Tenant\BankAccountController@records');
             Route::get('bank_accounts/create', 'Tenant\BankAccountController@create');

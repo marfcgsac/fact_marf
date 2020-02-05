@@ -66,22 +66,28 @@
             </div>
         </div>
 
-        <item-category-form :showDialog.sync="showDialog" :recordId="recordId"></item-category-form>
+        
+           <item-category-import :showDialog.sync="showImportDialog"></item-category-import>
+        <item-category-form :showDialog.sync="showDialog"
+         :recordId="recordId"></item-category-form>
 
     </div>
 </template>
 <script>
 
 
+
     import ItemCategoryForm from './form.vue'
+    import ItemCategoryImport from './import.vue'
     import {deletable} from '../../../mixins/deletable'
 
     export default {
         mixins: [deletable],
-        components: {ItemCategoryForm},
+       
+        components: {ItemCategoryForm,ItemCategoryImport},
         data() {
             return {
-
+                showImportDialog: false,
                 showDialog: false,
                 resource: 'item_category',
                 recordId: null,
@@ -109,7 +115,11 @@
                 this.destroy(`/${this.resource}/${id}`).then(() =>
                     this.$eventHub.$emit('reloadData')
                 )
+            },
+             clickImport() {
+                this.showImportDialog = true
             }
+        
         }
     }
 </script>

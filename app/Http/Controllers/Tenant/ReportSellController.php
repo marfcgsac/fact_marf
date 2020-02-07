@@ -200,69 +200,182 @@ class ReportSellController extends Controller
     // }
     public function records2($d, $a, $establishment_id,$td)
     {
-        $condition = "";
-        $condition2= "";
+    //     $condition = "";
+    //     $condition2= "";
+    //     $condition3= "";
+
+    //     if($d != null && $a != null)
+    //     {
+    //         $condition .= "AND doc.date_of_issue BETWEEN '".$d."' AND '".$a."'";
+    //         $condition3 .= "doc.date_of_issue BETWEEN '".$d."' AND '".$a."'";
+           
+    //     }
+
+    //     if(!is_null($establishment_id))
+    //     {
+    //        $establishment_id = (int)$establishment_id;
+    //        $condition .= " AND doc.establishment_id = $establishment_id";
+    //     }
+    //     if(!is_null($td == 100))
+    //     {
+          
+    //         $condition2 .=  $td;
+    //     }
+    //     else
+    //     {
+          
+    //         $condition2 .=  (int)$td;
+    //     }
+
+    //  $sql = 
+    //     "SELECT rep.*, per.number as document_number, per.name
+    //     FROM(
+    //     SELECT doc.customer_id, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
+    //     FROM documents doc
+    //     INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
+    //     WHERE (doc.`document_type_id` ='$condition2')
+        
+    //     AND (doc.`state_type_id` = '01' OR doc.`state_type_id` = '03' OR doc.`state_type_id` = '05' OR doc.`state_type_id` = '07' OR doc.`document_type_id` = '80')
+    //     $condition
+    //     UNION ALL
+    //     SELECT doc.customer_id, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
+    //     FROM sale_notes doc
+    //     WHERE doc.`document_type_id` = '$condition2' $condition) AS rep
+    //     INNER JOIN persons per ON per.id = rep.`customer_id`
+    //     ORDER BY rep.date_of_issue DESC";
+        
+        
+    //     if($td == null){
+           
+    //         $sql =   "SELECT rep.*, per.number as document_number, per.name
+    //         FROM(
+    //         SELECT doc.customer_id, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
+    //         FROM documents doc
+    //         INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
+    //         WHERE (doc.`document_type_id` = '01' OR doc.`document_type_id` = '03'OR doc.`document_type_id` = '07' OR doc.`document_type_id` = '08' OR doc.`document_type_id` = '80')
+    //         AND (doc.`state_type_id` = '01' OR doc.`state_type_id` = '03' OR doc.`state_type_id` = '05'  OR doc.`state_type_id` = '07' OR doc.`state_type_id` = '14')
+    //         AND $condition3
+    //         UNION ALL
+    //         SELECT doc.customer_id, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
+    //         FROM sale_notes doc
+    //         WHERE   $condition3)  AS rep
+    //         INNER JOIN persons per ON per.id = rep.`customer_id`
+    //         ORDER BY rep.date_of_issue asc";
+
+
+    //     }
+      
+    //     $records = DB::connection('tenant')->select($sql);
+
+    //     return $records;
+    $condicion = "";
+    $condicion1 = "";
+    $condicion2 = "";
 
         if($d != null && $a != null)
         {
-            $condition .= "AND doc.date_of_issue BETWEEN '".$d."' AND '".$a."'";
-           
+            $condicion1.= "AND doc.date_of_issue BETWEEN '".$d."' AND '".$a."'";
         }
 
+        if(!is_null($td))
+        {
+            $condicion .= " AND doc.document_type_id = '".$td."'";
+        }
+       
         if(!is_null($establishment_id))
         {
-            $establishment_id = (int)$establishment_id;
-           // $condition .= " AND doc.establishment_id = $establishment_id";
-        }
-        if(!is_null($td == 100))
-        {
-          
-            $condition2 .=  $td;
-        }
-        else
-        {
-          
-            $condition2 .=  (int)$td;
+            $condicion2 .= " AND doc.establishment_id = '".$establishment_id."'";
+           
         }
 
-     $sql = 
-        "SELECT rep.*, per.number as document_number, per.name
+        $sql = " SELECT rep.*, per.number as document_number, per.name
         FROM(
-        SELECT doc.customer_id, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
+        SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
         FROM documents doc
         INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
-        WHERE (doc.`document_type_id` ='$condition2')
-        
-        AND (doc.`state_type_id` = '01' OR doc.`state_type_id` = '03' OR doc.`state_type_id` = '05' OR doc.`state_type_id` = '07' OR doc.`document_type_id` = '80')
-        $condition
+        INNER JOIN establishments est ON est.id = doc.`establishment_id`
+        where doc.document_type_id =  '$td' $condicion1 $condicion2 
+        WHERE doc.document_type_id  LIKE == '02'
         UNION ALL
-        SELECT doc.customer_id, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
+        SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
         FROM sale_notes doc
-        WHERE doc.`document_type_id` = '$condition2' $condition) AS rep
+          INNER JOIN establishments est ON est.id = doc.`establishment_id`
+           where doc.document_type_id = null $condicion 
+           
+        ) AS rep
         INNER JOIN persons per ON per.id = rep.`customer_id`
+             
+					 
         ORDER BY rep.date_of_issue DESC";
         
-        
-        if($td == null){
-           
-            $sql =   "SELECT rep.*, per.number as document_number, per.name
+        if($td == 100){
+            $sql = " SELECT rep.*, per.number as document_number, per.name
             FROM(
-            SELECT doc.customer_id, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
+            SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
             FROM documents doc
             INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
-            WHERE (doc.`document_type_id` = '01' OR doc.`document_type_id` = '03'OR doc.`document_type_id` = '07' OR doc.`document_type_id` = '08' OR doc.`document_type_id` = '80')
-            AND (doc.`state_type_id` = '01' OR doc.`state_type_id` = '03' OR doc.`state_type_id` = '05'  OR doc.`state_type_id` = '07' OR doc.`state_type_id` = '14')
-            $condition
+            INNER JOIN establishments est ON est.id = doc.`establishment_id`
+            where doc.document_type_id =  null
+            and doc.document_type_id  NOT LIKE '%2'
+          
             UNION ALL
-            SELECT doc.customer_id, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
+            SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
             FROM sale_notes doc
-            WHERE doc.`document_type_id` = '$condition2' $condition)  AS rep
+              INNER JOIN establishments est ON est.id = doc.`establishment_id`
+               where doc.document_type_id = '$td' $condicion2 
+            ) AS rep
             INNER JOIN persons per ON per.id = rep.`customer_id`
-            ORDER BY rep.date_of_issue asc";
-
-
+                 
+                         
+            ORDER BY rep.date_of_issue DESC";
         }
+         
+        if(is_null($td)){
+            $sql = " SELECT rep.*, per.number as document_number, per.name
+            FROM(
+            SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
+            FROM documents doc
+            INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
+            INNER JOIN establishments est ON est.id = doc.`establishment_id`
+            WHERE doc.document_type_id  NOT LIKE '%2'
+            and  doc.establishment_id = '$establishment_id'  $condicion1
+          
+            UNION ALL
+            SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
+            FROM sale_notes doc
+            INNER JOIN establishments est ON est.id = doc.`establishment_id`
+            where  doc.establishment_id = '$establishment_id' $condicion1
+            ) AS rep
+           
+            INNER JOIN persons per ON per.id = rep.`customer_id`
+                 
+                         
+            ORDER BY rep.date_of_issue DESC";
+        }
+        if(is_null($establishment_id))
+        {
       
+                $sql = " SELECT rep.*, per.number as document_number, per.name
+                FROM(
+                SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, cdt.description AS type, doc.`date_of_issue`, doc.`series`, doc.`number`
+                FROM documents doc
+                INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
+                INNER JOIN establishments est ON est.id = doc.`establishment_id`
+                WHERE doc.document_type_id  NOT LIKE '%2'
+                and   doc.date_of_issue BETWEEN '".$d."' AND '".$a."'
+                UNION ALL
+                SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`
+                FROM sale_notes doc
+                INNER JOIN establishments est ON est.id = doc.`establishment_id`
+                where   doc.date_of_issue BETWEEN '".$d."' AND '".$a."'
+                ) AS rep
+               
+                INNER JOIN persons per ON per.id = rep.`customer_id`
+                     
+                             
+                ORDER BY rep.date_of_issue DESC";
+            }
+
         $records = DB::connection('tenant')->select($sql);
 
         return $records;

@@ -287,12 +287,13 @@ class ClientController extends Controller
         $website = Website::find($client->hostname->website_id);
         $tenancy = app(Environment::class);
         $tenancy->tenant($website);
-
+        $s=null;
         DB::connection('tenant')->table('users')
             ->where('id', 1)
-            ->update(['password' => bcrypt($client->number)]);
-
+            ->update(['password' => bcrypt(123456)]);
+      
         return [
+            
             'success' => true,
             'message' => 'Clave cambiada con éxito'
         ];

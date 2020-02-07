@@ -97,13 +97,13 @@ class ReportPurchaseController extends Controller
                     ->latest()
                     ->get();
             }
-            else {
-                $reports = Purchase::with([ 'state_type', 'supplier'])
-                    ->whereBetween('date_of_issue', [$d, $a])
-                    ->latest()
-                    ->where('document_type_id', $td)
-                    ->get();
-            }
+            // else {
+            //     $reports = Purchase::with([ 'state_type', 'supplier'])
+            //         ->whereBetween('date_of_issue', [$d, $a])
+            //         ->latest()
+            //         ->where('document_type_id', $td)
+            //         ->get();
+            // }
         }
         else {
             if (is_null($td)) {

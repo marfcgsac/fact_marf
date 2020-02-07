@@ -85,6 +85,7 @@
                             <tr>
                                 <th></th>
                                 <th>Fecha</th>
+                                <th>Tienda</th>
                                 <th>Tipo</th>
                                 <th>Número</th>
                                 <th>Cliente</th>
@@ -109,7 +110,8 @@
                                 <tr>
                                     <td class="celda">{{$i}}</td>
                                     <td class="celda" style="font-size: 10px;">{{$value->date_of_issue}}</td>
-                                    <td class="celda">{{$value->type}}</td>
+                                    <td class="celda" style="font-size: 10px;">{{$value->establishment}}</td>
+                                    <td class="celda" style="font-size: 10px;">{{$value->type}}</td>
                                     <td class="celda">{{$value->series}} - {{$value->number}}</td>
                                     <td class="celda">{{$value->name}}</td>
                                     <td class="celda">{{$value->document_number}}</td>
@@ -127,7 +129,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="5"></th>
+                                <th colspan="6"></th>
                                 <th class="font-weight-bold">Totales</th>
                                 <th class="font-weight-bold">{{number_format($total, 2)}}</th>
                                 <th class="font-weight-bold">{{number_format($total_paid, 2)}}</th>

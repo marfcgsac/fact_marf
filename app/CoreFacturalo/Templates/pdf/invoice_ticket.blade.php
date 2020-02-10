@@ -14,7 +14,7 @@
 <body>
 
 @if($company->logo)
-    <div class="text-center company_logo_box pt-5">
+    <div class="text-center company_logo_box pt-3">
         <img src="{{ asset('storage/uploads/logos/'.$company->logo) }}" class="company_logo_ticket contain">
     </div>
 @else
@@ -48,7 +48,9 @@
 <table class="full-width">
     <tr>
         <td width="45%" class="pt-3"><p class="desc">Fecha de emisión:</p></td>
-        <td width="" class="pt-3"><p class="desc">{{ $document->date_of_issue->format('Y-m-d') }}</p></td>
+        <td width="" class="pt-3"><p class="desc">{{ $document->date_of_issue->format('Y-m-d') }} {{ $document->time_of_issue }}</p></td>
+
+        
     </tr>
 
     @isset($invoice->date_of_due)
@@ -207,7 +209,10 @@
         <td class="text-center desc">Código Hash: {{ $document->hash }}</td>
     </tr>
     <tr>
-        <td class="text-center desc pt-5">Para consultar el comprobante ingresar a {!! url('/buscar') !!}</td>
+        <td class="text-center desc pt-3">Para consultar el comprobante ingresar a {!! url('/buscar') !!}</td>
+    </tr>
+    <tr>
+        <td class="text-center desc pt-3">Facturador electrónico Liza Pos / 933 038 225</td>
     </tr>
 </table>
 </body>

@@ -69,7 +69,8 @@
 <table class="full-width">
     <tr>
         <td width="45%" class="pt-3"><p class="desc">Fecha de emisión:</p></td>
-        <td width="" class="pt-3"><p class="desc">{{ $document->date_of_issue->format('Y-m-d') }}</p></td>
+        <td width="" class="pt-3"><p class="desc">{{ $document->date_of_issue->format('Y-m-d') }} {{ $document->time_of_issue }}</p></td>
+        
     </tr>
     @isset($document->date_of_due)
     <tr>
@@ -246,6 +247,7 @@
     <tr>
         <td class="text-center desc pt-5">Para consultar el comprobante ingresar a {!! url('/buscar') !!}</td>
     </tr>
+    
 </table>
 </body>
 </html>

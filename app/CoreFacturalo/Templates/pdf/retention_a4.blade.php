@@ -38,7 +38,7 @@
         <td width="25%">Señor(es):</td>
         <td width="45%">{{ $supplier->name }}</td>
         <td width="15%">Fecha de emisión:</td>
-        <td width="15%">{{ $document->date_of_issue->format('d/m/Y') }}</td>
+        <td width="15%">{{ $document->date_of_issue->format('d/m/Y') }}  {{ $document->time_of_issue }}</td>
     </tr>
     <tr>
         <td>{{ $supplier->identity_document_type->description }}:</td>

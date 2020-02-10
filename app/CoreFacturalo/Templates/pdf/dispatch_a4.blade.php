@@ -59,7 +59,7 @@
     </thead>
     <tbody>
     <tr>
-        <td>Fecha Emisión: {{ $document->date_of_issue->format('Y-m-d') }}</td>
+        <td>Fecha Emisión: {{ $document->date_of_issue->format('Y-m-d') }} {{ $document->time_of_issue }}</td></td>
         <td>Fecha Inicio de Traslado: {{ $document->date_of_shipping->format('Y-m-d') }}</td>
     </tr>
     <tr>

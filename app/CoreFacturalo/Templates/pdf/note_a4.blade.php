@@ -59,8 +59,8 @@
     <tr>
         <td width="15%">Cliente:</td>
         <td width="45%">{{ $customer->name }}</td>
-        <td width="25%">Fecha de emisión:</td>
-        <td width="15%">{{ $document->date_of_issue->format('Y-m-d') }}</td>
+        <td width="20%">Fecha de emisión:</td>
+        <td width="20%">{{ $document->date_of_issue->format('d/m/Y') }}  {{ $document->time_of_issue }}</td>
     </tr>
     <tr>
         <td>{{ $customer->identity_document_type->description }}:</td>

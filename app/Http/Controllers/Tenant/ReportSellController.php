@@ -361,7 +361,7 @@ class ReportSellController extends Controller
                 FROM documents doc
                 INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
                 INNER JOIN establishments est ON est.id = doc.`establishment_id`
-                WHERE doc.document_type_id  NOT LIKE '%2'
+                
                 and   doc.date_of_issue BETWEEN '".$d."' AND '".$a."'
                 UNION ALL
                 SELECT doc.customer_id,est.description as establishment, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`date_of_issue`, doc.`series`, doc.`number`

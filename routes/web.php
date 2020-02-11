@@ -214,6 +214,7 @@ if ($hostname)  {
             Route::get('pos/tables', 'Tenant\PosController@tables');
             Route::post('pos/{id}/operations', 'Tenant\PosController@operations');
             Route::get('pos/register', 'Tenant\PosController@register')->name('tenant.pos.register');
+            Route::get('pos/registerpos', 'Tenant\PosController@register')->name('tenant.pos.registerpos');
             Route::get('pos/report/pdf/{id}', 'Tenant\PosController@pdf');
 
             //Documents

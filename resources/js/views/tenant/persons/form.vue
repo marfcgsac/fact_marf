@@ -98,7 +98,7 @@
                     <div class="col-md-6">
                         <div class="form-group" :class="{'has-danger': errors.telephone}">
                             <label class="control-label">Teléfono</label>
-                            <el-input v-model="form.telephone" dusk="telephone"></el-input>
+                            <el-input v-model="form.telephone" dusk="telephone" maxlength = "9"></el-input>
                             <small class="form-control-feedback" v-if="errors.telephone" v-text="errors.telephone[0]"></small>
                         </div>
                     </div>
@@ -161,7 +161,10 @@
                 if (this.form.identity_document_type_id === '1') {
                     return 8
                 }
+                       
             }
+            
+
         },
         methods: {
             initForm() {
@@ -189,6 +192,9 @@
                     }
                     if(this.document_type_id === '03') {
                         this.form.identity_document_type_id = '1'
+                    }
+                    if(this.document_type_id === '100') {
+                        this.form.identity_document_type_id = '1' 
                     }
                 }
                 if(this.type === 'customers') {

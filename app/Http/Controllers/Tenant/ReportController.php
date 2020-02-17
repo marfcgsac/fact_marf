@@ -142,8 +142,28 @@ class ReportController extends Controller
                 INNER JOIN state_types stt ON stt.`id` = doc.`state_type_id`
                 WHERE establishment_id IS NOT NULL $condicion";
 
-        $items = DB::connection('tenant')->select($sql);
+       // $items = DB::connection('tenant')->select($sql);
 
+  
+        if($document_type_id==100)
+        {
+       
+
+        
+        $sql = "  SELECT  est.`description` AS establishment, doc.`document_type_id`, tid.`description` AS document_type, doc.`series`, doc.`number`, 
+                  doc.`date_of_issue`, per.`name`, per.`number` AS document_number, 'NOTA' AS status_type, 
+                 doc.`total_taxed`, doc.`total_igv`, doc.`total`,
+                IF(doc.total - doc.total_paid = 0,'1','0')as status_paid
+                 FROM sale_notes doc
+                 INNER JOIN establishments est ON est.id = doc.`establishment_id`
+                 INNER JOIN cat_document_types tid ON tid.`id` = doc.`document_type_id`
+                 INNER JOIN persons per ON per.`id` = doc.`customer_id`
+        -- INNER JOIN state_types stt ON stt.`id` = doc.`state_type_id`
+     
+                  WHERE establishment_id  IS NOT NULL $condicion";
+        }
+
+        $items = DB::connection('tenant')->select($sql);
         return $items;
     }
 }

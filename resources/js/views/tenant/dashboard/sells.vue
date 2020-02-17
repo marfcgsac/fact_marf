@@ -82,7 +82,7 @@
                             </thead>
                             <tbody v-for="(row,index) in sells">
                                 <tr>
-                                    <td>{{ row.created_at }}</td>
+                                    <td>{{ row.hora }}</td>
                                     <td>{{ row.type }}</td>
                                     <td>{{ row.customer_number }}</td>
                                     <td>{{ row.name }}</td>

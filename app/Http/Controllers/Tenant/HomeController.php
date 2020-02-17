@@ -293,18 +293,18 @@ class HomeController extends Controller
 
         $sql = "SELECT rep.*, per.number AS customer_number, per.name
             FROM
-            (SELECT doc.customer_id, doc.`total`, doc.`total_paid`, cdt.description AS `type`, doc.`created_at`, doc.`series`, doc.`number`, doc.currency_type_id
+            (SELECT doc.customer_id, doc.`total`, doc.`total_paid`, cdt.description AS `type`, doc.`created_at`, doc.`series`, doc.`number`, doc.currency_type_id,concat_ws(' ', doc.`date_of_issue`,doc.time_of_issue) AS hora
                         FROM documents doc
                         INNER JOIN cat_document_types cdt ON cdt.id = doc.document_type_id
                         WHERE (doc.`document_type_id` = '01' OR doc.`document_type_id` = '03' OR doc.`document_type_id` = '80')
                         AND (doc.`state_type_id` = '01' OR doc.`state_type_id` = '03' OR doc.`state_type_id` = '05' OR doc.`state_type_id` = '14'
                         OR doc.`state_type_id` = '07') $condition
                         UNION ALL
-                        SELECT doc.customer_id, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`created_at`, doc.`series`, doc.`number`, doc.currency_type_id
+                        SELECT doc.customer_id, doc.`total`, doc.`total_paid`, 'NOTA DE VENTA', doc.`created_at`, doc.`series`, doc.`number`, doc.currency_type_id,concat_ws(' ', doc.`date_of_issue`,doc.time_of_issue) AS hora
                         FROM sale_notes doc
                         WHERE doc.`document_type_id` = '100' $condition) rep
             INNER JOIN persons per ON per.id = rep.customer_id
-            ORDER BY created_at DESC";
+            ORDER BY hora DESC";
 
         $sells = DB::connection('tenant')->select($sql);
 

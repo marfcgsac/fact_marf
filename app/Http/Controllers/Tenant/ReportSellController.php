@@ -306,7 +306,7 @@ class ReportSellController extends Controller
         INNER JOIN persons per ON per.id = rep.`customer_id`
              
 					 
-        ORDER BY rep.date_of_issue DESC";
+        ORDER BY rep.date_of_issue DESC,rep.number asc";
         
         if($td == 100){
             $sql = " SELECT rep.*, per.number as document_number, per.name
@@ -327,7 +327,7 @@ class ReportSellController extends Controller
             INNER JOIN persons per ON per.id = rep.`customer_id`
                  
                          
-            ORDER BY rep.date_of_issue DESC";
+            ORDER BY rep.date_of_issue DESC,rep.document_number asc";
         }
          
         if(is_null($td)){
@@ -350,7 +350,7 @@ class ReportSellController extends Controller
             INNER JOIN persons per ON per.id = rep.`customer_id`
                  
                          
-            ORDER BY rep.date_of_issue DESC";
+            ORDER BY rep.date_of_issue DESC,rep.number asc";
         }
         if(is_null($establishment_id))
         {
@@ -373,7 +373,7 @@ class ReportSellController extends Controller
                 INNER JOIN persons per ON per.id = rep.`customer_id`
                      
                              
-                ORDER BY rep.date_of_issue DESC";
+                ORDER BY rep.date_of_issue DESC,rep.number asc";
             }
 
         $records = DB::connection('tenant')->select($sql);

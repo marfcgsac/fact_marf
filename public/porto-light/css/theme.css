@@ -437,7 +437,7 @@ a:active {
 	}
 
 	.header .logo-container {
-		height: 60px;
+		height: 70px;
 		left: 0;
 		position: fixed;
 		right: 0;
@@ -448,7 +448,7 @@ a:active {
 	.header .header-right {
 		background: #FFF;
 		float: none !important;
-		height: 60px;
+		height: 70px;
 		margin-top: 60px;
 		width: 100%;
 	}
@@ -14445,7 +14445,7 @@ p.drop-caps.drop-caps-style-2:first-letter {
 @media only screen and (max-width: 767px) {
 	.userbox {
 		float: left;
-		margin: 16px 0 0 12px;
+		margin: -42px 0 0 12px;
 		position: relative;
 	}
 

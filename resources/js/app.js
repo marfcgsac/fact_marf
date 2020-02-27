@@ -127,6 +127,7 @@ Vue.component('tenant-calendar2', require('./views/tenant/components/calendar2.v
 Vue.component('tenant-calendar3', require('./views/tenant/components/calendar3.vue'));
 //////auemntar
 Vue.component('tenant-calendarventa', require('./views/tenant/components/calendarventa.vue'));
+Vue.component('tenant-calendaredith', require('./views/tenant/components/calendaredith.vue'));
 ///auemntar
 
 //reports

@@ -116,6 +116,95 @@ class PosController extends Controller
         return $array;
     }
 
+    public function detailsitem($pos_id)
+    {
+       
+       
+       $sql = "       SELECT  dat.*, symbol FROM (SELECT  tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Venta' AS operation_type, null as detail,it.description,tab.date_of_issue,pay.pos_id,tabit.quantity
+       FROM payments pay
+       INNER JOIN documents tab ON tab.id = pay.document_id
+       INNER JOIN document_items tabit on tabit.document_id = tab.id
+       inner join items it ON it.id= tabit.item_id
+       and tab.document_type_id  NOT LIKE '%2'
+      
+       UNION ALL
+       SELECT tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Nota de Venta' AS operation_type, NULL,it.description,tab.date_of_issue,pay.pos_id,tabit.quantity
+       FROM payments pay
+       INNER JOIN sale_notes tab ON tab.id = pay.sale_note_id
+       INNER JOIN sale_note_items tabit on tabit.sale_note_id = tab.id
+       inner join items it ON it.id= tabit.item_id
+      
+       UNION ALL 
+       SELECT tab.id, '-', '-', tab.`currency_type_id`, - tab.total AS total, 'Gasto' AS operation_type,'-', tab.description AS description,'-',pos.pos_id AS pos_id,'-'
+       FROM pos_sales pos
+       INNER JOIN expenses tab ON tab.id = pos.`document_id`
+       WHERE table_name = 'expenses'                 
+       
+   ) dat
+   INNER JOIN cat_currency_types cur ON cur.id = dat.currency_type_id 
+    WHERE   dat.pos_id=$pos_id
+    ORDER BY dat.id";
+
+        $detail_box = DB::connection('tenant')->select($sql);
+
+        $box = Pos::withTrashed()->find($pos_id);
+
+        $user = User::find(auth()->id());
+
+        $array = [
+            'box' => $box,
+            'detail_box' => $detail_box,
+            'user' => $user
+        ];
+
+        return $array;
+    }
+    public function itemsventa($pos_id)
+    {
+       
+       
+       $sql = "      SELECT  dat.description ,SUM(dat.quantity) AS total FROM (SELECT  tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Venta' AS operation_type, null as detail,it.description,tab.date_of_issue,pay.pos_id,it.id AS idit,tabit.quantity
+       FROM payments pay
+       INNER JOIN documents tab ON tab.id = pay.document_id
+       INNER JOIN document_items tabit on tabit.document_id = tab.id
+       inner join items it ON it.id= tabit.item_id
+       and tab.document_type_id  NOT LIKE '%2'
+      
+       UNION ALL
+       SELECT tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Nota de Venta' AS operation_type, NULL,it.description,tab.date_of_issue,pay.pos_id,it.id AS idit,tabit.quantity
+       FROM payments pay
+       INNER JOIN sale_notes tab ON tab.id = pay.sale_note_id
+       INNER JOIN sale_note_items tabit on tabit.sale_note_id = tab.id
+       inner join items it ON it.id= tabit.item_id
+      
+       UNION ALL 
+       SELECT tab.id, '-', '-', tab.`currency_type_id`, - tab.total AS total, 'Gasto' AS operation_type,'-', tab.description AS description,'-',pos.pos_id AS pos_id,'-','-'
+       FROM pos_sales pos
+       INNER JOIN expenses tab ON tab.id = pos.`document_id`
+       WHERE table_name = 'expenses'                 
+       
+   ) dat
+   INNER JOIN cat_currency_types cur ON cur.id = dat.currency_type_id 
+  WHERE   dat.pos_id=$pos_id
+              	 GROUP BY dat.description
+                ORDER BY total DESC;";
+
+        $detail_box = DB::connection('tenant')->select($sql);
+
+        $box = Pos::withTrashed()->find($pos_id);
+
+        $user = User::find(auth()->id());
+
+        $array = [
+            'box' => $box,
+            'detail_box' => $detail_box,
+            'user' => $user
+        ];
+
+        return $array;
+    }
+
+
     public function operations($document_id, Request $request)
     {
         $pos_id = Pos::active();

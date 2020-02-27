@@ -50,9 +50,26 @@
                             >
                                 <i class="far fa-file-pdf"></i> Reporte
                             </a>
-                            <button type="button" class="btn waves-effect waves-light btn-xs btn-info"
+                             <div class="btn-group" role="group">
+                                  
+                                  
+                                    <button id="btnGroupDrop1" type="button" class="btn waves-effect waves-light btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    visualizar
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                         <button type="button" class="dropdown-item"
                                     @click.prevent="posDetails(row.id)">Detalles
-                            </button>
+                                       </button><br>
+                                      <button type="button" class="dropdown-item"
+                                    @click.prevent="posDetailsitem(row.id)">Detallesitem
+                                     </button><br>
+                                     <button type="button" class="dropdown-item"
+                                    @click.prevent="posItemsventa(row.id)">Productos
+                                 </button>
+                            
+                                    </div>
+                                </div>
+                          
                             <button type="button" class="btn waves-effect waves-light btn-xs btn-danger"
                                     title="Cerrar Caja"
                                     v-if="row.id==posId"
@@ -66,6 +83,10 @@
             <new-pos-register :show-dialog.sync="showNewRegisterDialog" @OpenPos="OpenPos"></new-pos-register>
             <pos-details :show-dialog.sync="showPosDetailsDialog"
                               :registers.sync="posDetailsData"></pos-details>
+            <pos-detailsitem :show-dialog.sync="showPosDetailsitemDialog"
+                              :registers.sync="posDetailsitemData"></pos-detailsitem>
+            <pos-itemsventa :show-dialog.sync="showPosItemsventaDialog"
+                              :registers.sync="posItemsventaData"></pos-itemsventa>
         </div>
 
     </div>
@@ -74,6 +95,8 @@
 
     import NewPosRegister from './partials/newRegister'
     import PosDetails from './partials/posDetails'
+    import posDetailsitem from './partials/posDetailsitem'
+    import posItemsventa from './partials/posItemsventa'
     import DataTable from '../../../components/DataTable.vue'
 
     export default {
@@ -81,6 +104,8 @@
         components: {
             DataTable,
             PosDetails,
+            posDetailsitem,
+            posItemsventa,
             NewPosRegister
         },
         data() {
@@ -90,6 +115,13 @@
                 showNewRegisterDialog: false,
                 showPosDetailsDialog: false,
                 posDetailsData: {},
+
+                showPosDetailsitemDialog:false,
+                posDetailsitemData:{},
+
+                showPosItemsventaDialog:false,
+                posItemsventaData:{},
+
                 resource: 'pos',
                 posActive: false,
                 posId: false,
@@ -128,8 +160,26 @@
                     .then(response => {
                         this.posDetailsData = response.data;
                         this.showPosDetailsDialog = true;
+
                     })
             },
+             posDetailsitem(id) {
+                this.$http.get(`/${this.resource}/${id}/detailsitem`)
+                    .then(response => {
+                       this.posDetailsitemData=response.data;
+                        this.showPosDetailsitemDialog=true;
+                        
+                    })
+            },
+            posItemsventa(id) {
+                this.$http.get(`/${this.resource}/${id}/itemsventa`)
+                    .then(response => {
+                       this.posItemsventaData=response.data;
+                        this.showPosItemsventaDialog=true;
+                        
+                    })
+            },
+
 
             posClose() {
                 this.$confirm('Desea Realizar el Cierre de Caja?', {

@@ -188,10 +188,10 @@ class ItemController extends Controller
         // $data = Item::query()
         $data = Item::
         // where("unit_type_id",'MTR')
-        whereBetween("item_type_id",[01,02])
+        whereIn("item_type_id",[01,02])
         //->orderBy('internal_id','asc')
         //->join('item_category', 'item_category.id', '=', 'items.item_type_id')
-        // ->join('items', 'items.item_category_id', '=','item_category.id' )
+       // ->join('cat_unit_types', 'items.unit_type_id', '=','cat_unit_types.id' )
         // ->where("active",1)
         ->get();
   

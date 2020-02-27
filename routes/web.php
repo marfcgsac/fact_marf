@@ -208,14 +208,32 @@ if ($hostname)  {
             Route::post('pos', 'Tenant\PosController@store');
             Route::post('pos/destroy', 'Tenant\PosController@destroy');
             Route::get('pos/{id}/details', 'Tenant\PosController@details');
+            Route::get('pos/{id}/itemsventa', 'Tenant\PosController@itemsventa');
+            Route::get('pos/{id}/detailsitem', 'Tenant\PosController@detailsitem');
             Route::get('pos', 'Tenant\PosController@index')->name('tenant.pos.index');
             Route::get('pos/columns', 'Tenant\PosController@columns');
             Route::get('pos/records', 'Tenant\PosController@records');
             Route::get('pos/tables', 'Tenant\PosController@tables');
             Route::post('pos/{id}/operations', 'Tenant\PosController@operations');
             Route::get('pos/register', 'Tenant\PosController@register')->name('tenant.pos.register');
-            Route::get('pos/registerpos', 'Tenant\PosController@register')->name('tenant.pos.registerpos');
+            
             Route::get('pos/report/pdf/{id}', 'Tenant\PosController@pdf');
+            //otro pos
+
+
+            Route::post('pos1', 'Tenant\PosController1@store');
+            Route::post('pos1/destroy', 'Tenant\PosController1@destroy');
+            Route::get('pos1/{id}/details', 'Tenant\PosController1@details');
+            Route::get('pos1', 'Tenant\PosControlle1r@index')->name('tenant.pos1.index');
+            Route::get('pos1/columns', 'Tenant\PosController1@columns');
+            Route::get('pos1/records', 'Tenant\PosController1@records');
+            Route::get('pos1/tables', 'Tenant\PosController1@tables');
+            Route::post('pos1/{id}/operations', 'Tenant\PosController1@operations');
+            Route::get('pos1/register', 'Tenant\PosController1@register')->name('tenant.pos1.register');
+           
+            Route::get('pos1/report/pdf/{id}', 'Tenant\PosController1@pdf');
+            //fin otro pos
+
 
             //Documents
             Route::get('documents', 'Tenant\DocumentController@index')->name('tenant.documents.index');
@@ -378,6 +396,17 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
             Route::post('reports/sells/search2', 'Tenant\ReportSellController@search2')->name('tenant.reports.sells.search2');
             Route::post('reports/sells/pdf', 'Tenant\ReportSellController@pdf')->name('tenant.report.sells.pdf');
             Route::post('reports/sells/excel', 'Tenant\ReportSellController@excel')->name('tenant.report.sells.excel');
+
+///auemntar reprote item detalle
+
+
+Route::get('reports/items_detalle', 'Tenant\ReportItems_detalleController@index')->name('tenant.reports.items_detalle.index');
+Route::post('reports/items_detalle/search', 'Tenant\ReportItems_detalleController@search')->name('tenant.reports.items_detalle.search');
+Route::post('reports/items_detalle/search2', 'Tenant\ReportItems_detalleController@search2')->name('tenant.reports.items_detalle.search2');
+Route::post('reports/items_detalle/pdf', 'Tenant\ReportItems_detalleController@pdf')->name('tenant.report.items_detalle.pdf');
+Route::post('reports/items_detalle/excel', 'Tenant\ReportItems_detalleController@excel')->name('tenant.report.items_detalle.excel');
+
+
 
             Route::get('reports/customers', 'Tenant\ReportCustomerController@index')->name('tenant.reports.customers.index');
             Route::post('reports/customers/search', 'Tenant\ReportCustomerController@search')->name('tenant.reports.customers.search');

@@ -29,6 +29,10 @@ class ViewServiceProvider extends ServiceProvider
             ['test', 'tenant.pos.index', 'tenant.pos.register'],
             'App\Http\ViewComposers\Tenant\PosViewComposer'
         );
+        view()->composer(
+            ['test', 'tenant.pos1.index', 'tenant.pos1.register'],
+            'App\Http\ViewComposers\Tenant\PosViewComposer'
+        );
     }
 
     /**

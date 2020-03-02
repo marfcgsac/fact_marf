@@ -16,6 +16,7 @@ if ($hostname)  {
 
         Route::get('downloads/{model}/{type}/{external_id}/{format?}', 'Tenant\DownloadController@downloadExternal')->name('tenant.download.external_id');
         Route::get('print/{model}/{external_id}/{format?}', 'Tenant\DownloadController@toPrint')->name('tenant.print.external');
+        //Route::get('print/{model}/{external_id}/{format?}', 'Tenant\DownloadController@toPrint')->name('tenant.print.external2');
         Route::get('print2/{model}/{id}/{format?}', 'Tenant\DownloadController@toPrint2');
         /*cotizacion*/
         Route::get('download/{model}/{type}/{id}/{format?}', 'Tenant\DownloadController@downloadExternal2')->name('tenant.download.id');
@@ -261,6 +262,35 @@ if ($hostname)  {
             Route::get('configuration/documents/record', 'Tenant\DocumentController@configuration_record');
             Route::post('configuration/documents', 'Tenant\DocumentController@configuration_store');
 
+         
+            //Docuemntos general
+            Route::get('documentgeneral', 'Tenant\DocumentgeneralController@index')->name('tenant.documentsgeneral.index');
+            Route::get('documentsgeneral/view/{documentgeneral}', 'Tenant\DocumentgeneralController@view')->name('tenant.documentsgeneral.view');
+            Route::get('documentsgeneral/columns', 'Tenant\DocumentgeneralController@columns');
+            Route::get('documentsgeneral/records', 'Tenant\DocumentgeneralController@records');
+            
+            Route::get('documentsgeneral/totals', 'Tenant\DocumentgeneralController@totals');
+            Route::get('documentsgeneral/create', 'Tenant\DocumentgeneralController@create')->name('tenant.documentsgeneral.create');
+            Route::get('documentsgeneral/create2/{document}', 'Tenant\DocumentgeneralController@create2')->name('tenant.documentsgeneral.create2');
+            Route::get('documentsgeneral/tables', 'Tenant\DocumentgeneralController@tables');
+            Route::get('documentsgeneral/tables2/{document}', 'Tenant\DocumentgeneralController@tables2');
+            Route::get('documentsgeneral/record/{document}', 'Tenant\DocumentgeneralController@record');
+            Route::post('documentsgeneral', 'Tenant\DocumentgeneralController@store');
+            //Route::post('documentsgeneral/{document}', 'Tenant\DocumentgeneralController@store2');
+            Route::get('documentsgeneral/send/{document}', 'Tenant\DocumentgeneralController@send');
+            Route::get('documentsgeneral/consult_cdr/{document}', 'Tenant\DocumentgeneralController@consultCdr');
+            Route::post('documentsgeneral/email', 'Tenant\DocumentgeneralController@email');
+            Route::get('documentsgeneral/note/{document}', 'Tenant\NoteController@create');
+            Route::get('documentsgeneral/item/tables', 'Tenant\DocumentgeneralController@item_tables');
+            Route::get('documentsgeneral/item/tables2/{document}', 'Tenant\DocumentgeneralController@item_tables2');
+            Route::get('documentsgeneral/table/{table}', 'Tenant\DocumentgeneralController@table');
+            Route::get('documentsgeneral/cambiar_estado_pago/{document}', 'Tenant\DocumentgeneralController@cambiar_estado_pago');
+            Route::get('configuration/documentsgeneral', 'Tenant\DocumentgeneralController@configuration')->name('tenant.documentsgeneral.configuarion');
+            Route::get('configuration/documentsgeneral/record', 'Tenant\DocumentgeneralController@configuration_record');
+            Route::post('configuration/documentsgeneral', 'Tenant\DocumentgeneralController@configuration_store');
+
+
+
 //agregar servicio
 //Documents
 Route::get('servicio', 'Tenant\ServicioController@index')->name('tenant.servicio.index');
@@ -336,6 +366,10 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
             // Route::get('sale-notes/item/tables', 'Tenant\SaleNotesController@item_tables');
             // Route::get('sale-notes/table/{table}', 'Tenant\SaleNotesController@table');
 
+
+
+            Route::get('sale-notes/view/{sale-note}', 'Tenant\SaleNoteController@view')->name('tenant.sale_notes.view');
+            
             //Summaries
             Route::get('summaries', 'Tenant\SummaryController@index')->name('tenant.summaries.index');
             Route::get('summaries/records', 'Tenant\SummaryController@records');
@@ -400,11 +434,11 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
 ///auemntar reprote item detalle
 
 
-Route::get('reports/items_detalle', 'Tenant\ReportItems_detalleController@index')->name('tenant.reports.items_detalle.index');
-Route::post('reports/items_detalle/search', 'Tenant\ReportItems_detalleController@search')->name('tenant.reports.items_detalle.search');
-Route::post('reports/items_detalle/search2', 'Tenant\ReportItems_detalleController@search2')->name('tenant.reports.items_detalle.search2');
-Route::post('reports/items_detalle/pdf', 'Tenant\ReportItems_detalleController@pdf')->name('tenant.report.items_detalle.pdf');
-Route::post('reports/items_detalle/excel', 'Tenant\ReportItems_detalleController@excel')->name('tenant.report.items_detalle.excel');
+            Route::get('reports/items_detalle', 'Tenant\ReportItems_detalleController@index')->name('tenant.reports.items_detalle.index');
+            Route::post('reports/items_detalle/search', 'Tenant\ReportItems_detalleController@search')->name('tenant.reports.items_detalle.search');
+            Route::post('reports/items_detalle/search2', 'Tenant\ReportItems_detalleController@search2')->name('tenant.reports.items_detalle.search2');
+            Route::post('reports/items_detalle/pdf', 'Tenant\ReportItems_detalleController@pdf')->name('tenant.report.items_detalle.pdf');
+            Route::post('reports/items_detalle/excel', 'Tenant\ReportItems_detalleController@excel')->name('tenant.report.items_detalle.excel');
 
 
 
@@ -420,6 +454,9 @@ Route::post('reports/items_detalle/excel', 'Tenant\ReportItems_detalleController
             // Route::get('reports-customers/{person}/sells', 'Tenant\ReportCustomerController@sells');
             
             Route::get('documents/view/{document}', 'Tenant\DocumentController@view')->name('tenant.documents.view');
+            Route::get('documentsgeneral/view/{document}', 'Tenant\DocumentgeneralController@view')->name('tenant.documentsgeneral.view');
+
+          
 
             //report expense
             Route::get('reports/expenses', 'Tenant\ReportExpenseController@index')->name('tenant.reports.expenses.index');

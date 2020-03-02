@@ -15,7 +15,7 @@
                     <tr slot="heading">
                         <th>#</th>
                         <th>Cliente</th>
-                        <th>N° Documento</th>
+                        <th>Doc. Identidad</th>
                         <th class="text-center">Creación</th>
                         <th>Número</th>
                         <th class="text-center">Moneda</th>
@@ -29,7 +29,7 @@
                         <td>{{ index }}</td>
                         <td>{{ row.customer_name }}</td>
                         <td>{{row.customer_number}}</td>
-                        <td class="text-center">{{ row.date_of_issue }}</td>
+                        <td class="text-center">{{ row.date_of_issue }} / {{row.time_of_issue}}</td>
                         <td>{{ row.number }}</td>
                         <td class="text-center">{{ row.currency_type_id }}</td>
                         <td class="text-right">{{ row.total }}</td>
@@ -40,6 +40,9 @@
                             <span class="badge bg-secondary text-white bg-success" v-else>Pagado</span>
                         </td>
                         <td class="text-right">
+                               <el-tooltip class="item" effect="dark" content="Visualizar" placement="top-end">
+                                <a :href="`/${resource}/view/${row.id}`" class="btn btn-xs"><i class="fa fa-eye i-icon text-info"></i></a>
+                            </el-tooltip>
                             <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
                                 <button type="button" class="btn btn-xs" @click.prevent="clickPay(row.id)" v-if="row.total_to_pay > 0"><i class="fa fa-money-bill-wave i-icon text-warning"></i></button>
                                 <button type="button" class="btn btn-xs" v-else="" disabled><i class="fa fa-money-bill-wave i-icon text-disabled"></i></button>

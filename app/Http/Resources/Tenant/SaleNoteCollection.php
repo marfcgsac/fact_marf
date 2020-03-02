@@ -39,6 +39,7 @@ class SaleNoteCollection extends ResourceCollection
             return [
                 'id' => $row->id,
                 'date_of_issue' => $row->date_of_issue->format('Y-m-d'),
+                'time_of_issue'=> $row->time_of_issue,
                 'number' => $row->number_full,
                 'customer_name' => $row->customer->name,
                 'customer_number' => $row->customer->number,

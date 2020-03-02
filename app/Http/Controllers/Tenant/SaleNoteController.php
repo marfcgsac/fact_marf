@@ -329,4 +329,13 @@ class SaleNoteController extends Controller
             'message' => $response['description'],
         ];
     }
+
+    public function view(Sale_note $sale_note)
+    {
+        $payments = Payment::where('sale_note_id', $sale_note->id)->get();
+
+        return view('tenant.sale_notes.view', compact('sale-note', 'payments'));
+    }
+
+
 }

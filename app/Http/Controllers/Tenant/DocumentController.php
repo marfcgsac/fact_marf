@@ -86,7 +86,7 @@ class DocumentController extends Controller
     public function records(Request $request)
     {
         $records = Document::where($request->column, 'like', "%{$request->value}%")
-            ->whereIn('document_type_id', ['01', '03','80'])
+            ->whereIn('document_type_id', ['01', '03'])
             ->latest();
 
         return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));

@@ -71,6 +71,13 @@ Vue.component('tenant-documents-invoice2', require('./views/tenant/documents/inv
 Vue.component('tenant-documents-note', require('./views/tenant/documents/note.vue'));
 Vue.component('tenant-documents-configuration', require('./views/tenant/documents/configuration.vue'));
 
+
+//docuemnto general
+Vue.component('tenant-documentgeneral-index', require('./views/tenant/documentgeneral/index.vue'));
+Vue.component('tenant-documentgeneral-invoice', require('./views/tenant/documentgeneral/invoice.vue'));
+Vue.component('tenant-documentgeneral-invoice2', require('./views/tenant/documentgeneral/invoice2.vue'));
+Vue.component('tenant-documentgeneral-note', require('./views/tenant/documentgeneral/note.vue'));
+Vue.component('tenant-documentgeneral-configuration', require('./views/tenant/documentgeneral/configuration.vue'));
 //aumentar orden servicio
 
 Vue.component('tenant-servicio-index', require('./views/tenant/servicio/index.vue'));

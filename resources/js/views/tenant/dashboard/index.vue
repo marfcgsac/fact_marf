@@ -169,7 +169,7 @@
                                         <tr>
                                             <td>{{ index+1 }}</td>
                                             <td>{{ row.name }}</td>
-                                            <td>{{ row.internal_id }}</td>
+                                            <td>{{ row.codigo }}</td>
                                             <td>{{ row.total }}</td>
                                         </tr>
                                     </tbody>

@@ -44,6 +44,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                     @if(in_array('documents', $vc_modules))
                     <li class="
                         nav-parent
+                        {{ ($path[0] === 'documentgeneral')?'nav-active nav-expanded':'' }}
                         {{ ($path[0] === 'documents')?'nav-active nav-expanded':'' }}
                         {{ ($path[0] === 'credit-notes')?'nav-active nav-expanded':'' }}
                         {{ ($path[0] === 'payments')?'nav-active nav-expanded':'' }}
@@ -67,9 +68,15 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                             </li>
                             <li class="{{ ($path[0] === 'documents' && $path[1] != 'create')?'nav-active':'' }}">
                                 <a class="nav-link" href="{{route('tenant.documents.index')}}">
-                                    Listado de Ingresos
+                                    Ingresos SUNAT
                                 </a>
                             </li>
+                            <li class="{{ ($path[0] === 'documentgeneral' )?'nav-active':'' }}">
+                                <a class="nav-link" href="{{route('tenant.documentsgeneral.index')}}">
+                                    Ingresos General 
+                                </a>
+                            </li>
+                     
                             <li class="{{ ($path[0] === 'credit-notes')?'nav-active':'' }}">
                                 <a class="nav-link" href="{{route('tenant.credit_notes.index')}}">
                                     Notas de Crédito
@@ -80,7 +87,7 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                                     Pagos Recibidos
                                 </a>
                             </li>
-                            <li class="{{ ($path[0] === 'pos')?'nav-active':'' }}">
+                            <li class="{{ ($path[0] === 'pos')?'nav-afctive':'' }}">
                                 <a class="nav-link" target="_blank" href="{{route('tenant.pos.register')}}">
                                     Punto de Venta
                                 </a>
@@ -277,11 +284,11 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                                 <span>Reportes</span>
                             </a>
                             <ul class="nav nav-children" style="">
-                            <li class="{{(($path[0] === 'reports') && ($path[1] === '')) ? 'nav-active' : ''}}">
+                            <!-- <li class="{{(($path[0] === 'reports') && ($path[1] === '')) ? 'nav-active' : ''}}">
                                     <a class="nav-link" href="{{route('tenant.reports.items_detalle.index')}}">
                                         reporte items detalle
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="{{(($path[0] === 'reports') && ($path[1] === '')) ? 'nav-active' : ''}}">
                                     <a class="nav-link" href="{{route('tenant.reports.index')}}">
                                         Documentos

@@ -106,14 +106,33 @@ class HomeController extends Controller
 
              $top_10 =DB::connection('tenant')->select($sql);
 
-             $sql="SELECT  it.description AS name,it.internal_id, dci.item_id, COUNT(it.description) AS total
-             FROM documents doc
-             INNER JOIN document_items dci ON dci.document_id = doc.id
-             INNER JOIN items it ON it.id= dci.item_id
-             GROUP BY dci.item_id
-             ORDER BY total DESC
-             LIMIT 10";
+            //  $sql="SELECT  it.description AS name,it.internal_id, dci.item_id, COUNT(it.description) AS total
+            //  FROM documents doc
+            //  INNER JOIN document_items dci ON dci.document_id = doc.id
+            //  INNER JOIN items it ON it.id= dci.item_id
+            //  GROUP BY dci.item_id
+            //  ORDER BY total DESC
+            //  LIMIT 10";
 
+            $sql="    SELECT dat.description as name, dat.internal_id AS codigo, COUNT(*) AS total FROM (SELECT  tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Venta' AS operation_type, null as detail,it.description,tab.date_of_issue,pay.pos_id,it.id AS idit,it.internal_id
+            FROM payments pay
+            INNER JOIN documents tab ON tab.id = pay.document_id
+            INNER JOIN document_items tabit on tabit.document_id = tab.id
+            inner join items it ON it.id= tabit.item_id
+            and tab.document_type_id  NOT LIKE '%2'
+           
+            UNION ALL
+            SELECT tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Nota de Venta' AS operation_type, NULL,it.description,tab.date_of_issue,pay.pos_id,it.id AS idit,it.internal_id
+            FROM payments pay
+            INNER JOIN sale_notes tab ON tab.id = pay.sale_note_id
+            INNER JOIN sale_note_items tabit on tabit.sale_note_id = tab.id
+            inner join items it ON it.id= tabit.item_id
+           
+             ) dat
+          	
+              	 GROUP BY dat.description,codigo
+                ORDER BY total DESC
+                LIMIT 10  ";
               $top_10_p =DB::connection('tenant')->select($sql);
         }
         else 
@@ -167,12 +186,31 @@ class HomeController extends Controller
                 
             $top_10 =DB::connection('tenant')->select($sql);
 
-            $sql="SELECT  it.description AS name,it.internal_id, dci.item_id, COUNT(it.description) AS total
-                FROM documents doc
-                INNER JOIN document_items dci ON dci.document_id = doc.id
-                INNER JOIN items it ON it.id= dci.item_id
-                where  doc.establishment_id = $establishment_id
-                GROUP BY dci.item_id
+            // $sql="SELECT  it.description AS name,it.internal_id, dci.item_id, COUNT(it.description) AS total
+            //     FROM documents doc
+            //     INNER JOIN document_items dci ON dci.document_id = doc.id
+            //     INNER JOIN items it ON it.id= dci.item_id
+            //     where  doc.establishment_id = $establishment_id
+            //     GROUP BY dci.item_id
+            //     ORDER BY total DESC
+            //     LIMIT 5";
+            $sql="            SELECT dat.description as name, dat.internal_id AS codigo, COUNT(*) AS total,dat.establishment_id FROM (SELECT  tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Venta' AS operation_type, null as detail,it.description,tab.date_of_issue,pay.pos_id,it.id AS idit,it.internal_id,tab.establishment_id
+            FROM payments pay
+            INNER JOIN documents tab ON tab.id = pay.document_id
+            INNER JOIN document_items tabit on tabit.document_id = tab.id
+            inner join items it ON it.id= tabit.item_id
+            and tab.document_type_id  NOT LIKE '%2'
+           
+            UNION ALL
+            SELECT tab.id, tab.series, tab.number, tab.`currency_type_id`, pay.total, 'Nota de Venta' AS operation_type, NULL,it.description,tab.date_of_issue,pay.pos_id,it.id AS idit,it.internal_id,tab.establishment_id
+            FROM payments pay
+            INNER JOIN sale_notes tab ON tab.id = pay.sale_note_id
+            INNER JOIN sale_note_items tabit on tabit.sale_note_id = tab.id
+            inner join items it ON it.id= tabit.item_id
+           
+             ) dat
+          		 where  dat.establishment_id =$establishment_id
+              	 GROUP BY dat.description,codigo,dat.establishment_id 
                 ORDER BY total DESC
                 LIMIT 5";
 

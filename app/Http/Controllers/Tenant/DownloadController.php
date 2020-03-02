@@ -15,6 +15,9 @@ class DownloadController extends Controller
 {
     use StorageDocument;
     
+
+   
+
     public function downloadExternal($model, $type, $external_id, $format = null) {
 
        
@@ -29,11 +32,12 @@ class DownloadController extends Controller
         return $this->download($type, $document);
     }
 
+    
     public function downloadExternal2($model, $type, $id, $format = null) {
         
         if($model == 'salenote')
         {
-            $model = 'SaleNote';
+            $model = 'Salenote';
         }
 
         $model = "App\\Models\\Tenant\\".ucfirst($model);
@@ -98,7 +102,7 @@ class DownloadController extends Controller
         return response()->file($temp);
     }
 
-    public function toPrint2($model, $id, $format = null) {
+    public function toPrint2($model, $id,  $format = null) {
     
         if($model == 'salenote')
         {

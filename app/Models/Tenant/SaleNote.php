@@ -145,7 +145,7 @@ class SaleNote extends ModelTenant
 
     public function getDownloadExternalPdfAttribute()
     {
-        return route('tenant.download.external_id', ['model' => 'document', 'type' => 'pdf', 'external_id' => $this->external_id]);
+        return route('tenant.download.id', ['model' => 'document', 'type' => 'pdf', 'id' => $this->id]);
     }
 
     public static function getItems($sale_note_id)

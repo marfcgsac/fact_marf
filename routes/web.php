@@ -16,12 +16,13 @@ if ($hostname)  {
 
         Route::get('downloads/{model}/{type}/{external_id}/{format?}', 'Tenant\DownloadController@downloadExternal')->name('tenant.download.external_id');
         Route::get('print/{model}/{external_id}/{format?}', 'Tenant\DownloadController@toPrint')->name('tenant.print.external');
-        //Route::get('print/{model}/{external_id}/{format?}', 'Tenant\DownloadController@toPrint')->name('tenant.print.external2');
+        //Route::get('print/{model}/{id}/{format?}', 'Tenant\DownloadController@toPrint')->name('tenant.print.external2');
         Route::get('print2/{model}/{id}/{format?}', 'Tenant\DownloadController@toPrint2');
         /*cotizacion*/
         Route::get('download/{model}/{type}/{id}/{format?}', 'Tenant\DownloadController@downloadExternal2')->name('tenant.download.id');
         Route::get('download_cot/{model}/{type}/{id}/{format?}', 'Tenant\DownloadController@downloadExternalcot')->name('tenant.download.id');
         /*fin cotizacion*/
+
 
         //Route::middleware(['auth', 'module'])->group(function() {
         Route::middleware(['auth'])->group(function () {
@@ -245,6 +246,7 @@ if ($hostname)  {
             Route::get('documents/totals', 'Tenant\DocumentController@totals');
             Route::get('documents/create', 'Tenant\DocumentController@create')->name('tenant.documents.create');
             Route::get('documents/create2/{document}', 'Tenant\DocumentController@create2')->name('tenant.documents.create2');
+            Route::get('documents/create3/{document}', 'Tenant\DocumentController@create3')->name('tenant.documents.create3');
             Route::get('documents/tables', 'Tenant\DocumentController@tables');
             Route::get('documents/tables2/{document}', 'Tenant\DocumentController@tables2');
             Route::get('documents/record/{document}', 'Tenant\DocumentController@record');

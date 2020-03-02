@@ -40,9 +40,12 @@
                             <span class="badge bg-secondary text-white bg-success" v-else>Pagado</span>
                         </td>
                         <td class="text-right">
-                               <el-tooltip class="item" effect="dark" content="Visualizar" placement="top-end">
+                               <!-- <el-tooltip class="item" effect="dark" content="Visualizar" placement="top-end">
                                 <a :href="`/${resource}/view/${row.id}`" class="btn btn-xs"><i class="fa fa-eye i-icon text-info"></i></a>
-                            </el-tooltip>
+                            </el-tooltip> -->
+                             <!-- <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
+                             <a :href="`/documents/create3/`+row.id"><i class="fa fa-file-pdf i-icon text-info"></i></a>
+                                 </el-tooltip> -->
                             <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
                                 <button type="button" class="btn btn-xs" @click.prevent="clickPay(row.id)" v-if="row.total_to_pay > 0"><i class="fa fa-money-bill-wave i-icon text-warning"></i></button>
                                 <button type="button" class="btn btn-xs" v-else="" disabled><i class="fa fa-money-bill-wave i-icon text-disabled"></i></button>
@@ -54,6 +57,7 @@
                                 <button type="button" class="btn btn-xs" @click.prevent="clickDelete(row.id)" v-if="row.has_delete"><i class="fa fa-trash-alt i-icon text-danger"></i></button>
                                 <button type="button" class="btn btn-xs" v-else><i class="fa fa-trash-alt i-icon text-disabled"></i></button>
                             </el-tooltip>
+                             <button type="button" class="btn waves-effect waves-light btn-xs btn-info m-1__2" @click.prevent="clickOptions(row.id)">Opciones{{row.user_id}} </button> 
                         </td>
                     </tr>
                     <div class="row col-md-12 justify-content-center" slot-scope="{ totals }" slot="totals">
@@ -71,6 +75,9 @@
             </div>
             <documents-pay :showDialog.sync="showDialogPay"
                             :recordId="recordId" :resource="resource"></documents-pay>
+            <sale-note-options :showDialog.sync="showDialogOptions"
+                              :recordId="recordId"
+                              :showClose="true"></sale-note-options>
         </div>
     </div>
 </template>
@@ -80,12 +87,14 @@
     import DataTable from '../../../components/DataTable.vue'
     import DocumentsPay from '../documents/partials/pay.vue'
     import {deletable} from '../../../mixins/deletable'
+     import SaleNoteOptions from './partials/options.vue'
 
     export default {
         mixins: [deletable],
-        components: {DataTable, DocumentsPay},
+        components: {DataTable, DocumentsPay,SaleNoteOptions},
         data() {
             return {
+                showDialogOptions:false,
                 showDialogPay: false,
                 resource: 'sale-notes',
                 recordId: null
@@ -102,6 +111,10 @@
                 this.destroy(`/${this.resource}/${id}`).then(() =>
                     this.$eventHub.$emit('reloadData')
                 )
+            },
+             clickOptions(recordId = null) {
+                this.recordId = recordId
+                this.showDialogOptions = true
             }
         }
     }

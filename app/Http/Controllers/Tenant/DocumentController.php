@@ -29,6 +29,7 @@ use App\Models\Tenant\PriceList;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Configuration;
 use App\Models\Tenant\Quotation;
+use App\Models\Tenant\SaleNote;
 use App\Models\Tenant\QuotationItem;
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\Document;
@@ -77,8 +78,6 @@ class DocumentController extends Controller
             'number' => 'RUC',
             'date_of_issue' => 'Fecha de emisión',
             'customer' => 'cliente'
-  
-            
         ];
 
          }
@@ -155,6 +154,13 @@ class DocumentController extends Controller
         $pos = \App\Models\Tenant\Pos::active();
         return view('tenant.documents.form2', compact('quotation_id', 'user', 'pos'));
     }
+
+    public function create3($sale_note_id)
+    {
+        $user = auth()->user();
+        $pos = \App\Models\Tenant\Pos::active();
+        return view('tenant.documents.form3', compact('sale_note_id', 'user', 'pos'));
+    }
     
     public function tables()
     {
@@ -190,6 +196,8 @@ class DocumentController extends Controller
             'note_credit_types', 'note_debit_types', 'currency_types', 'operation_types',
             'discount_types', 'charge_types', 'payment_methods', 'accounts', 'company', 'document_type_03_filter', 'decimal', 'price_list');
     }
+
+    
    
     public function tables2($quotation_id = false)
     {
@@ -240,6 +248,58 @@ class DocumentController extends Controller
         $decimal = Configuration::first()->decimal;
 
         return compact('quotation', 'customers', 'establishments', 'series', 'document_types_invoice', 'document_types_note',
+            'note_credit_types', 'note_debit_types', 'currency_types', 'operation_types',
+            'discount_types', 'charge_types', 'company', 'document_type_03_filter', 'decimal');
+    }
+    public function tables3($sale_note_id = false)
+    {
+        if(strlen(stristr($sale_note_id, 'e')) == 0)
+        {
+            $document_types_invoice = DocumentType::whereIn('id', ['01', '03'])->get();
+        }
+        else 
+        {
+            $document_types_invoice = DocumentType::whereIn('id', ['100'])->get();
+        }
+
+        $sale_note_id = (int)$sale_note_id;
+
+        $SaleNote = SaleNote::whereId($sale_note_id)->get();
+        
+        $customers = Person::whereType('customers')->get()->transform(function ($row) {
+            return [
+                'id' => $row->id,
+                'description' => $row->number . ' - ' . $row->name,
+                'name' => $row->name,
+                'number' => $row->number,
+                'identity_document_type_id' => $row->identity_document_type_id,
+                'identity_document_type_code' => $row->identity_document_type->code
+            ];
+        });
+
+        if(auth()->user()->admin)
+        {
+            $establishments = Establishment::all();
+        }
+        else
+        {
+            $establishments = Establishment::where('id', auth()->user()->establishment_id)->get();
+        }
+        
+        $series = Series::all();
+        
+        $document_types_note = DocumentType::whereIn('id', ['07', '08'])->get();
+        $note_credit_types = NoteCreditType::whereActive()->orderByDescription()->get();
+        $note_debit_types = NoteDebitType::whereActive()->orderByDescription()->get();
+        $currency_types = CurrencyType::whereActive()->get();
+        $operation_types = OperationType::whereActive()->get();
+        $discount_types = ChargeDiscountType::whereType('discount')->whereLevel('item')->get();
+        $charge_types = ChargeDiscountType::whereType('charge')->whereLevel('item')->get();
+        $company = Company::active();
+        $document_type_03_filter = env('DOCUMENT_TYPE_03_FILTER', true);
+        $decimal = Configuration::first()->decimal;
+
+        return compact('sales_notes', 'customers', 'establishments', 'series', 'document_types_invoice', 'document_types_note',
             'note_credit_types', 'note_debit_types', 'currency_types', 'operation_types',
             'discount_types', 'charge_types', 'company', 'document_type_03_filter', 'decimal');
     }

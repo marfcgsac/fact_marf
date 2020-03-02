@@ -1,8 +1,8 @@
 <template>
-    <el-dialog :title="titleDialog" :visible="showDialog" @open="create" width="30%" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false">
+    <el-dialog :title="titleDialog" :visible="showDialog" @open="create" width="30%" :close-on-click-modal="false" :close-on-press-escape="true" :show-close="true">
         <div class="row mt-4">
             <div class="col-lg-6 col-md-6 col-sm-12 text-center font-weight-bold">
-                <p>Imprimir PDF</p>
+                <p>Imprimir PDF </p>
                 <button type="button" class="btn btn-lg btn-info waves-effect waves-light" @click="clickPrint('a4')">
                     <i class="fa fa-file-alt"></i>
                 </button>
@@ -113,10 +113,11 @@
                 this.clickClose()
             },
             clickClose() {
-                location.href = `/${this.resource}/create`
-                // this.$emit('update:showDialog', false)
-                // this.initForm()
-            },
+              //location.href = `/${this.resource}`
+                this.$emit('update:showDialog', false)
+                this.initForm()
+                   
+        },
         }
     }
 </script>

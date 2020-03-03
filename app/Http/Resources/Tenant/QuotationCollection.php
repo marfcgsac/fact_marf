@@ -50,6 +50,7 @@ class QuotationCollection extends ResourceCollection
                 'id' => $row->id,
                 'group_id' => $row->group_id,
                 'date_of_issue' => $row->date_of_issue->format('Y-m-d'),
+                'time_of_issue'=>$row->time_of_issue,
                 'number' => $row->number_full,
                 'customer_name' => $row->customer->name,
                 'customer_number' => $row->customer->number,

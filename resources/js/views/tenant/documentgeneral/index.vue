@@ -35,7 +35,7 @@
                         <th class="text-right">Total</th>
                         <th class="text-right">Pagado</th>
                         <th class="text-right">Por pagar</th>
-                        <!-- <th class="text-right">Estado SUNAT/OSE</th> -->
+                        <th class="text-right">Estado SUNAT/OSE</th> 
                         <th class="text-center">Estado</th>
                         <!--<th class="text-center">Anulación</th>-->
                         <th class="text-right">Acciones</th>
@@ -64,17 +64,17 @@
                         <td class="text-right">
                             <span>{{ row.total_to_pay }}</span>
                         </td>
-                        <!-- <td class="text-right"><span class="badge bg-secondary text-white" :class="{
-                            'bg-danger': (row.state_type_id === '11'),
-                            'bg-warning': (row.state_type_id === '13'),
-                            'bg-secondary': (row.state_type_id === '01'),
-                            'bg-info': (row.state_type_id === '03'),
-                            'bg-success': (row.state_type_id === '05'),
-                            'bg-secondary': (row.state_type_id === '07'),
-                            'bg-dark': (row.state_type_id === '09'),
-                            'text-light bg-info': (row.state_type_id === '14')
+                        <td class="text-right"><span class="badge bg-secondary text-white" :class="{
+                       //     'bg-danger': (row.state_type_id === '11'),
+                           // 'bg-warning': (row.state_type_id === '13'),
+                          //  'bg-secondary': (row.state_type_id === '01'),
+                           // 'bg-info': (row.state_type_id === '03'),
+                          //  'bg-success': (row.state_type_id === '05'),
+                         //   'bg-secondary': (row.state_type_id === '07'),
+                          //  'bg-dark': (row.state_type_id === '09'),
+                         'text-light bg-info': (row.state_type_id === '14')
                         }">{{ row.state_type_description }}</span></td>
-                        -->
+                       
                      
                         <td class="text-right">
                             <span class="badge bg-secondary text-white bg-warning" v-if="row.total_to_pay > 0">Pendiente</span>

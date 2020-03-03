@@ -292,4 +292,11 @@ class QuotationController extends Controller
             'message' => $response['description'],
         ];
     }
+    public function view(Quotation $quotation)
+    {
+       // $payments = Payment::where('quotation_id', $quotation->id)->get();
+
+        return view('tenant.quotations.view', compact('quotation'));
+    }
+
 }

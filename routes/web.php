@@ -18,6 +18,7 @@ if ($hostname)  {
         Route::get('print/{model}/{external_id}/{format?}', 'Tenant\DownloadController@toPrint')->name('tenant.print.external');
         //Route::get('print/{model}/{id}/{format?}', 'Tenant\DownloadController@toPrint')->name('tenant.print.external2');
         Route::get('print2/{model}/{id}/{format?}', 'Tenant\DownloadController@toPrint2');
+        Route::get('print3/{model}/{id}/{format?}', 'Tenant\DownloadController@toPrint3')->name('tenant.print.external3');
         /*cotizacion*/
         Route::get('download/{model}/{type}/{id}/{format?}', 'Tenant\DownloadController@downloadExternal2')->name('tenant.download.id');
         Route::get('download_cot/{model}/{type}/{id}/{format?}', 'Tenant\DownloadController@downloadExternalcot')->name('tenant.download.id');
@@ -269,14 +270,14 @@ if ($hostname)  {
             Route::get('documentgeneral', 'Tenant\DocumentgeneralController@index')->name('tenant.documentsgeneral.index');
             Route::get('documentsgeneral/view/{documentgeneral}', 'Tenant\DocumentgeneralController@view')->name('tenant.documentsgeneral.view');
             Route::get('documentsgeneral/columns', 'Tenant\DocumentgeneralController@columns');
-            Route::get('documentsgeneral/records', 'Tenant\DocumentgeneralController@records');
+            Route::get('documentsgeneral/records', 'Tenant\DocumentgeneralController@');
             
             Route::get('documentsgeneral/totals', 'Tenant\DocumentgeneralController@totals');
             Route::get('documentsgeneral/create', 'Tenant\DocumentgeneralController@create')->name('tenant.documentsgeneral.create');
             Route::get('documentsgeneral/create2/{document}', 'Tenant\DocumentgeneralController@create2')->name('tenant.documentsgeneral.create2');
             Route::get('documentsgeneral/tables', 'Tenant\DocumentgeneralController@tables');
             Route::get('documentsgeneral/tables2/{document}', 'Tenant\DocumentgeneralController@tables2');
-            Route::get('documentsgeneral/record/{document}', 'Tenant\DocumentgeneralController@record');
+            Route::get('documentsgeneral/record/{documentgeneral}', 'Tenant\DocumentgeneralController@record');
             Route::post('documentsgeneral', 'Tenant\DocumentgeneralController@store');
             //Route::post('documentsgeneral/{document}', 'Tenant\DocumentgeneralController@store2');
             Route::get('documentsgeneral/send/{document}', 'Tenant\DocumentgeneralController@send');
@@ -333,6 +334,8 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
             Route::get('box', 'Tenant\PosController@index')->name('tenant.box.index');
 
             //Quotations
+            Route::get('quotations/view/{quotation}', 'Tenant\QuotationController@view')->name('tenant.quotations.view');
+
 
             Route::get('quotations/send/{docotizacion}', 'Tenant\DocumentController@send');
 

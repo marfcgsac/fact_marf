@@ -49,6 +49,24 @@ class DownloadController extends Controller
         
         return $this->download($type, $document);
     }
+
+    public function downloadExternal3($model, $type, $id, $format = null) {
+        
+        if($model == 'quotation')
+        {
+            $model = 'Quotation';
+        }
+
+        $model = "App\\Models\\Tenant\\".ucfirst($model);
+        $document = $model::where('id', $id)->first();
+        
+        if (!$document) throw new Exception("El código {$id} es inválido, no se encontro documento relacionado");
+        
+        if ($format != null) $this->reloadPDF3($document, 'invoice', $format);
+        
+        return $this->download($type, $document);
+    }
+
     public function downloadExternalcot($model, $type, $id, $format = null) {
         
         if($model == 'quotation')
@@ -121,6 +139,25 @@ class DownloadController extends Controller
               
             return response()->file($temp);
         }
+        public function toPrint3($model, $id,  $format = null) {
+    
+            if($model == 'quotation')
+            {
+                $model = 'Quotation';
+            }
+            
+            $model = "App\\Models\\Tenant\\".ucfirst($model);
+            $document = $model::where('id', $id)->first();
+            
+                if (!$document) throw new Exception("El código {$id} es inválido, no se encontro documento relacionado");
+                    
+                if ($format != null) $this->reloadPDF3($document, 'simple', $format);
+                    
+                $temp = tempnam(sys_get_temp_dir(), 'pdf');
+                file_put_contents($temp, $this->getStorage($document->filename, 'pdf'));
+                  
+                return response()->file($temp);
+            }
     
     /**
      * Reload PDF
@@ -136,7 +173,7 @@ class DownloadController extends Controller
         (new Facturalo)->createPdf2($document, $type, $format);
 
     }
-    private function reloadPDF3($document,$type, $format){
+    private function reloadPDF3($quotation,$type, $format){
         (new Facturalo )->createPdf3($quotation, $type, $format);
 
     }

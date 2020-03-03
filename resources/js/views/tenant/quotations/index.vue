@@ -36,7 +36,7 @@
                                                     'border-left border-warning': (row.state_type_id === '13')
                     }">
                         <td>{{ index }}</td>
-                        <td class="text-center">{{ row.date_of_issue }}</td>
+                        <td class="text-center">{{ row.date_of_issue }} / {{row.time_of_issue}}</td>
                         <td>{{ row.customer_name }}<br/><small v-text="row.customer_number"></small></td>
                         <td>{{ row.number }}</td>
                         <td>
@@ -45,7 +45,7 @@
                             'bg-warning': (row.state_type_id === '13'),
                             'bg-secondary': (row.state_type_id === '01'),
                             'bg-info': (row.state_type_id === '03'),
-                            'bg-success': (row.state_type_id === '05'),
+                            'bg-success': (row.state_type_id == '05'),
                             'bg-secondary': (row.state_type_id === '07'),
                             'bg-dark': (row.state_type_id === '09')
                             }">{{ row.state_type_description }}</span>
@@ -55,15 +55,16 @@
                         <td class="text-right">
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 <div class="btn-group" role="group">
+                                    <el-tooltip class="item" effect="dark" content="Visualizar" placement="top-end">
+                                    <a :href="`/${resource}/view/${row.id}`" class="btn btn-xs"><i class="fa fa-eye i-icon text-info"></i></a>
+                                    </el-tooltip>
+                                        
                                     <button id="btnGroupDrop1" type="button" class="btn waves-effect waves-light btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Opciones
                                     </button>
                                      <!-- <button type="button" class="waves-effect waves-light fa fa-paper-plane" @click.prevent="clickOptions(row.id)">envio </button> -->
                                      <el-button type="button"  class="btn btn-info btn-xs" slot="append" icon="el-icon-message" @click.prevent="clickOptions(row.id)">envio </el-button>
                                    
-                                    
-                 
-
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a v-if="row.state_type_id==1" class="dropdown-item" :href="`/documents/create2/`+row.id">Crear venta</a>
                                         <a v-if="row.state_type_id==1" class="dropdown-item" :href="`/quotations/edit/`+row.id">Editar</a>

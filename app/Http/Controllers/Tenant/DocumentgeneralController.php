@@ -56,7 +56,7 @@ class DocumentgeneralController extends Controller
 
     public function index()
     {
-        return view('tenant.documentgeneral.index',compact('indexgeneral'));
+        return view('tenant.documentgeneral.index');
     }
 
     public function view(Document $document)

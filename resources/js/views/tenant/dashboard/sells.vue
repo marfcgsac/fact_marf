@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-4">
                             <section class="card card-horizontal card-tenant-dashboard">
-                                <header class="card-header" style=" background: #00E775;">
+                                <header class="card-header bg-success">
                                     <div class="card-header-icon"><i class="fas fa-donate"></i></div>
                                 </header>
                                 <div class="card-body p-4 text-center">
@@ -52,8 +52,8 @@
                             </section>
                         </div>
                         <div class="col-md-4">
-                            <section class="card card-horizontal card-tenant-dashboard" >
-                                <header class="card-header" style="background: #FF074D;">
+                            <section class="card card-horizontal card-tenant-dashboard">
+                                <header class="card-header bg-warning">
                                     <div class="card-header-icon"><i class="fas fa-address-book"></i></div>
                                 </header>
                                 <div class="card-body p-4 text-center">

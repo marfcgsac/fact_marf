@@ -48,7 +48,7 @@
 <table class="full-width">
     <tr>
         <td width="45%" class="pt-3"><p class="desc">Fecha de emisión:</p></td>
-        <td width="" class="pt-3"><p class="desc">{{ $document->date_of_issue->format('d-m-Y') }} {{ $document->time_of_issue }}</p></td>
+        <td width="" class="pt-3"><p class="desc">{{ $document->date_of_issue->format('Y-m-d') }} {{ $document->time_of_issue }}</p></td>
 
         
     </tr>
@@ -56,7 +56,7 @@
     @isset($invoice->date_of_due)
     <tr>
         <td><p class="desc">Fecha de vencimiento:</p></td>
-        <td><p class="desc">{{ $invoice->date_of_due->format('d-m-Y') }}</p></td>
+        <td><p class="desc">{{ $invoice->date_of_due->format('Y-m-d') }}</p></td>
     </tr>
     @endisset
 

@@ -52,7 +52,7 @@ class ServiceController extends Controller
     public function exchangeRateTest($date)
     {
         $sale = 1;
-        if($date <= now()->format('Y-m-d')) {
+        if($date <= now()->format('d-m-y')) {
             $ex_rate = \App\Models\Tenant\ExchangeRate::where('date', $date)->first();
             if ($ex_rate) {
                 $sale = $ex_rate->sale;

@@ -60,7 +60,7 @@
         <td width="15%">Cliente:</td>
         <td width="45%">{{ $customer->name }}</td>
         <td width="20%">Fecha de emisión:</td>
-        <td width="20%">{{ $document->date_of_issue->format('d/m/Y') }}  {{ $document->time_of_issue }}</td>
+        <td width="20%">{{ $document->date_of_issue->format('d/m/Y') }}   {{ $document->time_of_issue }}</td>
     </tr>
     <tr>
         <td>{{ $customer->identity_document_type->description }}:</td>
@@ -68,7 +68,7 @@
 
         @isset($document->date_of_due)
             <td>Fecha de vencimiento:</td>
-            <td>{{ $document->date_of_due->format('Y-m-d') }}</td>
+            <td>{{ $document->date_of_due->format('d/m/Y') }}</td>
         @endisset
 
     </tr>

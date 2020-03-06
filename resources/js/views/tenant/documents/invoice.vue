@@ -533,7 +533,7 @@
                                 this.pay_data.date_of_issue = this.form.date_of_issue;
                                 this.pay_data.customer_id = this.form.customer_id;
                                 this.pay_data.currency_type_id = this.form.currency_type_id;
-                                //this.pay_data.total = this.form.total;
+                                this.pay_data.total = this.form.total;
                                 this.pay_data.total_debt = this.form.total;
 
                                 this.$http.post(`/payments`, this.pay_data)

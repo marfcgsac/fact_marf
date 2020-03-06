@@ -4,7 +4,7 @@
     <div class="page-header pr-0">
         <h2><a href="/receipt"><i class="fas fa-tachometer-alt"></i></a></h2>
         <ol class="breadcrumbs">
-            <li class="active"><span>Detalle del comprobante qqqq</span> </li>
+            <li class="active"><span>Detalle del comprobante </span> </li>
             <!-- <li><span class="text-muted">Facturas - Notas <small>(crédito y débito)</small> - Boletas - Anulaciones</small></span></li> -->
         </ol>
         <div class="right-wrapper pull-right">

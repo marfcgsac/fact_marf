@@ -95,10 +95,11 @@
                                 <a :href="`/dispatches/create2/${row.id}`" class="btn btn-xs" v-if="row.btn_note"><i class="fa fa-clipboard-check i-icon text-success"></i></a>
                                 <a class="btn btn-xs" v-else=""><i class="fa fa-clipboard-check i-icon text-disabled"></i></a>
                             </el-tooltip> -->
-                            <!-- <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
-                                <button type="button" class="btn btn-xs" @click.prevent="clickPay(row.id)" v-if="row.total_to_pay > 0"><i class="fa fa-money-bill-wave i-icon text-warning"></i></button>
+                            <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
+                                <button type="button" class="btn btn-xs" @click.prevent="clickPay(row.id)" v-if="row.total_to_pay > 0 " ><i class="fa fa-money-bill-wave i-icon text-warning"></i></button>
                                 <button type="button" class="btn btn-xs" v-else="" disabled><i class="fa fa-money-bill-wave i-icon text-disabled"></i></button>
-                            </el-tooltip> -->
+                            </el-tooltip>
+     
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 <div class="btn-group" role="group">
                                   
@@ -152,12 +153,12 @@
 <script>
 
     // import ServicioVoided from './partials/voided.vue'
-    // import DocumentsPay from './partials/pay.vue'
+    //import DocumentsPay from './partials/pay.vue'
     // import ServicioOptions from './partials/options.vue'
     // import DataTable from '../../../components/DataTable.vue'
 
     import DocumentsVoided from './partials/voided.vue'
-    import DocumentsPay from './partials/pay.vue'
+    import DocumentsPay from '../documents/partials/pay.vue'
     import DocumentOptions from './partials/options.vue'
     import DataTable from '../../../components/DataTable.vue'
 

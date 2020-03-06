@@ -20,7 +20,7 @@
 @endpush
 
 @section('content')    
-    <tenant-documentsgeneral-invoice2 :quotation_id="{{ json_encode($quotation_id) }}"></tenant-documentsgeneral-invoice2>
+    <tenant-documentgeneral-invoice2 :quotation_id="{{ json_encode($quotation_id) }}"></tenant-documentgeneral-invoice2>
 @endsection
 
 @push('scripts')

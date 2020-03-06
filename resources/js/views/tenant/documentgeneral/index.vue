@@ -125,7 +125,7 @@
                     </tr>
                     <div class="row col-md-12 justify-content-center" slot-scope="{ totals }" slot="totals">
                         <div class="col-md-3">
-                            <h5><strong>Total de ventas en soles </strong>S/. {{ totals.total.total }}</h5>
+                            <h5><strong>Total de ventas en soles</strong>S/. {{ totals.total.total }}</h5>
                             <h5><strong>Total pagado en soles </strong>S/. {{ totals.total.total_paid }}</h5>
                             <h5><strong>Total por cobrar en soles </strong>S/. {{ totals.total.total_to_pay }}</h5>
                         </div>

@@ -9,9 +9,9 @@ use App\Http\Requests\Tenant\DocumentEmailRequest;
 use App\Http\Requests\Tenant\DocumentRequest;
 use App\Http\Requests\Tenant\DocumentConfigurationRequest;
 use App\Http\Requests\Tenant\DocumentVoidedRequest;
-use App\Http\Resources\Tenant\DocumentCollection;
+use App\Http\Resources\Tenant\DocumentgeneralCollection;
 use App\Http\Resources\Tenant\DocumentResource;
-use App\Http\Resources\Tenant\DocumentConfigurationResource;
+use App\Http\Resources\Tenant\DocumentgeneralConfigurationResource;
 use App\Mail\Tenant\DocumentEmail;
 use App\Models\Tenant\Catalogs\AffectationIgvType;
 use App\Models\Tenant\Catalogs\ChargeDiscountType;
@@ -47,7 +47,7 @@ use Nexmo\Account\Price;
 
 class DocumentgeneralController extends Controller
 {
-    use StorageDocument;
+   use StorageDocument;
 
     public function __construct()
     {
@@ -57,18 +57,19 @@ class DocumentgeneralController extends Controller
     public function index()
     {
         return view('tenant.documentgeneral.index');
+        $this.records();
     }
 
     public function view(Document $document)
     {
         $payments = Payment::where('document_id', $document->id)->get();
 
-        return view('tenant.documentsgeneral.view', compact('documentgeneral', 'payments'));
+        return view('tenant.documentgeneral.view', compact('documentgeneral', 'payments'));
     }
 
     public function configuration()
     {
-        return view('tenant.documentsgeneral.configuration');
+        return view('tenant.documents.configuration');
     }
     
     public function columns()
@@ -77,20 +78,19 @@ class DocumentgeneralController extends Controller
             'number' => 'RUC',
             'date_of_issue' => 'Fecha de emisión',
             'customer' => 'cliente'
-  
-            
+             
         ];
 
          }
 
-    public function records(Request $request)
-    {
-        $records = Document::where($request->column, 'like', "%{$request->value}%")
-            ->whereIn('document_type_id', ['01', '03','80'])
-            ->latest();
+    // public function records(Request $request)
+    // {
+    //     $records = Document::where($request->column, 'like', "%{$request->value}%")
+    //         ->whereIn('document_type_id', ['01', '03','80'])
+    //         ->latest();
 
-        return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
-    }
+    //     return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
+    // }
   
 
     public function totals(Request $request)

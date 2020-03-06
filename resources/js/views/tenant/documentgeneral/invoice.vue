@@ -239,21 +239,21 @@
             </div>
         </div>
 
-        <document-form-item :showDialog.sync="showDialogAddItem"
+        <documentgeneral-form-item :showDialog.sync="showDialogAddItem"
                            :operation-type-id="form.operation_type_id"
                            :currency-type-id-active="form.currency_type_id"
                            :exchange-rate-sale="form.exchange_rate_sale"
                            :price_list_id="form.price_list_id"
-                           @add="addRow"></document-form-item>
+                           @add="addRow"></documentgeneral-form-item>
 
         <person-form :showDialog.sync="showDialogNewPerson"
                        type="customers"
                        :external="true"
                        :document_type_id = form.document_type_id></person-form>
 
-        <document-options :showDialog.sync="showDialogOptions"
+        <documentgeneral-options :showDialog.sync="showDialogOptions"
                           :recordId="documentNewId"
-                          :showClose="false"></document-options>
+                          :showClose="false"></documentgeneral-options>
     </div>
 </template>
 

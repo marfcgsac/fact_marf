@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="control-label">Total</label>
+                            <label class="control-label">Total{{form.document_id}}</label>
                             <el-input v-model="form.total0" readonly=""></el-input>
                         </div>
                     </div>
@@ -71,6 +71,8 @@
                     </div>
                 </div>
             </div>
+            <div> {{form.id}}</div>
+
             <div class="form-actions text-right mt-4">
                 <el-button @click.prevent="close()">Cancelar</el-button>
                 <el-button type="danger" native-type="submit" :loading="loading_submit">Pagar</el-button>
@@ -86,7 +88,7 @@
             return {
                 titleDialog: null,
                 loading_submit: false,
-                //resource: 'documents',
+                resource: 'documents',
                 errors: {},
                 form: {},
                 currency_types: [],

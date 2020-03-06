@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group" :class="{'has-danger': errors.account_id}">
-                            <label class="control-label">Cuenta Bancaria <span class="text-danger">*</span></label>
+                            <label class="control-label">Cuenta Bancaria ffffffffffffffffffff<span class="text-danger">*</span></label>
                             <el-select v-model="form.account_id" filterable>
                                 <el-option v-for="option in accounts" :key="option.id" :value="option.id" :label="option.name+' | '+option.account_type.description"></el-option>
                             </el-select>
@@ -130,7 +130,7 @@
                         
                         this.form.total0 = document.total
                         this.form.total_debt = document.total - document.total_paid
-                        this.titleDialog = 'Comprobante: '+document.number
+                        this.titleDialog = 'Comprobante: '+document.number 
                     })
             },
             submit() {

@@ -53,11 +53,18 @@ class DocumentController extends Controller
     public function __construct()
     {
         $this->middleware('input.request:document,web', ['only' => ['store']]);
+      
     }
 
     public function index()
     {
         return view('tenant.documents.index');
+    }
+
+    public function pay()
+    {
+        return view('tenant.documents.pay');
+     
     }
 
     public function view(Document $document)
@@ -83,15 +90,45 @@ class DocumentController extends Controller
          }
 
     public function records(Request $request)
-    {
-        $records = Document::where($request->column, 'like', "%{$request->value}%")
-            ->whereIn('document_type_id', ['01', '03'])
+    { 
+        // if(!view('tenant.documents.pay')){
+
+        //     $records = Document::where($request->column, 'like', "%{$request->value}%")
+        //     ->whereIn('document_type_id', ['01', '03'])
+        //     ->latest();
+
+        //     return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
+
+        // }else{
+        //     $records1 = Document::where($request->column, 'like', "%{$request->value}%")
+        //     ->whereIn('document_type_id', ['01', '03','80'])
+        //     ->latest();
+        //     return new DocumentCollection($records1->paginate(env('ITEMS_PER_PAGE', 10)));
+        // }
+       
+    // {
+      
+
+            $records = Document::where($request->column, 'like', "%{$request->value}%")
+            ->whereIn('document_type_id', ['01', '03','80'])
             ->latest();
 
-        return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
+       
+           return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
     }
-  
 
+    public function records1(Request $request)
+    { 
+  
+            $records1 = Document::where($request->column, 'like', "%{$request->value}%")
+            ->whereIn('document_type_id', ['01', '03','80'])
+            ->latest();
+
+          return new DocumentCollection($records1->paginate(env('ITEMS_PER_PAGE', 10)));
+          return view('tenant.documents.pay', compact('request', 'records1'));
+    }
+
+   
     public function totals(Request $request)
     {
         $total = DB::connection('tenant')

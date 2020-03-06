@@ -13,7 +13,7 @@
     </div>
     <div class="card mb-0 card-without-radius">
         <div class="card-title p-1">
-            <h6 class="text-bold">{{$document->document_type->description}} {{$document->series}}-{{$document->number}}</h6>
+            <h6 class="text-bold">{{$document->document_type->description}} {{$document->series}}-{{$document->number}}<h6>
         </div>
         <div class="card-body">
             <div class="row justify-content-center">

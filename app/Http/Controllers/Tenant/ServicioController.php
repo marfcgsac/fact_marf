@@ -369,7 +369,7 @@ class ServicioController extends Controller
 
     public function record($id)
     {
-        $record = new ServicioResource(Servicio::findOrFail($id));
+        $record = new DocumentResource(Document::findOrFail($id));
 
         return $record;
     }

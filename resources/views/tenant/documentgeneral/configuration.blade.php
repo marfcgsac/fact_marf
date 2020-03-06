@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-6 col-md-6">
-            <tenant-documentsgeneral-configuration></tenant-documentsgeneral-configuration>
+            <tenant-documentgeneral-configuration></tenant-documentgeneral-configuration>
         </div>
     </div>
 @endsection

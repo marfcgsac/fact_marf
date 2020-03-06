@@ -243,7 +243,16 @@ if ($hostname)  {
             Route::get('documents/view/{document}', 'Tenant\DocumentController@view')->name('tenant.documents.view');
             Route::get('documents/columns', 'Tenant\DocumentController@columns');
             Route::get('documents/records', 'Tenant\DocumentController@records');
+         
+            Route::get('documents/pay', 'Tenant\DocumentController@pay')->name('tenant.documents.pay');
             
+            Route::get('documents/records1', 'Tenant\DocumentController@records1');
+       
+          
+
+            //Route::resource('documents/pay', 'Tenant\DocumentController@pay');
+
+
             Route::get('documents/totals', 'Tenant\DocumentController@totals');
             Route::get('documents/create', 'Tenant\DocumentController@create')->name('tenant.documents.create');
             Route::get('documents/create2/{document}', 'Tenant\DocumentController@create2')->name('tenant.documents.create2');
@@ -295,6 +304,7 @@ if ($hostname)  {
 
 
 //agregar servicio
+
 //Documents
 Route::get('servicio', 'Tenant\ServicioController@index')->name('tenant.servicio.index');
 Route::get('servicio/view/{servicio}', 'Tenant\ServicioController@view')->name('tenant.servicio.view');

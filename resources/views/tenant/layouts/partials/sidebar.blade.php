@@ -44,7 +44,8 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                     @if(in_array('documents', $vc_modules))
                     <li class="
                         nav-parent
-                        {{ ($path[0] === 'documentgeneral')?'nav-active nav-expanded':'' }}
+                    
+                        {{ ($path[0] === 'documents/vistag')?'nav-active nav-expanded':'' }}
                         {{ ($path[0] === 'documents')?'nav-active nav-expanded':'' }}
                         {{ ($path[0] === 'credit-notes')?'nav-active nav-expanded':'' }}
                         {{ ($path[0] === 'payments')?'nav-active nav-expanded':'' }}
@@ -66,16 +67,16 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                                     Venta
                                 </a>
                             </li>
-                            <li class="{{ ($path[0] === 'documents' && $path[1] != 'create')?'nav-active':'' }}">
+                            <li class="{{ ($path[0] === 'documents' && $path[1] === '')?'nav-active':'' }}">
                                 <a class="nav-link" href="{{route('tenant.documents.index')}}">
                                     Ingresos SUNAT
                                 </a>
                             </li>
-                            <li class="{{ ($path[0] === 'documentgeneral' )?'nav-active':'' }}">
-                                <a class="nav-link" href="{{route('tenant.documentsgeneral.index')}}">
+                            <li class="{{ ($path[0] === 'documents' && $path[1] === 'vistag')?'nav-active':'' }}">
+                                <a class="nav-link" href="{{route('vistag')}}">
                                     Ingresos General 
                                 </a>
-                            </li>
+                                </li>
                      
                             <li class="{{ ($path[0] === 'credit-notes')?'nav-active':'' }}">
                                 <a class="nav-link" href="{{route('tenant.credit_notes.index')}}">

@@ -61,9 +61,11 @@ class DocumentController extends Controller
         return view('tenant.documents.index');
     }
 
-    public function pay()
+    public function vistag()
     {
-        return view('tenant.documents.pay');
+        return view('tenant.documents.vistag');
+        
+      //  $this->middleware('documents.vistag')->only('records1');
      
     }
 
@@ -110,7 +112,7 @@ class DocumentController extends Controller
       
 
             $records = Document::where($request->column, 'like', "%{$request->value}%")
-            ->whereIn('document_type_id', ['01', '03','80'])
+            ->whereIn('document_type_id', ['01', '03'])
             ->latest();
 
        
@@ -125,7 +127,7 @@ class DocumentController extends Controller
             ->latest();
 
           return new DocumentCollection($records1->paginate(env('ITEMS_PER_PAGE', 10)));
-          return view('tenant.documents.pay', compact('request', 'records1'));
+          
     }
 
    

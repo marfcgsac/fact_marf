@@ -55,7 +55,7 @@ class ServicioCollection extends ResourceCollection
                 'group_id' => $row->group_id,
                 'soap_type_id' => $row->soap_type_id,
                 'status_paid' => $row->status_paid,
-                'date_of_issue' => $row->date_of_issue->format('Y-m-d'),
+                'date_of_issue' => $row->date_of_issue->format('d-m-Y'),
                 'number' => $row->number_full,
                 'customer_name' => $row->customer->name,
                 'customer_number' => $row->customer->number,

@@ -30,7 +30,7 @@ class AlertDocumentController extends Controller
     {
         $date = date("Y-m-d");
         $records = DB::connection('tenant')->select("SELECT doc.id, per.name, per.number as customer_number, doc.`document_type_id`, doc.`series`, doc.`number`, 
-                doc.`date_of_issue`, doc.`total`, 7 - DATEDIFF('".$date."', doc.`date_of_issue`) as diferent
+                DATE_FORMAT(doc.`date_of_issue`,'%d-%m-%Y') AS date_of_issue, doc.`total`, 7 - DATEDIFF('".$date."', doc.`date_of_issue`) as diferent
                     FROM documents doc
                     INNER JOIN persons per ON per.id = doc.`customer_id`
                     WHERE doc.`state_type_id` = '01' AND DATEDIFF('".$date."', doc.`date_of_issue`) > 3

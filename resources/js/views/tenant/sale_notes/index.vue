@@ -43,9 +43,9 @@
                                <!-- <el-tooltip class="item" effect="dark" content="Visualizar" placement="top-end">
                                 <a :href="`/${resource}/view/${row.id}`" class="btn btn-xs"><i class="fa fa-eye i-icon text-info"></i></a>
                             </el-tooltip> -->
-                            <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
+                            <!-- <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
                              <a :href="`/documents/create3/`+row.id"><i class="fa fa-file-pdf i-icon text-info"></i></a>
-                                 </el-tooltip> 
+                                 </el-tooltip>  -->
                             <el-tooltip class="item" effect="dark" content="Agregar pago" placement="top-end">
                                 <button type="button" class="btn btn-xs" @click.prevent="clickPay(row.id)" v-if="row.total_to_pay > 0"><i class="fa fa-money-bill-wave i-icon text-warning"></i></button>
                                 <button type="button" class="btn btn-xs" v-else="" disabled><i class="fa fa-money-bill-wave i-icon text-disabled"></i></button>

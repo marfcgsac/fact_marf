@@ -244,9 +244,10 @@ if ($hostname)  {
             Route::get('documents/columns', 'Tenant\DocumentController@columns');
             Route::get('documents/records', 'Tenant\DocumentController@records');
          
-            Route::get('documents/pay', 'Tenant\DocumentController@pay')->name('tenant.documents.pay');
+            Route::get('documents/vistag', 'Tenant\DocumentController@vistag')->name('vistag');
             
             Route::get('documents/records1', 'Tenant\DocumentController@records1');
+            Route::get('documents/records1/{document}', 'Tenant\DocumentController@records1');
        
           
 

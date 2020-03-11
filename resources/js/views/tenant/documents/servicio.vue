@@ -4,7 +4,7 @@
             <h2><a href="/dashboard"><i class="fas fa-tachometer-alt"></i></a></h2>
             <ol class="breadcrumbs">
                 <li class="active"><span>Comprobantes</span> </li>
-                <li><span class="text-muted">All </small></span></li>
+                <li><span class="text-muted">Orden de Servicio </small></span></li>
             </ol>
             <div class="right-wrapper pull-right">
                 <a :href="`/${resource}/create`" class="btn btn-custom btn-sm  mt-2 mr-2"><i class="fa fa-plus-circle"></i> Nuevo</a>
@@ -119,32 +119,26 @@
                                         <!-- <button type="button" @click.prevent="clickDownload(row.download_xml)" v-if="row.has_xml" class="dropdown-item">XML</button> -->
                                         <a @click.prevent="clickDownload(row.download_pdf)" v-if="row.has_pdf" class="dropdown-item">PDF</a>
                                         <!-- <a @click.prevent="clickDownload(row.download_pdf)" v-if="row.has_pdf" class="dropdown-item">PDF2</a> -->
-                                       <div v-if="row.document_type_id == '80'">
                                         <a @click.prevent="clickDownload(row.download_cdr)" v-if="row.has_cdr" class="dropdown-item">CDR</a>
-
-                                       </div>
-                                      
-                                      
-                                       
                                     </div>
                                 </div>
                             </div>
                             <button type="button" class="btn waves-effect waves-light btn-xs btn-info m-1__2" @click.prevent="clickOptions(row.id)">Opciones</button> 
                         </td>
                     </tr>
-                    <div class="row col-md-12 justify-content-center" slot-scope="{ totals }" slot="totals">
-                        <div class="col-md-3">
+                    <div class="row col-md-6 justify-content-center" slot-scope="{ totals }" slot="totals">
+                        <div class="col-md-6">
                             <h5><strong>Total de ventas en soles </strong>S/. {{ totals.total.total }}</h5>
                             <h5><strong>Total pagado en soles </strong>S/. {{ totals.total.total_paid }}</h5>
                             <h5><strong>Total por cobrar en soles </strong>S/. {{ totals.total.total_to_pay }}</h5>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <h5><strong>Total factura emitidas en soles ({{ totals.total01.quantity}}) </strong>S/. {{ totals.total01.total }}</h5>
                             <h5><strong>Total boletas emitidas en soles ({{ totals.total03.quantity}}) </strong>S/. {{ totals.total03.total }}</h5>
-                        </div>
+                        </div> 
                         <div class="col-md-3">
                             <h5 v-for="row in totals.total_state_types"><strong>Total estado{{ row.description}} SUNAT/OSE </strong>{{ row.quantity }}</h5>
-                        </div>
+                        </div>-->
                     </div>
                 </data-table>
             </div>

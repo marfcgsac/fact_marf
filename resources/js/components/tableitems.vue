@@ -108,8 +108,8 @@
         async mounted () {
             let column_resource = _.split(this.resource, '/')
             await this.$http.get(`/${_.head(column_resource)}/columns`).then((response) => {
-                this.columns1 = response.data
-                this.search.column = _.head(Object.keys(this.columns1))
+                this.columns = response.data
+                this.search.column = _.head(Object.keys(this.columns))
             });
             await this.getRecords()
             await this.getTotals()
@@ -120,7 +120,7 @@
                 return (this.pagination.per_page * (this.pagination.current_page - 1)) + index + 1
             },
             getRecords() {
-                return this.$http.get(`/${this.resource}/records1?${this.getQueryParameters()}`).then((response) => {
+                return this.$http.get(`/${this.resource}/records?${this.getQueryParameters()}`).then((response) => {
                     this.records = response.data.data
                     this.pagination = response.data.meta
                     this.pagination.per_page = parseInt(response.data.meta.per_page)

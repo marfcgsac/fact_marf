@@ -67,14 +67,14 @@
                             <span>{{ row.total_to_pay }}</span>
                         </td>
                         <td class="text-right"><span class="badge bg-secondary text-white" :class="{
-                            'bg-danger': (row.state_type_id === '11'),
-                            'bg-warning': (row.document_type_id==='100'),
-                            'bg-secondary': (row.state_type_id === '01'),
-                            'bg-info': (row.state_type_id === '03'),
-                            'bg-success': (row.state_type_id === '05' && row.document_type_id==='01'),
+                            'text-light bg-info': (row.state_type_id === '11'),
+                            'text-light bg-info': (row.document_type_id==='100'),
+                            'text-light bg-info': (row.state_type_id === '01'),
+                            'text-light bg-info': (row.state_type_id === '03'),
+                            'text-light bg-info': (row.state_type_id === '05' && row.document_type_id==='01'),
                             //'bg-secondary': (row.state_type_id === '07'),
-                            'bg-dark': (row.state_type_id === '09'),
-                            'text-light bg-info': (row.state_type_id === '14')
+                            'text-light bg-info': (row.state_type_id === '09'),
+                            'text-light bg-info': (row.state_type_id === '')
                         }"> {{row.document_type_short}}</span></td>
                      
                         <td class="text-right">

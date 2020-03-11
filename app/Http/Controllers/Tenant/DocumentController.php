@@ -13,6 +13,7 @@ use App\Http\Resources\Tenant\DocumentCollection;
 use App\Http\Resources\Tenant\DocumentResource;
 use App\Http\Resources\Tenant\DocumentConfigurationResource;
 use App\Mail\Tenant\DocumentEmail;
+use App\Mail\Tenant\OrservicioEmail;
 use App\Models\Tenant\Catalogs\AffectationIgvType;
 use App\Models\Tenant\Catalogs\ChargeDiscountType;
 use App\Models\Tenant\Catalogs\CurrencyType;
@@ -53,7 +54,7 @@ class DocumentController extends Controller
     public function __construct()
     {
         $this->middleware('input.request:document,web', ['only' => ['store']]);
-      
+
     }
 
     public function index()
@@ -64,9 +65,15 @@ class DocumentController extends Controller
     public function vistag()
     {
         return view('tenant.documents.vistag');
-        
+
       //  $this->middleware('documents.vistag')->only('records1');
-     
+
+    }
+    public function servicio()
+    {
+        return view('tenant.documents.servicio');
+
+
     }
 
     public function view(Document $document)
@@ -80,57 +87,59 @@ class DocumentController extends Controller
     {
         return view('tenant.documents.configuration');
     }
-    
+
     public function columns()
     {
         return [
             'number' => 'RUC',
             'date_of_issue' => 'Fecha de emisión',
             'customer' => 'cliente'
+
         ];
 
          }
 
+    public function columns1()
+    {
+        return [
+
+            'status_paid' =>'estado'
+        ];
+
+    }
+
     public function records(Request $request)
-    { 
-        // if(!view('tenant.documents.pay')){
-
-        //     $records = Document::where($request->column, 'like', "%{$request->value}%")
-        //     ->whereIn('document_type_id', ['01', '03'])
-        //     ->latest();
-
-        //     return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
-
-        // }else{
-        //     $records1 = Document::where($request->column, 'like', "%{$request->value}%")
-        //     ->whereIn('document_type_id', ['01', '03','80'])
-        //     ->latest();
-        //     return new DocumentCollection($records1->paginate(env('ITEMS_PER_PAGE', 10)));
-        // }
-       
-    // {
-      
-
+    {
             $records = Document::where($request->column, 'like', "%{$request->value}%")
             ->whereIn('document_type_id', ['01', '03'])
             ->latest();
 
-       
+
            return new DocumentCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
     }
 
     public function records1(Request $request)
-    { 
-  
+    {
+
             $records1 = Document::where($request->column, 'like', "%{$request->value}%")
             ->whereIn('document_type_id', ['01', '03','80'])
             ->latest();
 
           return new DocumentCollection($records1->paginate(env('ITEMS_PER_PAGE', 10)));
-          
+
+    }
+    public function records2(Request $request)
+    {
+
+            $records2 = Document::where($request->column, 'like', "%{$request->value}%")
+            ->whereIn('document_type_id', ['80'])
+            ->latest();
+
+          return new DocumentCollection($records2->paginate(env('ITEMS_PER_PAGE', 10)));
+
     }
 
-   
+
     public function totals(Request $request)
     {
         $total = DB::connection('tenant')
@@ -149,7 +158,7 @@ class DocumentController extends Controller
             ->whereIn('document_type_id', ['01'])
             ->where('currency_type_id', 'PEN')
             ->first();
-        
+
         $total03 = DB::connection('tenant')
             ->table('documents')
             ->select(DB::raw('COUNT(*) as quantity'), DB::raw('SUM(total) as total'))
@@ -166,10 +175,10 @@ class DocumentController extends Controller
             ->whereIn('doc.document_type_id', ['01', '03'])
             ->groupBy('stp.description')
             ->get();
-        
+
         $data = [
-            'total' => $total, 
-            'total01' => $total01, 
+            'total' => $total,
+            'total01' => $total01,
             'total03' => $total03,
             'total_state_types' => $total_state_types
         ];
@@ -181,9 +190,9 @@ class DocumentController extends Controller
     {
         //$user = auth()->user();
         //$pos = \App\Models\Tenant\Pos::active();
-        
+
         return view('tenant.documents.form');
-      
+
 
     }
 
@@ -200,7 +209,7 @@ class DocumentController extends Controller
         $pos = \App\Models\Tenant\Pos::active();
         return view('tenant.documents.form3', compact('sale_note_id', 'user', 'pos'));
     }
-    
+
     public function tables()
     {
         $customers = $this->table('customers');
@@ -213,7 +222,7 @@ class DocumentController extends Controller
         {
             $establishments = Establishment::where('id', auth()->user()->establishment_id)->get();
         }
-        
+
         $series = Series::all();
         $document_types_invoice = DocumentType::whereIn('id', ['01', '03'])->get();
         $document_types_invoice2 = DocumentType::whereIn('id', ['01', '03', '100'])->get();
@@ -236,15 +245,15 @@ class DocumentController extends Controller
             'discount_types', 'charge_types', 'payment_methods', 'accounts', 'company', 'document_type_03_filter', 'decimal', 'price_list');
     }
 
-    
-   
+
+
     public function tables2($quotation_id = false)
     {
         if(strlen(stristr($quotation_id, 'e')) == 0)
         {
             $document_types_invoice = DocumentType::whereIn('id', ['01', '03'])->get();
         }
-        else 
+        else
         {
             $document_types_invoice = DocumentType::whereIn('id', ['02'])->get();
         }
@@ -252,7 +261,7 @@ class DocumentController extends Controller
         $quotation_id = (int)$quotation_id;
 
         $quotation = Quotation::whereId($quotation_id)->get();
-        
+
         $customers = Person::whereType('customers')->get()->transform(function ($row) {
             return [
                 'id' => $row->id,
@@ -272,9 +281,9 @@ class DocumentController extends Controller
         {
             $establishments = Establishment::where('id', auth()->user()->establishment_id)->get();
         }
-        
+
         $series = Series::all();
-        
+
         $document_types_note = DocumentType::whereIn('id', ['07', '08'])->get();
         $note_credit_types = NoteCreditType::whereActive()->orderByDescription()->get();
         $note_debit_types = NoteDebitType::whereActive()->orderByDescription()->get();
@@ -296,7 +305,7 @@ class DocumentController extends Controller
         {
             $document_types_invoice = DocumentType::whereIn('id', ['01', '03'])->get();
         }
-        else 
+        else
         {
             $document_types_invoice = DocumentType::whereIn('id', ['100'])->get();
         }
@@ -304,7 +313,7 @@ class DocumentController extends Controller
         $sale_note_id = (int)$sale_note_id;
 
         $SaleNote = SaleNote::whereId($sale_note_id)->get();
-        
+
         $customers = Person::whereType('customers')->get()->transform(function ($row) {
             return [
                 'id' => $row->id,
@@ -324,9 +333,9 @@ class DocumentController extends Controller
         {
             $establishments = Establishment::where('id', auth()->user()->establishment_id)->get();
         }
-        
+
         $series = Series::all();
-        
+
         $document_types_note = DocumentType::whereIn('id', ['07', '08'])->get();
         $note_credit_types = NoteCreditType::whereActive()->orderByDescription()->get();
         $note_debit_types = NoteDebitType::whereActive()->orderByDescription()->get();
@@ -354,7 +363,7 @@ class DocumentController extends Controller
         $discount_types = ChargeDiscountType::whereType('discount')->whereLevel('item')->get();
         $charge_types = ChargeDiscountType::whereType('charge')->whereLevel('item')->get();
         $attribute_types = AttributeType::whereActive()->orderByDescription()->get();
-        
+
         return compact('items', 'categories', 'affectation_igv_types', 'system_isc_types', 'price_types',
             'operation_types', 'discount_types', 'charge_types', 'attribute_types');
     }
@@ -368,7 +377,7 @@ class DocumentController extends Controller
 
         foreach ($quotation_items as $quotation_item) {
             $row = Item::whereId($quotation_item->item_id)->first();
- 
+
             $full_description = ($row->internal_id) ? $row->internal_id . ' - ' . $row->description : $row->description;
 
             $items[] = [
@@ -420,7 +429,7 @@ class DocumentController extends Controller
                 return [
                     'id' => $row->id,
                     'description' => $row->number . ' - ' . $row->name,
-                    
+
                     'name' => $row->name,
                     'number' => $row->number,
                     'identity_document_type_id' => $row->identity_document_type_id,
@@ -464,7 +473,7 @@ class DocumentController extends Controller
         return $record;
     }
 
-    public function configuration_record() 
+    public function configuration_record()
     {
         $document_configuration = DocumentConfiguration::first();
         $record = new DocumentConfigurationResource($document_configuration);
@@ -498,7 +507,7 @@ class DocumentController extends Controller
                 $facturalo->updateHash();
                 $facturalo->updateQr();
                 $facturalo->createPdf();
-    
+
                 if ($request->input('quotation_id')) {
                     Quotation::where('id', $request->input('quotation_id'))
                         ->update(['state_type_id' => '05']);
@@ -510,16 +519,16 @@ class DocumentController extends Controller
                 $pos_sales->table_name = 'documents';
                 $pos_sales->document_id = $document->id;
                 $pos_sales->pos_id = $pos;
-                
+
                 $pos_sales->save();
 
                 return $facturalo;
             });
-    
+
             $fact->senderXmlSignedBill();
             $document = $fact->getDocument();
             $response = $fact->getResponse();
-    
+
             return [
                 'success' => true,
                 'data' => [
@@ -527,7 +536,7 @@ class DocumentController extends Controller
                 ],
             ];
         }
-        
+
     }
 
     public function configuration_store(DocumentConfigurationRequest $request)
@@ -536,7 +545,7 @@ class DocumentController extends Controller
         $document_configuration = DocumentConfiguration::firstOrNew(['id' => $id]);
         $document_configuration->fill($request->all());
         $document_configuration->save();
-        
+
         return [
             'success' => true,
             'message' => 'Configuración actualizada'
@@ -556,6 +565,40 @@ class DocumentController extends Controller
             'success' => true
         ];
     }
+    // public function email1(DocumentEmailRequest $request)
+    // {
+    //     $company = Company::active();
+    //     $document = Document::find($request->input('id'));
+    //     $customer_email = $request->input('customer_email');
+
+    //     Mail::to($customer_email)->send1(new DocumentEmail($company, $document));
+
+    //     return [
+    //         'success' => true
+    //     ];
+    // }
+
+
+    // public function send1($document_id)
+    // {
+    //     $document = Document::find($document_id);
+
+    //     $fact = DB::connection('tenant')->transaction(function () use ($orservicio) {
+    //         $facturalo = new Facturalo();
+    //         // $facturalo->setDocument($document);
+    //         // $facturalo->loadXmlSigned();
+    //         // $facturalo->onlySenderXmlSignedBill();
+    //         return $facturalo;
+    //     });
+
+    //     $response = $fact->getResponse();
+
+    //     return [
+    //         'success' => true,
+    //         'message' => $response['description'],
+    //     ];
+    // }
+
 
     public function send($document_id)
     {
@@ -576,7 +619,6 @@ class DocumentController extends Controller
             'message' => $response['description'],
         ];
     }
-
     public function consultCdr($document_id)
     {
         $document = Document::find($document_id);

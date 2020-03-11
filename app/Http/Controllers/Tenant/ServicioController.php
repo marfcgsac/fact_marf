@@ -374,7 +374,7 @@ class ServicioController extends Controller
         return $record;
     }
 
-    public function configuration_record() 
+      public function configuration_record() 
     {
         $document_configuration = DocumentConfiguration::first();
         $record = new DocumentConfigurationResource($document_configuration);

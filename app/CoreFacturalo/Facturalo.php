@@ -16,6 +16,7 @@ use App\CoreFacturalo\WS\Signed\XmlSigned;
 use App\CoreFacturalo\WS\Validator\XmlErrorCodeProvider;
 use App\Models\Tenant\Company;
 use App\Mail\Tenant\DocumentEmail;
+use App\Mail\Tenant\OrservicioEmail;
 use App\Models\Tenant\Establishment;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Tenant\Dispatch;
@@ -185,6 +186,20 @@ class Facturalo
 
         }
     }
+    // public function sendEmailor()
+    // {
+    //     $send_email1 = ($this->actions['send_email1'] === true) ? true : false;
+
+    //     if ($send_email1) {
+
+    //         $company = $this->company;
+    //         $document = $this->document;
+    //         $email = ($this->document->customer) ? $this->document->customer->email : $this->document->supplier->email;
+
+    //         Mail::to($email)->send1(new OrservicioEmail($company, $document));
+
+    //     }
+    // }
 
     public function createXmlUnsigned()
     {

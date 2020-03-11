@@ -111,8 +111,8 @@ $path)> 0)?$path[2]:''; $path[0] = ($path[0] === '')?'documents':$path[0];
                                 </a>
                             </li>
                            
-                            <li class="{{ ($path[0] === 'servicio')?'nav-active':'' }}">
-                                 <a class="nav-link" href="{{route('tenant.servicio.index')}}">
+                            <li class="{{ ($path[0] === 'documents' && $path[1] === 'servicio')?'nav-active':'' }}">
+                                 <a class="nav-link" href="{{route('servicio')}}">
                                     Orden de servicio
                                 </a>
                             </li>

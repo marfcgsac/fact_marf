@@ -1,4 +1,9 @@
+
 <template>
+
+
+
+
     <div>
         <div class="row ">
 
@@ -12,8 +17,8 @@
                             <el-select v-model="search.column"  placeholder="Select" @change="changeClearInput">
                                 <el-option v-for="(label, key) in columns" :key="key" :value="key" :label="label"></el-option>
                             </el-select>
-
-                                                  
+                                               
+                            
                         </div>
                     </div>
                      
@@ -24,7 +29,7 @@
                                 type="date"
                                 style="width: 100%;"
                                 placeholder="Buscar"
-                                value-format="yyyy-MM-dd"
+                                value-format="dd-MM-yyyy"
                                 @change="getRecords2">
                             </el-date-picker>
                         </template>
@@ -37,8 +42,10 @@
                             </el-input>
                         </template>
                     </div>
+
                 </div>
             </div>
+
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -61,6 +68,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -80,16 +88,17 @@
                 
                 search: {
                     column: null,
+                     column1: null,
                     value: null
                 },
+                columns1: [],
                 columns: [],
                 records: [],
                 totals: [],
                 pagination: {}
             }
         },
-        computed: {
-        },
+       
         created() {
             this.$eventHub.$on('reloadData', () => {
                 this.getRecords()
@@ -99,18 +108,19 @@
         async mounted () {
             let column_resource = _.split(this.resource, '/')
             await this.$http.get(`/${_.head(column_resource)}/columns`).then((response) => {
-                this.columns = response.data
-                this.search.column = _.head(Object.keys(this.columns))
+                this.columns1 = response.data
+                this.search.column = _.head(Object.keys(this.columns1))
             });
             await this.getRecords()
             await this.getTotals()
         },
+    
         methods: {
             customIndex(index) {
                 return (this.pagination.per_page * (this.pagination.current_page - 1)) + index + 1
             },
             getRecords() {
-                return this.$http.get(`/${this.resource}/records?${this.getQueryParameters()}`).then((response) => {
+                return this.$http.get(`/${this.resource}/records1?${this.getQueryParameters()}`).then((response) => {
                     this.records = response.data.data
                     this.pagination = response.data.meta
                     this.pagination.per_page = parseInt(response.data.meta.per_page)
@@ -137,7 +147,8 @@
                 this.getRecords()
                 this.getTotals()
             }
-
+      
         }
+        
     }
 </script>

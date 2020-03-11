@@ -77,7 +77,8 @@ class DocumentgeneralController extends Controller
         return [
             'number' => 'RUC',
             'date_of_issue' => 'Fecha de emisión',
-            'customer' => 'cliente'
+            'customer' => 'cliente',
+            'status_paid' =>'estado'
              
         ];
 

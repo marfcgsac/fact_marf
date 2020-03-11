@@ -7,12 +7,12 @@
                     <i class="fa fa-file-alt"></i>
                 </button>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 text-center font-weight-bold">
+            <!-- <div class="col-lg-6 col-md-6 col-sm-12 text-center font-weight-bold">
                 <p>Imprimir Ticket</p>
                 <button type="button" class="btn btn-lg btn-info waves-effect waves-light" @click="clickPrint('ticket')">
                     <i class="fa fa-receipt"></i>
                 </button>
-            </div>
+            </div> -->
         </div>
         <!-- <div class="row mt-4">
             <div class="col-lg-6 col-md-6 col-sm-12 text-center">
@@ -59,7 +59,7 @@
             return {
                 titleDialog: null,
                 loading: false,
-                resource: 'document',
+                resource: 'documents',
                 errors: {},
                 form: {},
                 company: {}

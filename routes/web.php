@@ -242,15 +242,20 @@ if ($hostname)  {
             Route::get('documents', 'Tenant\DocumentController@index')->name('tenant.documents.index');
             Route::get('documents/view/{document}', 'Tenant\DocumentController@view')->name('tenant.documents.view');
             Route::get('documents/columns', 'Tenant\DocumentController@columns');
+            Route::get('documents/columns1', 'Tenant\DocumentController@columns1');
             Route::get('documents/records', 'Tenant\DocumentController@records');
          
             Route::get('documents/vistag', 'Tenant\DocumentController@vistag')->name('vistag');
+            Route::get('documents/servicio', 'Tenant\DocumentController@servicio')->name('servicio');
             
             Route::get('documents/records1', 'Tenant\DocumentController@records1');
             Route::get('documents/records1/{document}', 'Tenant\DocumentController@records1');
-       
           
+            Route::get('documents/records2', 'Tenant\DocumentController@records2');
+            Route::get('documents/records2/{document}', 'Tenant\DocumentController@records2');
 
+            
+       
             //Route::resource('documents/pay', 'Tenant\DocumentController@pay');
 
 
@@ -264,8 +269,10 @@ if ($hostname)  {
             Route::post('documents', 'Tenant\DocumentController@store');
             //Route::post('documents/{document}', 'Tenant\DocumentController@store2');
             Route::get('documents/send/{document}', 'Tenant\DocumentController@send');
+            Route::get('documents/send1/{document}', 'Tenant\DocumentController@send1');
             Route::get('documents/consult_cdr/{document}', 'Tenant\DocumentController@consultCdr');
             Route::post('documents/email', 'Tenant\DocumentController@email');
+            Route::post('documents/email1', 'Tenant\DocumentController@email1');
             Route::get('documents/note/{document}', 'Tenant\NoteController@create');
             Route::get('documents/item/tables', 'Tenant\DocumentController@item_tables');
             Route::get('documents/item/tables2/{document}', 'Tenant\DocumentController@item_tables2');
@@ -316,10 +323,10 @@ Route::get('servicio/create', 'Tenant\ServicioController@create')->name('tenant.
 Route::get('servicio/create2/{servicio}', 'Tenant\ServicioController@create2')->name('tenant.servicio.create2');
 Route::get('servicio/tablas', 'Tenant\ServicioController@tablas');
 Route::get('servicio/tables2/{document}', 'Tenant\ServicioController@tables2');
-Route::get('servicio/record/{document}', 'Tenant\ServicioController@record');
+//Route::get('servicio/record/{document}', 'Tenant\DocumentController@record');
 Route::post('servicio', 'Tenant\ServicioController@store');
 Route::post('servicio/{document}', 'Tenant\DocumentController@store2');
-// Route::get('servicio/send/{document}', 'Tenant\ServicioController@send');
+Route::get('servicio/send/{document}', 'Tenant\ServicioController@send');
 Route::get('servicio/consult_cdr/{document}', 'Tenant\ServicioController@consultCdr');
 Route::post('servicio/email', 'Tenant\ServicioController@email');
 Route::get('servicio/note/{document}', 'Tenant\NoteController@create');
@@ -349,6 +356,7 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
 
 
             Route::get('quotations/send/{docotizacion}', 'Tenant\DocumentController@send');
+          
 
             Route::get('quotations', 'Tenant\QuotationController@index')->name('tenant.quotations.index');
             Route::get('quotations/columns', 'Tenant\QuotationController@columns');
@@ -380,7 +388,7 @@ Route::post('configuration/servicio', 'Tenant\ServicioController@configuration_s
             Route::post('sale-notes/email', 'Tenant\SaleNoteController@email');
             Route::delete('sale-notes/{salenote}', 'Tenant\SaleNoteController@destroy');
             // Route::get('sale-notes/item/tables', 'Tenant\SaleNotesController@item_tables');
-            // Route::get('sale-notes/table/{table}', 'Tenant\SaleNotesController@table');
+            // Route::get('sale-notes/tab/{table}', 'Tenant\SaleNotesController@table');
 
 
 

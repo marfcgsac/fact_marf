@@ -28,12 +28,21 @@
         </div> -->
         <div class="row mt-4">
             <div class="col-md-12">
+              <!-- <div v-if="this.form.document_type_id !=='80'">
+                
                 <el-input v-model="form.customer_email">
                     <el-button slot="append" icon="el-icon-message" @click="clickSendEmail" :loading="loading">Enviar</el-button>
                 </el-input>
+              </div>
+
+              <div v-else> -->
+                  <el-input v-model="form.customer_email">
+                    <el-button slot="append" icon="el-icon-message" @click="clickSendEmail" :loading="loading">Enviar</el-button>
+                </el-input>
                 <small class="form-control-feedback" v-if="errors.customer_email" v-text="errors.customer_email[0]"></small>
+              </div>
             </div>
-        </div>
+        <!-- </div> -->
         <div class="row mt-4" v-if="company.soap_type_id == '02'">
             <div class="col-md-12 text-center">
                 <button type="button" class="btn waves-effect waves-light btn-outline-primary"
@@ -82,7 +91,8 @@
                     download_pdf: null,
                     external_id: null,
                     number: null,
-                    id: null
+                    id: null,
+                    
                 };
                 this.company = {
                     soap_type_id: null,
@@ -103,6 +113,30 @@
             clickSendEmail() {
                 this.loading = true
                 this.$http.post(`/${this.resource}/email`, {
+                    customer_email: this.form.customer_email,
+                    id: this.form.id
+                })
+                    .then(response => {
+                        if (response.data.success) {
+                            this.$message.success('El correo fue enviado satisfactoriamente')
+                        } else {
+                            this.$message.error('Error al enviar el correo')
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response.status === 422) {
+                            this.errors = error.response.data.errors
+                        } else {
+                            this.$message.error(error.response.data.message)
+                        }
+                    })
+                    .then(() => {
+                        this.loading = false
+                    })
+            },
+             clickSendEmailor() {
+                this.loading = true
+                this.$http.post(`/${this.resource}/email1`, {
                     customer_email: this.form.customer_email,
                     id: this.form.id
                 })

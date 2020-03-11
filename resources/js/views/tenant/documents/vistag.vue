@@ -4,7 +4,7 @@
             <h2><a href="/dashboard"><i class="fas fa-tachometer-alt"></i></a></h2>
             <ol class="breadcrumbs">
                 <li class="active"><span>Comprobantes</span> </li>
-                <li><span class="text-muted">All</small></span></li>
+                <li><span class="text-muted">All </small></span></li>
             </ol>
             <div class="right-wrapper pull-right">
                 <a :href="`/${resource}/create`" class="btn btn-custom btn-sm  mt-2 mr-2"><i class="fa fa-plus-circle"></i> Nuevo</a>
@@ -35,7 +35,7 @@
                         <th class="text-right">Total</th>
                         <th class="text-right">Pagado</th>
                         <th class="text-right">Por pagar</th>
-                        <th class="text-right">Tipo d DOC.</th>
+                        <th class="text-right">Tipo de DOC.</th>
                         <th class="text-center">Estado</th>
                         <!--<th class="text-center">Anulación</th>-->
                         <th class="text-right">Acciones</th>
@@ -116,7 +116,18 @@
                                     Descargar
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                                        <div  v-if="row.document_type_id == '80'">
+                                         
+                                        <!-- <button type="button" @click.prevent="clickDownload(row.download_xml)" v-if="row.has_xml" class="dropdown-item">XML</button> -->
+                                       
+                                        </div>
+                                         <div  v-else>
+                                         
                                         <button type="button" @click.prevent="clickDownload(row.download_xml)" v-if="row.has_xml" class="dropdown-item">XML</button>
+                                       
+                                        </div>
+                                      
                                         <a @click.prevent="clickDownload(row.download_pdf)" v-if="row.has_pdf" class="dropdown-item">PDF</a>
                                         <!-- <a @click.prevent="clickDownload(row.download_pdf)" v-if="row.has_pdf" class="dropdown-item">PDF2</a> -->
                                         <a @click.prevent="clickDownload(row.download_cdr)" v-if="row.has_cdr" class="dropdown-item">CDR</a>

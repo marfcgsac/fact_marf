@@ -16,7 +16,7 @@ class Document extends ModelTenant
         'detalle',
        //
 
-
+       'status_paid',
         'user_id',
         'external_id',
         'establishment_id',

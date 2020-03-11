@@ -20,7 +20,11 @@
     @else
         {{ $document->supplier->name }}
     @endif
+    @if($document->document_type='80')
+    , informamos que su orden de servicio ha sido emitido exitosamente.</p>
+    @else
     , informamos que su comprobante electrónico ha sido emitido exitosamente.</p>
+    @endif
 <p>Los datos de su comprobante electrónico son:</p>
 <ul>
     <li>Razon social: {{ $company->name }}</li>

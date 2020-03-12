@@ -36506,8 +36506,9 @@ Buttons
 .btn-primary.focus,
 .btn-primary:focus,
 .show > .btn-primary.dropdown-toggle {
-  background-color: #6352ce;
-  border: 1px solid #6352ce;
+  /* background-color: #6352ce; */
+  background-color: #28a745;
+  border: 1px solid #28a745;
 }
 
 .btn-success.active.focus,

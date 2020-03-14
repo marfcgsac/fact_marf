@@ -134,6 +134,7 @@ class ClientController extends Controller
             $client->token = $token;
             $client->email = strtolower($request->input('email'));
             $client->name = $request->input('name');
+            $client->username = $request->input('username');
             $client->number = $request->input('number');
             $client->plan_id = $request->input('plan_id');
             $client->save();
@@ -197,7 +198,9 @@ class ClientController extends Controller
         ]);
 
         DB::connection('tenant')->table('users')->insert([
-            'name' => 'Administrador',
+           // 'name' => 'Administrador',
+           'name' => $request->input('name'),
+           'username' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'api_token' => $token,

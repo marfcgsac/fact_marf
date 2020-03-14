@@ -30,17 +30,34 @@
                                         <i class="fas fa-user"></i>
                                     </span>
                                 </span>
-                                    <input id="email" type="email" name="email" class="form-control form-control-lg" value="{{ old('email') }}" placeholder="Login" style="border-left: none;
+                                    <!-- <input id="login" type="login" name="login" class="form-control form-control-lg" value="{{ old('login') }}" placeholder="Login" style="border-left: none;
+    border-right: none;
+    border-top: none;
+    background: none;"> -->
+    <div class="form-group{{ $errors->has('login') ?' has-error' : '' }}"
+    >
+    <div class="form-group mb-6">
+<input id="login" type="login" class="form-control form-control-lg" name="login" value="{{ old('login') }}" required autofocus placeholder="E-Mail o Usuario" style="border-left: none;
     border-right: none;
     border-top: none;
     background: none;">
+<!-- <label for="login" class="col-md-4 control-label">E-Mail o Usuario</label> -->
+@if ($errors->has('login'))
+<span class="help-block">
+<strong>{{ $errors->first('login') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
+
 
                                 </div>
-                                @if ($errors->has('email'))
+                                <!-- @if ($errors->has('login'))
                                     <label class="error">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('login') }}</strong>
                                     </label>
-                                @endif
+                                @endif -->
                             </div>
                             <div class="form-group mb-3 {{ $errors->has('password') ? ' error' : '' }}">
                                 <!-- Esto es otro comentario<label>Contraseña</label> -->

@@ -123,6 +123,7 @@
                             <th>#</th>
                             <th>Hostname</th>
                             <th>Nombre</th>
+                            <th>usuario login</th>
                             <th>RUC</th>
                             <th>Plan</th>
                             <th>Correo</th>
@@ -138,6 +139,7 @@
                             <td>{{ index + 1 }}</td>
                             <td>{{ row.hostname }}</td>
                             <td>{{ row.name }}</td>
+                             <td>{{ row.username }}</td>
                             <td>{{ row.number }}</td>
                             <td>{{ row.plan }}</td>
                             <td>{{ row.email }}</td>

@@ -36,6 +36,7 @@ class UserController extends Controller
         $id = $request->input('id');
         $user = User::firstOrNew(['id' => $id]);
         $user->name = $request->input('name');
+        $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->establishment_id = $request->input('establishment_id');
         $user->admin = $request->input('admin');

@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group" :class="{'has-danger': errors.api_token}">
-                                <label class="control-label">Api Token</label>
+                                <label class="control-label">Api Token1111</label>
                                 <el-input v-model="form.api_token" readonly></el-input>
                                 <small class="form-control-feedback" v-if="errors.api_token" v-text="errors.api_token[0]"></small>
                             </div>

@@ -25,14 +25,18 @@ class ExpenseController extends Controller
     public function columns()
     {
         return [
-            'description' => 'Descripción'
+            'description' => 'Descripción',
+            'date_of_issue' => 'Fecha',
+            'customer.id'=>'name'
+          
         ];
     }
 
     public function records(Request $request)
     {
         $records = Expense::where($request->column, 'like', "%{$request->value}%")
-            ->orderBy('date_of_issue');
+        
+        ->orderBy('date_of_issue');
 
         return new ExpenseCollection($records->paginate(env('ITEMS_PER_PAGE', 10)));
     }

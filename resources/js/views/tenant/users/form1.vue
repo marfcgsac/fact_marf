@@ -11,6 +11,13 @@
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <div class="form-group" :class="{'has-danger': errors.username}">
+                            <label class="control-label">Login</label>
+                            <el-input v-model="form.username"></el-input>
+                            <small class="form-control-feedback" v-if="errors.username" v-text="errors.username[0]"></small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group" :class="{'has-danger': errors.email}">
                             <label class="control-label">Correo Electrónico</label>
                             <el-input v-model="form.email" :disabled="form.id!=null"></el-input>
@@ -28,7 +35,7 @@
                     </div>
                     <div class="col-md-12" v-show="form.id">
                         <div class="form-group" :class="{'has-danger': errors.api_token}">
-                            <label class="control-label">Api Token</label>
+                            <label class="control-label">Api Tokentttt</label>
                             <el-input v-model="form.api_token" :readonly="form.id!=null"></el-input>
                             <small class="form-control-feedback" v-if="errors.api_token" v-text="errors.api_token[0]"></small>
                         </div>
@@ -106,6 +113,7 @@
                 this.form = {
                     id: null,
                     name: null,
+                    username: null,
                     email: null,
                     api_token: null,
                     establishment_id: null,

@@ -20,6 +20,13 @@
                             <small class="form-control-feedback" v-if="errors.name" v-text="errors.name[0]"></small>
                         </div>
                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group" :class="{'has-danger': errors.name}">
+                            <label class="control-label">Nombre de usuario</label>
+                            <el-input v-model="form.username" dusk="username"></el-input>
+                            <small class="form-control-feedback" v-if="errors.username" v-text="errors.username[0]"></small>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -119,6 +126,7 @@
                 this.form = {
                     id: null,
                     name: null,
+                    username: null,
                     email: null,
                     identity_document_type_id: '6',
                     number: '',

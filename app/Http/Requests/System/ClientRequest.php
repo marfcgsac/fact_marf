@@ -19,12 +19,17 @@ class ClientRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
+
             ],
             'number' => [
                 'required',
                 Rule::unique('system.clients')->ignore($id),
             ],
             'name' => [
+                'required',
+                Rule::unique('system.clients')->ignore($id)
+            ],
+            'username' => [
                 'required',
                 Rule::unique('system.clients')->ignore($id)
             ],

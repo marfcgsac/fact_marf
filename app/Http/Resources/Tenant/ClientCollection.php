@@ -18,7 +18,7 @@ class ClientCollection extends ResourceCollection
             return [
                 'id' => $row->id,
                 'name' => $row->name,
-                'username' => $row->username,
+                // 'username' => $row->username,
                 'email' => $row->email,
                 'api_token' => $row->api_token,
                 'client_name' => $row->client_name,

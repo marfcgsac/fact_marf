@@ -4,7 +4,7 @@
 <form class="form-material" id="loginform" method="POST" action="{{ route('register') }}">
         @csrf
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="name" class="col-form-label text-md-right">{{ __('Name') }}</label>
 
             <div class="">
@@ -16,9 +16,9 @@
                     </span>
                 @endif
             </div>
-        </div>
+        </div> -->
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
             <div class="">
@@ -30,7 +30,23 @@
                     </span>
                 @endif
             </div>
-        </div>
+        </div> -->
+
+        
+   
+
+<div class="form-group{{ $errors->has('username') ? 'has-error' : ' }}">
+<label for="username" class="col-md-4 control-label">Nombre de Usuario</label>
+<div class="col-md-6">
+<input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required maxlength="15">
+@if ($errors->has('username'))
+<span class="help-block">
+<strong>{{ $errors->first('username') }}</strong>
+</span>
+@endif
+</div>
+</div>
+
 
         <div class="form-group">
             <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>

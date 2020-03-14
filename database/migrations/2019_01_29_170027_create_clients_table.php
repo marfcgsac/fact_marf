@@ -18,6 +18,7 @@ class CreateClientsTable extends Migration
             $table->bigInteger ('hostname_id')->unsigned()->nullable();
             $table->string('number');
             $table->string('name');
+            $table->string('username');
             $table->string('email');
             $table->string('token');
             $table->boolean('locked')->default(false);

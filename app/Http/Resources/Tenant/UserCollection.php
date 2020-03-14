@@ -19,6 +19,7 @@ class UserCollection extends ResourceCollection
                 'id' => $row->id,
                 'email' => $row->email,
                 'name' => $row->name,
+                'username' => $row->username,
                 'api_token' => $row->api_token,
                 'admin' => $row->admin,
                 'establishment_description' => optional($row->establishment)->description,

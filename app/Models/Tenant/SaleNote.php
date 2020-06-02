@@ -43,6 +43,7 @@ class SaleNote extends ModelTenant
         'total',
         'total_paid',
 
+        // 'additional_information',
         // 'charges',
         // 'discounts',
         // 'prepayments',

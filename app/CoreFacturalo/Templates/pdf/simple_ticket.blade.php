@@ -71,6 +71,12 @@
             <td><p class="desc">{{ $customer->address }}</p></td>
         </tr>
     @endif
+    @if ($customer->telephone !== '')
+        <tr>
+            <td class="align-top"><p class="desc">Telefono:</p></td>
+            <td><p class="desc">{{ $customer->telephone }}</p></td>
+        </tr>
+    @endif 
     @if ($document->seller)
                     <tr>
                         <td class="align-top">Vendedor:</td>

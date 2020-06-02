@@ -93,6 +93,19 @@
             <td><p class="desc">{{ $customer->address }}</p></td>
         </tr>
     @endif
+    <!-- @if ($customer->address !== '')
+        <tr>
+            <td class="align-top"><p class="desc">Dirección:</p></td>
+            <td><p class="desc">{{ $customer->address }}</p></td>
+        </tr>
+    @endif
+
+    @if ($customer->telephone !== '')
+        <tr>
+            <td class="align-top"><p class="desc">Telefono:</p></td>
+            <td><p class="desc">{{ $customer->telephone }}</p></td>
+        </tr>
+    @endif -->
     @if ($document->purchase_order)
         <tr>
             <td><p class="desc">Orden de Compra:</p></td>

@@ -96,14 +96,14 @@
                                     <small class="form-control-feedback" v-if="errors.status_paid" v-text="errors.status_paid"></small>
                                 </div>
                             </div>
-                        </div>
-                         <!-- <div class="col-lg-6">
+                        
+                         <div class="col-lg-4">
                                 <div class="form-group" :class="{'has-danger': errors.additional_information}">
-                                    <label class="control-label">Información Adicional</label>
+                                    <label class="control-label font-weight-bold text-info">Información Adicional</label>
                                     <el-input v-model="form.additional_information" type="textarea" autosize style="height: 50px !important"></el-input>
                                     <small class="form-control-feedback" v-if="errors.additional_information" v-text="errors.additional_information[0]"></small>
                                 </div>
-                            </div> -->
+                            </div> </div>
                         <div class="row mt-1" v-show="form.status_paid == 1">
                             <div class="col-lg-2">
                                 <div class="form-group" :class="{'has-danger': errors.payment_method_id}">

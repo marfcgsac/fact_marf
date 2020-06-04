@@ -96,8 +96,18 @@
                 <td><p class="desc">{{ $guide->number }}</p></td>
             </tr>
         @endforeach
-    @endif
-</table>
+    @endif</table>
+    <table class="full-width mt-10 mb-10">
+    <tr>
+        <td class="desc pt-12">
+            <strong>Información adicional</strong>
+            @foreach($document->additional_information as $information)
+                <p class="desc">{{ $information }}</p>
+            @endforeach
+        </td>
+    </tr>
+    </table>
+
 <table class="full-width mt-10 mb-10">
     <thead class="">
     <tr>

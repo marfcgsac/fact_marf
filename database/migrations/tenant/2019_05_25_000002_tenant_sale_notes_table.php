@@ -54,7 +54,7 @@ class TenantSaleNotesTable extends Migration
             // $table->json('perception')->nullable();
             // $table->json('detraction')->nullable();
             $table->json('legends')->nullable();
-
+            $table->text('additional_information')->nullable();
             $table->string('filename')->nullable();
             $table->timestamps();
 

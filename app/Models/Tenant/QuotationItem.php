@@ -46,6 +46,7 @@ class QuotationItem extends ModelTenant
 
         'attributes',
         'charges',
+        'additional_information',
         'discounts'
     ];
 

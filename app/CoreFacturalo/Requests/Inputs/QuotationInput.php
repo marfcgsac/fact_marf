@@ -151,6 +151,7 @@ class QuotationInput
                     'total_value' => $row['total_value'],
                     'total_charge' => Functions::valueKeyInArray($row, 'total_charge', 0),
                     'total_discount' => Functions::valueKeyInArray($row, 'total_discount', 0),
+                    // 'additional_information' => Functions::valueKeyInArray($row, 'total_other_taxes', 0),
                     'total' => $row['total'],
                     'attributes' => self::attributes($row),
                     'discounts' => self::discounts($row),

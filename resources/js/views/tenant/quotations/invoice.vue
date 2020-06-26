@@ -109,6 +109,15 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="row mt-1">
+                            <div class="col-lg-12 pb-5">
+                                <div class="form-group" :class="{'has-danger': errors.additional_information}">
+                                    <label class="control-label font-weight-bold text-info">Información Adicional</label>
+                                    <el-input v-model="form.additional_information" type="textarea"></el-input>
+                                    <small class="form-control-feedback" v-if="errors.additional_information" v-text="errors.additional_information[0]"></small>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <div class="table-responsive">

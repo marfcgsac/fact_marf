@@ -111,6 +111,17 @@
                                     <small class="form-control-feedback" v-if="errors.date_of_due" v-text="errors.date_of_due[0]"></small>
                                 </div>
                             </div>
+                            
+                        </div>
+                         <div class="row mt-1">
+                            <div class="col-lg-12 pb-5">
+                                <div class="form-group" :class="{'has-danger': errors.additional_information}">
+                                    <label class="control-label font-weight-bold text-info">Información Adicional</label>
+                                    <el-input v-model="form.additional_information" type="textarea"></el-input>
+                                    <small class="form-control-feedback" v-if="errors.additional_information" v-text="errors.additional_information[0]"></small>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
@@ -229,6 +240,7 @@
                 establishment: null,
                 all_series: [],
                 series: [],
+                additional_information:[],
                 currency_type: {},
                 documentNewId: null
             }
@@ -247,6 +259,8 @@
                     this.charges_types = response.data.charges_types
                     this.company = response.data.company
                     this.document_type_03_filter = response.data.document_type_03_filter
+                      
+                    this.additional_information = response.data.additional_information
 
                     this.form.currency_type_id = (this.currency_types.length > 0)?this.currency_types[0].id:null
                     this.form.establishment_id = (this.establishments.length > 0)?this.establishments[0].id:null
@@ -316,6 +330,7 @@
                     discounts: [],
                     attributes: [],
                     guides: [],
+                    additional_information: [],
                     actions: {
                         format_pdf:'a4',
                     }

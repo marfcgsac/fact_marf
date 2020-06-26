@@ -431,7 +431,7 @@ public function createPdf3($document = null, $type = null, $format = null)
         $this->type = ($type != null) ? $type : $this->type;        
 
         $html = $template->pdf('simple', $this->company, $this->document, $format_pdf);
-
+        $pdf->SetDisplayMode('fullpage');
         if ($format_pdf === 'ticket') {
 
             $company_name = (strlen($this->company->name) / 20) * 10;

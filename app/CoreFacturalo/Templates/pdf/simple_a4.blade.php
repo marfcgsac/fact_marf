@@ -6,15 +6,27 @@
     $path_style = app_path('CoreFacturalo'.DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'pdf'.DIRECTORY_SEPARATOR.'style.css');
     $document_number = $document->series.'-'.str_pad($document->number, 8, '0', STR_PAD_LEFT);
 @endphp
+
 <html>
-<head>
+<head >
+  
     <title>{{ $document_number }}</title>
     <link href="{{ $path_style }}" rel="stylesheet" />
+
 </head>
+
 <body>
 <table class="full-width">
     <tr>
-        @if($company->logo)
+    <td width="100%" >
+        <img src="{{ asset('logo/cabezera.jpg') }}">
+    </td>
+    <tr>
+    
+</table>
+
+    
+        <!-- @if($company->logo)
             <td width="20%">
                 <div class="company_logo_box">
                     <img src="{{ asset('storage/uploads/logos/'.$company->logo) }}" alt="{{ $company->name }}" class="company_logo" style="max-width: 150px;">
@@ -24,8 +36,9 @@
             <td width="20%">
                 <img src="{{ asset('logo/logo.jpg') }}" class="company_logo" style="max-width: 150px">
             </td>
-        @endif
-        <td width="50%" class="pl-3">
+        @endif -->
+
+        <!-- <td width="80%" class="pl-3">
             <div class="text-left">
                 <h4 class="">{{ $company->name }}</h4>
                 <h5>{{ 'RUC '.$company->number }}</h5>
@@ -33,19 +46,28 @@
                 <h6>{{ ($establishment->email !== '-')? $establishment->email : '' }}</h6>
                 <h6>{{ ($establishment->telephone !== '-')? $establishment->telephone : '' }}</h6>
             </div>
-        </td>
-        <td width="30%" class="border-box py-4 px-2 text-center">
-            <h5 class="text-center">{{ $document->document_type->description }}</h5>
-            <h3 class="text-center">{{ $document_number }}</h3>
-        </td>
+        </td> -->
+<table class="full-width">
+    <tr>
+    <td width="100%"  class="text-right"> 
+            <h5>Ayacucho, {{ $document->date_of_issue->format('d-M-Y') }}</h5> 
+       </td>
+    <tr>
+    
+</table>
+<table class="full-width">
+    <tr>
+       <td width="100%"   class="text-center">
+            <h5 class="text-center"><u>{{ $document->document_type->description }}-{{ $document_number }}-MCG<u></h5> 
+       </td>
     </tr>
 </table>
 <table class="full-width mt-5">
     <tr>
         <td width="15%">Cliente:</td>
         <td width="45%">{{ $customer->name }}</td>
-        <td width="20%">Fecha de emisión:</td>
-        <td width="20%">{{ $document->date_of_issue->format('d-m-Y') }}  {{ $document->time_of_issue }}</td>
+        <!-- <td width="15%">Fecha de emisión:</td> -->
+       <!-- <td width="15%">{{ $document->date_of_issue->format('d-m-Y') }}</td> -->
     </tr>
     <tr>
         <td>{{ $customer->identity_document_type->description }}:</td>
@@ -62,6 +84,22 @@
     </tr>
     @endif
 </table>
+<br>
+<table class="full-width">
+    <tr>
+        <td class="align-top">Presente:</td>
+    <tr> 
+    <tr><td width="100%"> 
+            <h5>
+De nuestra consideracion, por medio del presente me dirijo a usted, 
+para saludarle cordialmente, a nombre de mi representada MARF CONTRATISTAS
+GENERALES SAC con RUC N°: 20604393753, con domicilio en Prolongación Manco Cápac N°1155, Cel. 978893868
+
+            </h5> 
+    </td><tr>
+
+</table>
+<br>
 
 <table class="full-width mt-12 mb-10">
     <thead class="">
@@ -189,6 +227,7 @@
     </tbody>
 </table>
 <table class="full-width">
+    
     <tr>
         <td width="65%">
             @foreach($document->legends as $row)
@@ -198,5 +237,28 @@
         </td>
     </tr>
 </table>
+<table class="full-width">
+    
+    <tr>
+        <td width="65%">
+            
+                <p> <span class="font-bold">Observaciones:</span></p>
+            
+            <br/>            
+        </td>
+    </tr>
+</table>
+<table>
+                <tr>
+                     @if(isset($document->additional_information))
+                        <td colspan="2"></td>  *</tr>
+                          
+                            <td colspan="5">{!! nl2br(e($document->additional_information[0])) !!}</td>
+                            <tr>
+                        </tr>
+                    @endif
+                </tr>
+            </table>
+
 </body>
 </html>

@@ -2,7 +2,7 @@
     <div class="logo-container">
         <a href="{{route('system.dashboard')}}" class="logo pt-2 pt-md-0">
             {{-- <img src="{{ asset($vc_company->logo) }}" alt="Porto Admin" /> --}}
-            <img src="/logo/liza_logpeq_png.png" style="max-width:110px; ">
+            <img src="/logo/logo_fact.jpg" style="max-width:110px; ">
         </a>
         <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
             <i class="fas fa-bars" aria-label="Toggle sidebar"></i>

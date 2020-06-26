@@ -1,5 +1,5 @@
 body {
-    font-size: 12px;
+    font-size: 14px;
     font-family: Arial, sans-serif;
 }
 table {
@@ -112,6 +112,9 @@ table {
 
 .border-top {
     border-top: thin solid #333;
+}
+.border-topfooter {
+  border-top: thin solid #F72129;
 }
 .border-bottom {
     border-bottom: thin solid #333;

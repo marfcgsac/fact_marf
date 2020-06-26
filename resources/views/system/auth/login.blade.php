@@ -12,7 +12,7 @@
 
 
                         <div style="padding: inherit;text-align: center">
-                            <img src="/logo/liza_logpeq_png.png" class="img-fluid" style="max-height: 90px;margin: auto;width: 72%;">
+                            <img src="/logo/logo_fact.jpg" class="img-fluid" style="max-height: 90px;margin: auto;width: 72%;">
                         </div>
 
 

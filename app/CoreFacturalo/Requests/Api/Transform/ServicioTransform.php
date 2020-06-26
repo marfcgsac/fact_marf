@@ -7,7 +7,7 @@ use App\CoreFacturalo\Requests\Api\Transform\Common\PersonTransform;
 use App\CoreFacturalo\Requests\Api\Transform\Common\ActionTransform;
 use App\CoreFacturalo\Requests\Api\Transform\Common\LegendTransform;
 
-class DocumentTransform
+class ServicioTransform
 {
     public static function transform($inputs)
     {

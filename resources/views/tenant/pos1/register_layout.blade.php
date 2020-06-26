@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{--    <title>{{ config('app.name', 'Facturación Electrónica') }}</title>--}}
-    <title>LIZA POS</title>
+    <title>MARF</title>
 
     <!-- Scripts -->
 
@@ -151,8 +151,8 @@
         <script type="text/javascript">
     (function () {
         var options = {
-            whatsapp: "51933038225", // WhatsApp number
-            call_to_action: "Soporte LIZA POS !", // Call to action
+            whatsapp: "51999035338", // WhatsApp number
+            call_to_action: "Soporte MARF !", // Call to action
             position: "right", // Position may be 'right' or 'left'
         };
         var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;

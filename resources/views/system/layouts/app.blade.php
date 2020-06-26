@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="{{ asset('logo/Favi_LIZA.png') }}">
-    <title>LIZA POS</title>
+    <link rel="shortcut icon" href="{{ asset('logo/logo_fact.jpg') }}">
+    <title>MARF</title>
 
     <!-- Scripts -->
 

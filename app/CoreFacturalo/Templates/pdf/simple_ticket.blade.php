@@ -196,7 +196,7 @@
         @endforeach
     </tr>
     <tr>
-        <td class="text-center desc pt-3">Facturador electrónico Liza Pos / 933 038 225</td>
+        <td class="text-center desc pt-3">Facturador electrónico</td>
     </tr>
 </table>
 

@@ -15,7 +15,7 @@
             <a href="#" data-toggle="dropdown">
                 <figure class="profile-picture">
                     {{-- <img src="{{asset('img/%21logged-user.jpg')}}" alt="Joseph Doe" class="rounded-circle" data-lock-picture="img/%21logged-user.jpg" /> --}}
-                    <div class="border rounded-circle text-center" style="width: 25px;"><img src="/logo/Favi_LIZA.png" style="max-width:30px; ">
+                    <div class="border rounded-circle text-center" style="width: 25px;"><img src="/logo/logo_fact.jpg" style="max-width:30px; ">
                 </figure>
                 <div class="profile-info" data-lock-name="{{ \Auth::getUser()->email }}" data-lock-email="{{ \Auth::getUser()->email }}">
                     <span class="name">{{ \Auth::getUser()->name }}</span>

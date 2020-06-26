@@ -5776,7 +5776,7 @@ html.sidebar-light:not(.dark) ul.nav-main li .nav-children li a:hover, html.side
 
 /* Colors */
 .btn-primary {
-	background-color:#9856fc;
+	background-color:#f6212b;
 	/*border-color: #00e775 #0088CC #006699;*/
 	color: #FFF;
 }
@@ -6271,7 +6271,7 @@ html:not(.sidebar-left-collapsed).boxed .call-to-action .call-to-action-btn > sp
 	border-right: 0 none;
 }
 .card-header.bg-nuevo {
-	background: #9856fc;
+	background: #f6212b;
 	color: #FFF;
 	border-bottom: 0 none;
 	border-right: 0 none;
@@ -18433,4 +18433,4 @@ background-color: #F5F5F5; }
 .scrollbar-secondary::-webkit-scrollbar-thumb {
 border-radius: 10px;
 -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
-background-color: #9856fcb0; }
+background-color: #f6212bb0; }

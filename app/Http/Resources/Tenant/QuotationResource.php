@@ -21,6 +21,7 @@ class QuotationResource extends JsonResource
             'date_of_issue' => $this->date_of_issue->format('Y-m-d'),
             'customer_email' => $this->customer->email,
             'download_pdf' => $this->download_external_pdf,
+            'additional_information' => $row->additional_information,
         ];
     }
 }

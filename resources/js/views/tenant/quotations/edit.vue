@@ -113,6 +113,7 @@
                             </div>
                             
                         </div>
+
                          <div class="row mt-1">
                             <div class="col-lg-12 pb-5">
                                 <div class="form-group" :class="{'has-danger': errors.additional_information}">
@@ -240,7 +241,7 @@
                 establishment: null,
                 all_series: [],
                 series: [],
-                additional_information:[],
+                additional_information:null,
                 currency_type: {},
                 documentNewId: null
             }
@@ -268,6 +269,7 @@
                     this.form.operation_type_id = (this.operation_types.length > 0)?this.operation_types[0].id:null
 
                     this.form.customer_id = response.data.quotation[0].customer_id
+                    this.form.additional_information = response.data.quotation[0].additional_information
                     
                     this.changeEstablishment()
                     this.changeDateOfIssue()

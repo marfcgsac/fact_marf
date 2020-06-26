@@ -12,7 +12,7 @@
 
 
                         <div style="padding: inherit;text-align: center">
-                            <img src="/logo/liza_logo_png.png" class="img-fluid" style="max-height: 90px;margin: auto;width: 72%;">
+                            <img src="/logo/logo_fact.jpg" class="img-fluid" style="max-height: 90px;margin: auto;width: 72%;">
                         </div>
 
 
@@ -111,8 +111,8 @@
 <script type="text/javascript">
     (function () {
         var options = {
-            whatsapp: "51933038225", // WhatsApp number
-            call_to_action: "Soporte LIZA POS !", // Call to action
+            whatsapp: "51999035338", // WhatsApp number
+            call_to_action: "Soporte MARF !", // Call to action
             position: "right", // Position may be 'right' or 'left'
         };
         var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;

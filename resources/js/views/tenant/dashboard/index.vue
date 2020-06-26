@@ -95,7 +95,7 @@
 
                     <div class="col-md-4">
                         <section class="card card-horizontal card-tenant-dashboard">
-                             <header class="card-header " style=" background: #9856FC;">
+                             <header class="card-header " style=" background: #f6212b;">
                                 <div class="card-header-icon"><i class="fa fa-shopping-basket"></i></div>
                             </header>
                             <div class="card-body p-4 text-center">

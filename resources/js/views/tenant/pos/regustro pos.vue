@@ -152,7 +152,7 @@
                                 </el-button>
                             </div>
                             <div class="col-9">
-                                <el-button class="btn btn-submit btn-lg btn-block" style=" background: #9856fc;" type="primary" native-type="submit"
+                                <el-button class="btn btn-submit btn-lg btn-block" style=" background: #f6212b;" type="primary" native-type="submit"
                                            @click.prevent="showDialogMakeSale=true"
                                            v-if="form.items.length > 0"> Procesar Pago
                                 </el-button>

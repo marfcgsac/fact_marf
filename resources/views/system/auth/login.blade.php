@@ -20,7 +20,7 @@
                             @csrf
                             <div class="form-group mb-6">
 
-                                <!-- Esto es otro comentario <label>Correo electrónico</label>-->
+                                <!-- Esto es otro comentario <label>Correo electrónico</label> -->
                                 <div class="input-group">
                                <span class="input-group-append">
                                     <span class="input-group-text" style="border-left: none;
@@ -94,8 +94,8 @@
 <script type="text/javascript">
     (function () {
         var options = {
-            whatsapp: "51933038225", // WhatsApp number
-            call_to_action: "Soporte LIZA POS !", // Call to action
+            whatsapp: "51993035338", // WhatsApp number
+            call_to_action: "Soporte  POS !", // Call to action
             position: "right", // Position may be 'right' or 'left'
         };
         var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;

@@ -7,9 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{--    <title>{{ config('app.name', 'LIZA POS') }}</title>--}}
+    {{--    <title>{{ config('app.name', 'MARF') }}</title>--}}
     <link rel="shortcut icon" href="{{ asset('logo/Favi_LIZA.png') }}">
-    <title>LIZA POS</title>
+    <title>MARF</title>
 
     <!-- Scripts -->
 

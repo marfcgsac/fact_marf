@@ -65,6 +65,8 @@ class TenantQuotationsTable extends Migration
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('document_type_id')->references('id')->on('cat_document_types');
             $table->foreign('currency_type_id')->references('id')->on('cat_currency_types');
+
+            $table->text('additional_information')->nullable();
         });
     }
 

@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <!-- fin aumentar -->
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.item_code}">
                             <label class="control-label">Código Sunat</label>
                             <el-input v-model="form.item_code" dusk="item_code"></el-input>
@@ -79,7 +79,7 @@
                             <small class="form-control-feedback" v-if="errors.item_code_gs1"
                                    v-text="errors.item_code_gs1[0]"></small>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.currency_type_id}">
                             <label class="control-label">Moneda</label>
@@ -101,14 +101,14 @@
                     </div>
                     
                     <div class="col-md-4">
-                        <div class="form-group" :class="{'has-danger': errors.sale_unit_price}">
+                         <div class="form-group" :class="{'has-danger': errors.sale_unit_price}">
                             <label class="control-label">Precio Unitario (Venta)</label>
                             <el-input v-model="form.sale_unit_price" dusk="sale_unit_price" @blur="changePrice()"></el-input>
                             <small class="form-control-feedback" v-if="errors.sale_unit_price"
                                    v-text="errors.sale_unit_price[0]"></small>
                         </div>
-                    </div>
-                    <div class="col-md-5">
+                  </div> 
+                <!--      <div class="col-md-5">
                         <div class="form-group" :class="{'has-danger': errors.sale_affectation_igv_type_id}">
                             <label class="control-label">Tipo de afectación (Venta)</label>
                             <el-select v-model="form.sale_affectation_igv_type_id">
@@ -118,7 +118,7 @@
                             <small class="form-control-feedback" v-if="errors.sale_affectation_igv_type_id"
                                    v-text="errors.sale_affectation_igv_type_id[0]"></small>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.included_igv}">
                             <label class="control-label d-block">IGV incluido</label>
@@ -182,7 +182,7 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <h4>
                             Listado de precios <a data-toggle="collapse" href="#price_list" class="control-label font-weight-bold text-info"> [ + ]</a>
@@ -207,7 +207,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div> 
             <div v-show="recordId==null">
                 <div class="row pt-3">

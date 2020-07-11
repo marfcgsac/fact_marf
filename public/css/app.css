@@ -128442,8 +128442,8 @@ a.link:focus {
 }
 
 .el-textarea__inner {
-  height: 100px !important ;
-  min-height: 100px !important ;
+  height: 140px !important;
+  min-height: 140px !important;
 }
 
 .chart-data-selector {

@@ -113,9 +113,10 @@
                             <div class="col-lg-12 pb-5">
                                 <div class="form-group" :class="{'has-danger': errors.additional_information}">
                                     <label class="control-label font-weight-bold text-info">Información Adicional</label>
-                                    <el-input v-model="form.additional_information" type="textarea"></el-input>
+                                    <el-input v-model="form.additional_information" type="textarea"> </el-input>
                                     <small class="form-control-feedback" v-if="errors.additional_information" v-text="errors.additional_information[0]"></small>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -235,6 +236,7 @@
                 series: [],
                 currency_type: {},
                 documentNewId: null,
+                
                 decimal: 2
             }
         },
@@ -308,6 +310,7 @@
                     discounts: [],
                     attributes: [],
                     guides: [],
+                    additional_information:"CONDICIONES COMERCIALES     : Todos los precios incluyen el igv\n- VALIDEZ DE LA OFERTA	         : 15 días\n- TIEMPO DE ENTREGA	         : 5 días calendario \n- GARANTIA DE EQUIPOS             : 1 año \nSin otro particular, nos despedimos de usted, quedando a la espera de su respuesta. \nAtentamente",
                     actions: {
                         format_pdf:'a4',
                     }
